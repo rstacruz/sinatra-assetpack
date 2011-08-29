@@ -11,6 +11,7 @@ class Main < Sinatra::Base
   register Sinatra::AssetPack
 
   disable :raise_exceptions
+  enable  :dump_errors
 
   assets {
     serve '/js',     from: 'app/js'
@@ -34,6 +35,12 @@ class Main < Sinatra::Base
 
   get '/index.html' do
     haml :index
+  end
+
+  get '/helpers/css' do
+    haml %{
+      != css :application, :media => 'screen'
+    }.strip
   end
 end
 

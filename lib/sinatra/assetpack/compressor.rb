@@ -15,7 +15,6 @@ module Sinatra
         meth = compressors[key]
         return str  unless meth
 
-        puts meth[str]
         meth[str]
       end
 

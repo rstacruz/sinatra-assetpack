@@ -19,13 +19,14 @@ module Sinatra
         add_individual_routes!
       end
 
+      # Add routes for the compressed versions
       def add_compressed_routes!
         assets.packages.each do |name, package|
           get package.route_regex do
             content_type package.type
             last_modified package.mtime
 
-            package.minify
+            settings.assets.cache[package.hash] ||= package.minify
           end
         end
       end

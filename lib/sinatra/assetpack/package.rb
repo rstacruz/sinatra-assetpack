@@ -44,14 +44,26 @@ module Sinatra
         }.join("\n")
       end
 
-      def to_production_html(options={})
-        path = add_cache_buster(@path, *files)
+      # The URI path of the minified file (with cache buster)
+      def production_path
+        add_cache_buster @path, *files
+      end
 
-        tag path, options
+      def to_production_html(options={})
+        tag production_path, options
       end
 
       def minify
         Compressor.compress combined, @type, @assets.send(:"#{@type}_compression")
+      end
+
+      # The cache hash.
+      def hash
+        if @assets.app.development?
+          "#{name}.#{type}/#{mtime}"
+        else
+          "#{name}.#{type}"
+        end
       end
 
       def combined

@@ -1,0 +1,6 @@
+APP_FILE  = 'app.rb'
+APP_CLASS = 'Main'
+
+$:.unshift File.expand_path('../../lib/', __FILE__)
+require 'sinatra/assetpack/rake'
+

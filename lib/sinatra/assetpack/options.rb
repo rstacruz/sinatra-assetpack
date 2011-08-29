@@ -5,8 +5,9 @@ module Sinatra
         @app             = app
         @js_compression  = :jsmin
         @css_compression = :sass
+        @output_path     = app.public
         @served          = Hash.new    # Paths to be served
-        @packages        = Hash.new
+        @packages        = Hash.new    # Hash with keys as "foo.js"
       end
 
       # =====================================================================
@@ -35,14 +36,37 @@ module Sinatra
       end
 
       attr_reader   :app
+      attr_reader   :packages
+
       attr_accessor :js_compression
       attr_accessor :css_compression
-      attr_reader   :packages
+      attr_accessor :output_path
 
       # =====================================================================
       # Stuff
 
       attr_reader :served
+
+      def build!(&blk)
+        session = Rack::Test::Session.new app
+
+        packages.each { |_, pack|
+          out = session.get(pack.path).body
+
+          write pack.path, out, &blk
+          write pack.production_path, out, &blk
+        }
+      end
+
+      def write(path, output)
+        require 'fileutils'
+
+        path = File.join(@output_path, path)
+        yield path  if block_given?
+
+        FileUtils.mkdir_p File.dirname(path)
+        File.open(path, 'w') { |f| f.write output }
+      end
 
       def files(match=nil)
           # All
@@ -65,6 +89,14 @@ module Sinatra
         keys   = files.keys.select { |f| match.any? { |spec| File.fnmatch?(spec, f) } }
         tuples = keys.map { |key| [key, files[key]] }.flatten
         Hash[*tuples]
+      end
+
+      def cache
+        @cache ||= Hash.new
+      end
+
+      def reset_cache
+        @cache = nil && cache
       end
 
     private

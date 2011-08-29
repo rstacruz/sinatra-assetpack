@@ -1,7 +1,7 @@
 module Sinatra
   module AssetPack
     module Helpers
-      def css(what, options={})
+      def css(name, options={})
         show_asset_pack :css, name, options
       end
 
@@ -14,9 +14,9 @@ module Sinatra
         return ""  unless pack
 
         if settings.production?
-          pack.to_production_html
+          pack.to_production_html options
         else
-          pack.to_development_html
+          pack.to_development_html options
         end
       end
 

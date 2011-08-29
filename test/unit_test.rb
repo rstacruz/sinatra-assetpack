@@ -1,31 +1,4 @@
-require 'contest'
-require 'rack/test'
-require 'yaml'
-require 'mocha'
-
-require File.expand_path('../../example/app.rb', __FILE__)
-
-class UnitTest < Test::Unit::TestCase
-  include Rack::Test::Methods
-
-  def app
-    Main
-  end
-
-  def d
-    puts "-"*80
-    puts "#{last_response.status}"
-    y last_response.original_headers
-    puts "-"*80
-    puts ""
-    puts last_response.body.gsub(/^/m, '    ')
-    puts ""
-  end
-
-  def body
-    last_response.body.strip
-  end
-end
+require File.expand_path('../test_helper', __FILE__)
 
 class AppTest < UnitTest
   test '/js/hello.js (plain js)' do
@@ -115,8 +88,9 @@ class AppTest < UnitTest
     get '/css/application.388783.css'
     assert_includes body, "background{color:rgba(0,0,255,0.3)}"
   end
-end
 
-# # Helpers
-# # css :application, :media => 'screen'
-# # js :all
+  test "helpers css" do
+    get '/helpers/css'
+    assert body =~ %r{link rel='stylesheet' type='text/css' href='/css/screen.[0-9]+.css' media='screen'}
+  end
+end
