@@ -46,6 +46,7 @@ module Sinatra
     autoload :Image,         "#{PREFIX}/assetpack/image"
     autoload :Css,           "#{PREFIX}/assetpack/css"
     autoload :Configurator,  "#{PREFIX}/assetpack/configurator"
+    autoload :HashArray,     "#{PREFIX}/assetpack/hasharray"
 
     Error = Class.new(StandardError)
 

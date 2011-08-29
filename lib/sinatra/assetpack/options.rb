@@ -35,7 +35,7 @@ module Sinatra
     #     a.served?('/images/bg.gif')
     #
     #     a.glob('/js/*.js', '/js/vendor/**/*.js')
-    #     # Returns a Hash of (local => remote)
+    #     # Returns a HashArray of (local => remote)
     #
     class Options
       extend Configurator
@@ -191,7 +191,7 @@ module Sinatra
           paths.map { |key| [key, files[key]] }
         }
 
-        Hash[*tuples.flatten]
+        HashArray[*tuples.flatten]
       end
 
       def cache
