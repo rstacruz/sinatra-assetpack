@@ -170,6 +170,21 @@ to compress your JavaScript.
 
 Available levels: `WHITESPACE_ONLY`, `SIMPLE_OPTIMIZATIONS`, `ADVANCED_OPTIMIZATIONS`
 
+Images
+------
+
+To show images, use the `img` helper:
+
+``` erb
+<%= img '/images/email.png' %>
+```
+
+This automatically adds width, height, and a cache buster thingie:
+
+``` html
+    <img src='/images/email.873842.png' width='16' height='16' />
+```
+
 Need to build the files?
 ------------------------
 

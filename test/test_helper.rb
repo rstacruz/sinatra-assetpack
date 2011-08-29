@@ -26,5 +26,9 @@ class UnitTest < Test::Unit::TestCase
   def body
     last_response.body.strip
   end
+
+  def r(*a)
+    File.join app.root, *a
+  end
 end
 

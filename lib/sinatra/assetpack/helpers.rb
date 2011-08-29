@@ -9,6 +9,22 @@ module Sinatra
         show_asset_pack :js, name, options
       end
 
+      def img(src, options={})
+        attrs = { :src => src }.merge(options)
+
+        local = settings.assets.local_file_for src
+        if local
+          i = Image.new(local)
+          attrs[:src] = BusterHelpers.add_cache_buster(src, local)
+          if i.dimensions?
+            attrs[:width]  ||= i.width
+            attrs[:height] ||= i.height
+          end
+        end
+
+        "<img#{HtmlHelpers.kv attrs} />"
+      end
+
       def show_asset_pack(type, name, options={})
         pack = settings.assets.packages["#{name}.#{type}"]
         return ""  unless pack

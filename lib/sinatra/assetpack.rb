@@ -36,11 +36,14 @@ module Sinatra
 
     PREFIX = File.dirname(__FILE__)
 
-    autoload :ClassMethods, "#{PREFIX}/assetpack/class_methods"
-    autoload :Options,      "#{PREFIX}/assetpack/options"
-    autoload :Helpers,      "#{PREFIX}/assetpack/helpers"
-    autoload :Package,      "#{PREFIX}/assetpack/package"
-    autoload :Compressor,   "#{PREFIX}/assetpack/compressor"
+    autoload :ClassMethods,  "#{PREFIX}/assetpack/class_methods"
+    autoload :Options,       "#{PREFIX}/assetpack/options"
+    autoload :Helpers,       "#{PREFIX}/assetpack/helpers"
+    autoload :HtmlHelpers,   "#{PREFIX}/assetpack/html_helpers"
+    autoload :BusterHelpers, "#{PREFIX}/assetpack/buster_helpers"
+    autoload :Package,       "#{PREFIX}/assetpack/package"
+    autoload :Compressor,    "#{PREFIX}/assetpack/compressor"
+    autoload :Image,         "#{PREFIX}/assetpack/image"
 
     Error = Class.new(StandardError)
 

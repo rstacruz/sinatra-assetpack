@@ -54,7 +54,8 @@ module Sinatra
 
       attr_reader   :app        # Sinatra::Base instance
       attr_reader   :packages   # Hash, keys are "foo.js", values are Packages
-      attr_reader   :served     # Hash, paths to be served
+      attr_reader   :served     # Hash, paths to be served.
+                                # Key is URI path, value is local path
 
       attr_accessor :js_compression    # Symbol, compression method for JS
       attr_accessor :css_compression   # Symbol, compression method for CSS
@@ -77,6 +78,25 @@ module Sinatra
           write pack.path, out, &blk
           write pack.production_path, out, &blk
         }
+      end
+
+      def served?(path)
+        !! local_file_for(path)
+      end
+
+      # Returns the local file for a given URI path.
+      # Returns nil if a file is not found.
+      def local_file_for(path)
+        path = path.squeeze('/')
+
+        uri, local = served.detect { |uri, local| path[0...uri.size] == uri }
+
+        if local
+          path = path[uri.size..-1]
+          path = File.join app.root, local, path
+
+          path  if File.exists?(path)
+        end
       end
 
       def write(path, output)
