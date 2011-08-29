@@ -15,9 +15,7 @@ class Main < Sinatra::Base
 
     js :app, '/js/app.js', [
       '/js/vendor/**/*.js',
-      '/js/assets/**/*.js',
-      '/js/hi.js',
-      '/js/hell*.js'
+      '/js/app/**/*.js'
     ]
 
     css :application, '/css/application.css', [
@@ -35,6 +33,25 @@ In your layouts:
 ``` ruby
 != css :application, :media => 'screen'
 != js  :app
+```
+
+And then what?
+--------------
+
+If you're on **development** mode, it serves each of the files as so:
+
+``` html
+<link rel='stylesheet' href='/css/screen.849289.css' media='screen' type='text/css' />
+<script type='text/javascript' src='/js/vendor/jquery.283479.js'></script>
+<script type='text/javascript' src='/js/vendor/underscore.589491.js'></script>
+<script type='text/javascript' src='/js/app/main.589491.js'></script>
+```
+
+If you're on **production** mode, it serves a compressed version in the URLs you specify:
+
+``` html
+<link rel='stylesheet' href='/css/application.849289.css' media='screen' type='text/css' />
+<script type='text/javascript' src='/js/app.589491.js'></script>
 ```
 
 Features
@@ -59,7 +76,7 @@ Features
  * __Auto minification (with caching)__: JS and CSS files will be compressed as 
  needed.
 
- * __Heroku support__: That's right.
+ * __Heroku support__: Oh yes. That's right.
 
 Need to build the files?
 ------------------------
