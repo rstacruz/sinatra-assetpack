@@ -30,7 +30,7 @@ module Sinatra
       end
 
       def height
-        dimensions? && dimensions[0]
+        dimensions? && dimensions[1]
       end
     end
   end
