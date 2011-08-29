@@ -30,7 +30,7 @@ q,blockquote {
   quotes: none;
 }
 
-q: before,q: after,blockquote: before,blockquote: after {
+q:before,q:after,blockquote:before,blockquote:after {
   content: "";
   content: none;
 }
@@ -127,11 +127,11 @@ a {
   text-decoration: none;
 }
 
-a: visited {
+a:visited {
   color: #3882a8;
 }
 
-a: hover {
+a:hover {
   color: #2d6b89;
   text-decoration: underline;
 }
@@ -148,12 +148,12 @@ article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,sec
   display: block;
 }
 
-.ace_scroller: : -webkit-scrollbar,.ace_sb: : -webkit-scrollbar {
+.ace_scroller::-webkit-scrollbar,.ace_sb::-webkit-scrollbar {
   height: 15px;
   width: 15px;
 }
 
-.ace_scroller: : -webkit-scrollbar-thumb,.ace_sb: : -webkit-scrollbar-thumb {
+.ace_scroller::-webkit-scrollbar-thumb,.ace_sb::-webkit-scrollbar-thumb {
   border-width: 7px 7px 7px 7px;
   -webkit-border-image: url(/images/scroll-dark.png) 7 7 7 7 round round;
 }
@@ -162,7 +162,7 @@ html,body {
   min-height: 100%;
 }
 
-a: hover {
+a:hover {
   text-decoration: none;
 }
 
@@ -201,7 +201,7 @@ body,h1,h2,h3,h4,h5,h6,td {
   background-image: none;
 }
 
-#tabs ul: after {
+#tabs ul:after {
   content: '';
   clear: both;
   display: block;
@@ -239,7 +239,7 @@ body,h1,h2,h3,h4,h5,h6,td {
   font-size: 8pt;
 }
 
-#tabs a: hover {
+#tabs a:hover {
   background: rgba(230,228,224,0.7);
   color: rgba(238,238,238,0.9);
 }
@@ -284,13 +284,9 @@ body,h1,h2,h3,h4,h5,h6,td {
   background-color: #e6e4e0;
   background-image: -moz-linear-gradient(top, #e6e4e0, #faf9f8);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e6e4e0), color-stop(1, #faf9f8));
-  filter: progid: DXImageTransform.Microsoft.gradient(startColorStr='#e6e4e0', EndColorStr='#faf9f8');
-  -ms-filter: "progid: DXImageTransform.Microsoft.gradient(startColorStr='#e6e4e0', EndColorStr='#faf9f8')";
   background-color: #e6e4e0;
   background-image: -moz-linear-gradient(top, #e6e4e0, #e9e7e3);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e6e4e0), color-stop(1, #e9e7e3));
-  filter: progid: DXImageTransform.Microsoft.gradient(startColorStr='#e6e4e0', EndColorStr='#e9e7e3');
-  -ms-filter: "progid: DXImageTransform.Microsoft.gradient(startColorStr='#e6e4e0', EndColorStr='#e9e7e3')";
   border-bottom: solid 2px #cfcdc9;
 }
 
@@ -299,13 +295,9 @@ body,h1,h2,h3,h4,h5,h6,td {
   background-color: #d3e9ed;
   background-image: -moz-linear-gradient(top, #d3e9ed, #f6fafb);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #d3e9ed), color-stop(1, #f6fafb));
-  filter: progid: DXImageTransform.Microsoft.gradient(startColorStr='#d3e9ed', EndColorStr='#f6fafb');
-  -ms-filter: "progid: DXImageTransform.Microsoft.gradient(startColorStr='#d3e9ed', EndColorStr='#f6fafb')";
   background-color: #d3e9ed;
   background-image: -moz-linear-gradient(top, #d3e9ed, #e9e7e3);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #d3e9ed), color-stop(1, #e9e7e3));
-  filter: progid: DXImageTransform.Microsoft.gradient(startColorStr='#d3e9ed', EndColorStr='#e9e7e3');
-  -ms-filter: "progid: DXImageTransform.Microsoft.gradient(startColorStr='#d3e9ed', EndColorStr='#e9e7e3')";
   border-bottom: solid 2px #bdd1d5;
 }
 
@@ -385,7 +377,7 @@ p.more-info a {
   padding: 5px 30px;
 }
 
-p.more-info a: hover {
+p.more-info a:hover {
   background: rgba(215,125,45,0.7);
   color: #fff;
 }
@@ -399,12 +391,12 @@ p.more-info a: hover {
   text-shadow: 1px 1px 0 rgba(0,0,0,0.15);
 }
 
-#info a,#info a: visited {
+#info a,#info a:visited {
   color: #f7e5d5;
   border-bottom: dotted 1px rgba(247,229,213,0.4);
 }
 
-#info a: hover,#info a: visited: hover {
+#info a:hover,#info a:visited:hover {
   background: rgba(0,0,0,0.2);
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
@@ -463,7 +455,7 @@ p.more-info a: hover {
   font-size: 9pt;
 }
 
-#info h3: first-child {
+#info h3:first-child {
   margin-top: 0;
 }
 
@@ -486,7 +478,7 @@ p.more-info a: hover {
 }
 
 a.github {
-  background-image: url(https: //a248.e.akamai.net/assets.github.com/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67);
+  background-image: url(https://a248.e.akamai.net/assets.github.com/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67);
   background-position: 0 0;
   background-repeat: no-repeat;
   display: block;

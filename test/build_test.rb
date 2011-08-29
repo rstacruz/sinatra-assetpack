@@ -13,5 +13,8 @@ class BuildTest < UnitTest
     assert Dir[File.join(app.root, 'public/js/app.*.js')].first
 
     assert File.read(File.join(app.root, 'public/js/app.js')).include?('function(){alert("Hello");')
+
+    assert Dir["#{app.root}/public/images/background.*.jpg"].first
+    assert Dir["#{app.root}/public/images/email.*.png"].first
   end
 end

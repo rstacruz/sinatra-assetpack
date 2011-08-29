@@ -1,3 +1,11 @@
+v0.0.3 - Aug 30, 2011
+---------------------
+
+### Added:
+  * Images in CSS defined in `url(...)` params are now cache-busted.
+  * Add support for embedded images in CSS.
+  * `rake assetpack:build` now also outputs images.
+
 v0.0.2 - Aug 29, 2011
 ---------------------
 

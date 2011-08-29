@@ -78,6 +78,12 @@ module Sinatra
           write pack.path, out, &blk
           write pack.production_path, out, &blk
         }
+
+        files.each { |path, local|
+          out = session.get(path).body
+          write path, out, &blk
+          write BusterHelpers.add_cache_buster(path, local), out, &blk
+        }
       end
 
       def served?(path)
@@ -112,6 +118,7 @@ module Sinatra
         Dir[File.join(app.root, from, "#{file}.*")].first
       end
 
+      # Writes `public/#{path}` based on contents of `output`.
       def write(path, output)
         require 'fileutils'
 
@@ -122,6 +129,7 @@ module Sinatra
         File.open(path, 'w') { |f| f.write output }
       end
 
+      # Returns the files as a hash.
       def files(match=nil)
           # All
           # A buncha tuples
