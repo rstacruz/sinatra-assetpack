@@ -54,7 +54,10 @@ module Sinatra
       end
 
       def minify
-        Compressor.compress combined, @type, @assets.send(:"#{@type}_compression")
+        engine  = @assets.send(:"#{@type}_compression")
+        options = @assets.send(:"#{@type}_compression_options")
+
+        Compressor.compress combined, @type, engine, options
       end
 
       # The cache hash.

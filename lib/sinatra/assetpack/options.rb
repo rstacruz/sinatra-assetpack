@@ -7,6 +7,9 @@ module Sinatra
         @css_compression = :sass
         @output_path     = app.public
 
+        @js_compression_options  = Hash.new
+        @css_compression_options = Hash.new
+
         reset!
 
         # Defaults!
@@ -57,6 +60,9 @@ module Sinatra
       attr_accessor :css_compression   # Symbol, compression method for CSS
       attr_accessor :output_path       # '/public'
 
+      attr_accessor :js_compression_options   # Hash
+      attr_accessor :css_compression_options  # Hash
+      
       # =====================================================================
       # Stuff
 

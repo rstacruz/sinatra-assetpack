@@ -109,11 +109,36 @@ assets {
 }
 ```
 
-* For YUI compressor, you need `yuicompressor` in your path. (For Macs: `brew 
-  install yuicompressor`)
 
-* For SASS compression, you need the Sass gem. Be sure to add `gem 'sass'` in 
-  your `Gemfile` if you use Bundler, or do `gem install sass` otherwise.
+### YUI Compressor
+
+``` ruby
+assets {
+  js_compression  = :yui
+  css_compression = :yui
+
+  # Optional settings
+  js_compression_options = { :munge => true }  # Munge variable names
+}
+```
+
+For YUI compression, you need the YUI compressor gem.
+
+ * Bundler? Add to *Gemfile*: `gem 'yui-compressor', :require => 'yui/compressor'`
+ * Else, `gem install yui-compressor`
+
+### SASS compression
+
+``` ruby
+assets {
+  css_compression  = :sass
+}
+```
+
+For SASS compression, you need the Sass gem.
+
+ * Bundler? Add to *Gemfile*: `gem 'sass'`
+ * Else, `gem install sass`
 
 Need to build the files?
 ------------------------

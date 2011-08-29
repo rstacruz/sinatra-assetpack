@@ -7,7 +7,7 @@ module Sinatra
       #
       #     compress File.read('x.js'), :js, :jsmin
       #
-      def compress(str, type, engine=nil)
+      def compress(str, type, engine=nil, options={})
         engine ||= 'jsmin'   if type == :js
         engine ||= 'simple'  if type == :css
 
@@ -15,7 +15,7 @@ module Sinatra
         meth = compressors[key]
         return str  unless meth
 
-        meth[str]
+        meth[str, options]
       end
 
       def compressors
@@ -31,34 +31,37 @@ module Sinatra
       # =====================================================================
       # Compressors
 
-      def jsmin(str)
+      def jsmin(str, options={})
         require 'jsmin'
         JSMin.minify str
       end
 
-      def sass(str)
+      def sass(str, options={})
         Tilt.new("scss", {:style => :compressed}) { str }.render
       rescue LoadError
         simple_css str
       end
 
-      def yui_css(str)
-        sys :css, str, "yuicompressor %f"
+      def yui_css(str, options={})
+        require 'yui/compressor'
+        YUI::CssCompressor.new.compress(str)
       rescue Errno::ENOENT
         sass str
       end
 
-      def yui_js(str)
-        sys :js, str, "yuicompressor %f"
-      rescue Errno::ENOENT
+      def yui_js(str, options={})
+        require 'yui/compressor'
+        YUI::JavaScriptCompressor.new(options).compress(str)
+      rescue LoadError
         jsmin str
       end
 
-      def simple_css(str)
+      def simple_css(str, options={})
         str.gsub! /[ \r\n\t]+/m, ' '
         str.gsub! %r{ *([;\{\},:]) *}, '\1'
       end
 
+      # For others
       def sys(type, str, cmd)
         t = Tempfile.new ['', ".#{type}"]
         t.write(str)
