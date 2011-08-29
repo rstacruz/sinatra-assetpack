@@ -1,3 +1,12 @@
+v0.0.5 - Aug 30, 2011
+---------------------
+
+### Fixed:
+  * Fix build failing when it finds directories.
+
+### Added:
+  * Added an example app in `example/`.
+
 v0.0.4 - Aug 30, 2011
 ---------------------
 

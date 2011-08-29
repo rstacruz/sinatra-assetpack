@@ -15,7 +15,7 @@ No-siree!
 Setup
 -----
 
- * Bundler: `gem 'sinatra-assetpack'`
+ * Bundler? Add to *Gemfile*: `gem 'sinatra-assetpack', :require => 'sinatra/assetpack'`
  * Else: `$ gem install sinatra-assetpack`
 
 Install the plugin and add some options. (Feel free to omit the *Optional* 

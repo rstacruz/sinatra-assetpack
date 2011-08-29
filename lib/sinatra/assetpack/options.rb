@@ -177,7 +177,7 @@ module Sinatra
             spec = File.join(path, '**', '*')
 
             Dir[spec].map { |f|
-              [ to_uri(f, prefix, path), f ]
+              [ to_uri(f, prefix, path), f ]  unless File.directory?(f)
             }
           }.flatten.compact
 
