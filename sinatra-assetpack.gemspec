@@ -15,5 +15,8 @@ Gem::Specification.new do |s|
   s.add_dependency "jsmin"
   s.add_dependency "rack-test"
   s.add_development_dependency "yui-compressor"
+  s.add_development_dependency "sass"
+  s.add_development_dependency "haml"
   s.add_development_dependency "contest"
+  s.add_development_dependency "mocha"
 end
