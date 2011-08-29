@@ -1,0 +1,39 @@
+$:.unshift File.expand_path('../../lib', __FILE__)
+
+require 'sinatra/base'
+require 'sinatra/assetpack'
+require 'coffee-script'
+
+class Main < Sinatra::Base
+  set :root, File.dirname(__FILE__)
+  set :views, "#{root}/app/views"
+
+  register Sinatra::AssetPack
+
+  disable :raise_exceptions
+
+  assets {
+    serve '/js',     from: 'app/js'
+    serve '/css',    from: 'app/css'
+    serve '/images', from: 'app/images'
+
+    js :app, '/js/app.js', [
+      '/js/vendor/**/*.js',
+      '/js/assets/**/*.js',
+      '/js/hi.js',
+      '/js/hell*.js'
+    ]
+
+    css :application, '/css/application.css', [
+      '/css/screen.css'
+    ]
+
+    js_compression  = :jsmin
+    css_compression = :simple
+  }
+
+  get '/index.html' do
+    haml :index
+  end
+end
+
