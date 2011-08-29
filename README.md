@@ -4,38 +4,38 @@
 Setup
 -----
 
-    ``` ruby
-    class Main < Sinatra::Base
-      set :root, File.dirname(__FILE__)
+``` ruby
+class Main < Sinatra::Base
+  set :root, File.dirname(__FILE__)
 
-      assets {
-        serve '/js',     from: 'app/js'
-        serve '/css',    from: 'app/css'
-        serve '/images', from: 'app/images'
+  assets {
+    serve '/js',     from: 'app/js'
+    serve '/css',    from: 'app/css'
+    serve '/images', from: 'app/images'
 
-        js :app, '/js/app.js', [
-          '/js/vendor/**/*.js',
-          '/js/assets/**/*.js',
-          '/js/hi.js',
-          '/js/hell*.js'
-        ]
+    js :app, '/js/app.js', [
+      '/js/vendor/**/*.js',
+      '/js/assets/**/*.js',
+      '/js/hi.js',
+      '/js/hell*.js'
+    ]
 
-        css :application, '/css/application.css', [
-          '/css/screen.css'
-        ]
+    css :application, '/css/application.css', [
+      '/css/screen.css'
+    ]
 
-        js_compression  = :jsmin      # Optional
-        css_compression = :sass       # Optional
-      }
-    end
-    ```
+    js_compression  = :jsmin      # Optional
+    css_compression = :sass       # Optional
+  }
+end
+```
 
 In your layouts:
 
-    ``` ruby
-    != css :application, :media => 'screen'
-    != js  :app
-    ```
+``` ruby
+!= css :application, :media => 'screen'
+!= js  :app
+```
 
 Features
 --------
@@ -66,12 +66,12 @@ Need to build the files?
 
 Actually, you don't need to--this is optional! But add this to your Rakefile:
 
-    ``` ruby
-    APP_FILE  = 'app.rb'
-    APP_CLASS = 'Main'
+``` ruby
+APP_FILE  = 'app.rb'
+APP_CLASS = 'Main'
 
-    require 'sinatra/assetpack/rake'
-    ```
+require 'sinatra/assetpack/rake'
+```
 
 Now:
 
