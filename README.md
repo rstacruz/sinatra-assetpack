@@ -78,3 +78,27 @@ Now:
     $ rake assetpack:build
 
 This will create files in `/public`.
+
+Need Compass support?
+---------------------
+
+No, AssetPack doesn't have built-in Compass support, but you can use [Sinatra 
+Support](http://sinefunc.com/sinatra-support):
+
+``` ruby
+# gem install sinatra/support
+Encoding.default_external = 'utf-8'
+require 'sinatra/support'
+
+class Main
+  register Sinatra::CompassSupport
+end
+```
+
+To do
+-----
+
+AssetPack will eventually have:
+
+ * CDN support
+ * Better support for Compass sprites
