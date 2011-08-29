@@ -95,6 +95,26 @@ Features
 
  * __Heroku support__: Oh yes. That's right.
 
+Compressors
+-----------
+
+By default, AssetPack uses [JSMin](http://rubygems.org/gems/jsmin) for JS 
+minifaction, and simple regexes for CSS minification. You can specify other
+compressors in the `assets` block:
+
+``` ruby
+assets {
+  js_compression  = :jsmin    # :jsmin | :yui
+  css_compression = :simple   # :simple | :sass | :yui
+}
+```
+
+* For YUI compressor, you need `yuicompressor` in your path. (For Macs: `brew 
+  install yuicompressor`)
+
+* For SASS compression, you need the Sass gem. Be sure to add `gem 'sass'` in 
+  your `Gemfile` if you use Bundler, or do `gem install sass` otherwise.
+
 Need to build the files?
 ------------------------
 

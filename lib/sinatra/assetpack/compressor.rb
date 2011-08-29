@@ -9,7 +9,7 @@ module Sinatra
       #
       def compress(str, type, engine=nil)
         engine ||= 'jsmin'   if type == :js
-        engine ||= 'sass'    if type == :css
+        engine ||= 'simple'  if type == :css
 
         key  = :"#{type}/#{engine}"
         meth = compressors[key]
