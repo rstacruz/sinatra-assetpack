@@ -26,6 +26,7 @@ module Sinatra
           :'css/sass'    => method(:sass),
           :'css/yui'     => method(:yui_css),
           :'css/simple'  => method(:simple_css),
+          :'css/sqwish'  => method(:sqwish_css)
         }
       end
 
@@ -62,6 +63,22 @@ module Sinatra
         str.gsub! %r{ *([;\{\},:]) *}, '\1'
       end
 
+      def sqwish_css(str, options={})
+        cmd = "#{sqwish_bin} %f "
+        cmd += "--strict"  if options[:strict]
+
+        _, input = sys :css, str, cmd
+        output   = input.gsub(/\.css/, '.min.css')
+
+        File.read(output)
+      rescue => e
+        simple_css str
+      end
+
+      def sqwish_bin
+        ENV['SQWISH_PATH'] || "sqwish"
+      end
+
       def closure_js(str, options={})
         require 'net/http'
         require 'uri'
@@ -76,7 +93,6 @@ module Sinatra
         response.body
       end
 
-      # For others
       def sys(type, str, cmd)
         t = Tempfile.new ['', ".#{type}"]
         t.write(str)
@@ -85,7 +101,7 @@ module Sinatra
         output = `#{cmd.gsub('%f', t.path)}`
         FileUtils.rm t
 
-        output
+        [output, t.path]
       end
     end
   end

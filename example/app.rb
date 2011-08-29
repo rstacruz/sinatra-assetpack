@@ -32,6 +32,10 @@ class Main < Sinatra::Base
     css :js2, '/css/js2.css', [
       '/css/js2c.css'
     ]
+
+    css :sq, '/css/sq.css', [
+      '/css/sqwishable.css'
+    ]
   }
 
   get '/index.html' do

@@ -6,7 +6,7 @@ class SimplecssTest < UnitTest
   end
 
   teardown do
-    app.assets.css_compression = :sass
+    app.assets.css_compression = :simple
   end
 
   test "build" do

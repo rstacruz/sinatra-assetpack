@@ -116,8 +116,6 @@ assets {
 assets {
   js_compression  = :yui
   css_compression = :yui
-
-  # Optional settings
   js_compression_options = { :munge => true }  # Munge variable names
 }
 ```
@@ -140,20 +138,32 @@ For SASS compression, you need the Sass gem.
  * Bundler? Add to *Gemfile*: `gem 'sass'`
  * Else, `gem install sass`
 
+### Sqwish CSS compression
+
+``` ruby
+assets {
+  css_compression  = :sqwish
+  css_compression_options = { :strict => true }
+}
+```
+
+[Sqwish](http://github.com/ded/sqwish) is a NodeJS-based CSS compressor.  To use 
+Sqwish with AssetPack, install it using `npm install -g sqwish`. You need NodeJS 
+and NPM installed.
+
 ### Google Closure compression
 
 ``` ruby
 assets {
   js_compression  = :closure
-
-  # Optional settings
   js_compression_options = { :level => "SIMPLE_OPTIMIZATIONS" }
-  # Levels: WHITESPACE_ONLY, SIMPLE_OPTIMIZATIONS, ADVANCED_OPTIMIZATIONS
 }
 ```
 
 This uses the [Google closure compiler service](http://closure-compiler.appspot.com/home)
 to compress your JavaScript.
+
+Available levels: `WHITESPACE_ONLY`, `SIMPLE_OPTIMIZATIONS`, `ADVANCED_OPTIMIZATIONS`
 
 Need to build the files?
 ------------------------

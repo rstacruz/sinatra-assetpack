@@ -13,4 +13,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency "sinatra"
   s.add_dependency "jsmin"
+  s.add_development_dependency "yui_compressor"
 end
