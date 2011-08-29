@@ -77,18 +77,37 @@ module Sinatra
 
       # Adds some JS packages.
       #
-      #     js :foo, '/js', [ '/js/vendor/jquery.*.js' ]
+      #     js :foo, [ '/js/vendor/jquery.*.js', ... ]
+      #     js :foo, '/js/foo.js', [ '/js/vendor/jquery.*.js', ... ]
       #
-      def js(name, path, files=[])
-        @packages["#{name}.js"] = Package.new(self, name, :js, path, files)
+      def js(name, *args)
+        js_or_css :js, name, *args
       end
 
       # Adds some CSS packages.
       #
-      #     css :app, '/css', [ '/css/screen.css' ]
+      #     css :app, [ '/css/screen.css', ... ]
+      #     css :app, '/css/app.css', [ '/css/screen.css', ... ]
       #
-      def css(name, path, files=[])
-        @packages["#{name}.css"] = Package.new(self, name, :css, path, files)
+      def css(name, *args) #path, files=[])
+        js_or_css :css, name, *args
+      end
+
+      def js_or_css(type, name, *args)
+        # Account for "css :name, '/path/to/css', [ files ]"
+        if args[0].is_a?(String) && args[1].respond_to?(:each)
+          path, files = args
+
+        # Account for "css :name, [ files ]"
+        elsif args[0].respond_to?(:each)
+          path  = "/#{type}/#{name}.#{type}" # /css/foobar.css by default
+          files = args[0]
+
+        else
+          raise ArgumentError
+        end
+
+        @packages["#{name}.#{type}"] = Package.new(self, name, type, path, files)
       end
 
       attr_reader   :app        # Sinatra::Base instance

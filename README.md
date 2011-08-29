@@ -11,7 +11,7 @@ No-siree!
    * Images into `/app/images`
 3. Add `register Sinatra::AssetPack` and set up options to your app (see below)
 4. Use `<%= css :application %>` to your layouts. Use this instead of
-   messy *<script>* and *<link>* tags
+   messy *script* and *link* tags
 5. BOOM! You're in business baby!
 
 Setup
@@ -35,6 +35,8 @@ class Main < Sinatra::Base
     serve '/css',    from: 'app/css'       # Optional
     serve '/images', from: 'app/images'    # Optional
 
+    # The second parameter defines where the compressed version will be served.
+    # (Note: that parameter is optional, AssetPack will figure it out.)
     js :app, '/js/app.js', [
       '/js/vendor/**/*.js',
       '/js/app/**/*.js'
@@ -243,6 +245,7 @@ To do
 
 AssetPack will eventually have:
 
+ * Ignored files (to ignore included sass files and such)
  * `rake assetpack:build` should be able to output to another folder
  * Cache folder support (best if your app has many workers)
  * Refactor *Compressor* module

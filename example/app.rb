@@ -13,8 +13,14 @@ class App < Sinatra::Base
       '/js/app.js'
     ]
 
-    css :main, '/css/main.css', [
+    css :main, [
       '/css/*.css'
+    ]
+
+    # The second parameter here is optional (see above).
+    # It will default to '/css/#{name}.css'.
+    css :more, '/css/more.css', [
+      '/css/more/*.css'
     ]
   end
 
