@@ -30,5 +30,9 @@ class UnitTest < Test::Unit::TestCase
   def r(*a)
     File.join app.root, *a
   end
+
+  def assert_includes(haystack, needle)
+    assert haystack.include?(needle), "Expected #{haystack.inspect} to include #{needle.inspect}."
+  end
 end
 
