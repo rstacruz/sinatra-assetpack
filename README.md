@@ -104,7 +104,7 @@ compressors in the `assets` block:
 
 ``` ruby
 assets {
-  js_compression  = :jsmin    # :jsmin | :yui
+  js_compression  = :jsmin    # :jsmin | :yui | :closure
   css_compression = :simple   # :simple | :sass | :yui
 }
 ```
@@ -139,6 +139,21 @@ For SASS compression, you need the Sass gem.
 
  * Bundler? Add to *Gemfile*: `gem 'sass'`
  * Else, `gem install sass`
+
+### Google Closure compression
+
+``` ruby
+assets {
+  js_compression  = :closure
+
+  # Optional settings
+  js_compression_options = { :level => "SIMPLE_OPTIMIZATIONS" }
+  # Levels: WHITESPACE_ONLY, SIMPLE_OPTIMIZATIONS, ADVANCED_OPTIMIZATIONS
+}
+```
+
+This uses the [Google closure compiler service](http://closure-compiler.appspot.com/home)
+to compress your JavaScript.
 
 Need to build the files?
 ------------------------

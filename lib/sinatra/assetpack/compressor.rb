@@ -22,6 +22,7 @@ module Sinatra
         @compressors ||= {
           :'js/jsmin'    => method(:jsmin),
           :'js/yui'      => method(:yui_js),
+          :'js/closure'  => method(:closure_js),
           :'css/sass'    => method(:sass),
           :'css/yui'     => method(:yui_css),
           :'css/simple'  => method(:simple_css),
@@ -59,6 +60,20 @@ module Sinatra
       def simple_css(str, options={})
         str.gsub! /[ \r\n\t]+/m, ' '
         str.gsub! %r{ *([;\{\},:]) *}, '\1'
+      end
+
+      def closure_js(str, options={})
+        require 'net/http'
+        require 'uri'
+
+        response = Net::HTTP.post_form(URI.parse('http://closure-compiler.appspot.com/compile'), {
+          'js_code' => str,
+          'compilation_level' => options[:level] || "ADVANCED_OPTIMIZATIONS",
+          'output_format' => 'text',
+          'output_info' => 'compiled_code'
+        })
+
+        response.body
       end
 
       # For others
