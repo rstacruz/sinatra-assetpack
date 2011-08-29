@@ -1,17 +1,32 @@
 # Sinatra AssetPack
 #### Asset packer for Sinatra
 
+This is *the* most convenient way to set up your CSS/JS (and images) in a 
+Sinatra app. Seriously. No need for crappy routes to render Sass or whatever.
+No-siree!
+
+1. Drop your JavaScript/CoffeeScript files in `/app/js`
+2. Drop your CSS/sass/less/scss files in `/app/css`
+3. Add `register Sinatra::AssetPack` and set up options to your app
+4. Use `<%!= css :application %>` to your layouts instead of messy *<script>* 
+   and *<link>* tags
+5. BOOM! You're in business baby!
+
 Setup
 -----
+
+Install the plugin and add some options. (Feel free to omit the *Optional* 
+    items, they're listed here for posterity):
 
 ``` ruby
 class Main < Sinatra::Base
   set :root, File.dirname(__FILE__)
+  register Sinatra::AssetPack
 
   assets {
-    serve '/js',     from: 'app/js'
-    serve '/css',    from: 'app/css'
-    serve '/images', from: 'app/images'
+    serve '/js',     from: 'app/js'        # Optional
+    serve '/css',    from: 'app/css'       # Optional
+    serve '/images', from: 'app/images'    # Optional
 
     js :app, '/js/app.js', [
       '/js/vendor/**/*.js',
