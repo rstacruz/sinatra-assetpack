@@ -1,3 +1,17 @@
+v0.0.4 - Aug 30, 2011
+---------------------
+
+### Fixed:
+  * Ruby 1.8 compatibility. Yay!
+  * Fixed images always being square.
+  * Assets are now ordered properly.
+
+### Changed:
+  * the config format for `js_compression` and family. In your `assets` block, 
+  you now have to use `js_compression :closure` instead of `js_compression = 
+  :closure`.
+  * Use simple CSS compression by default.
+
 v0.0.3 - Aug 30, 2011
 ---------------------
 
