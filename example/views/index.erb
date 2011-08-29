@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+
+    <!-- These should include all the JS files defined in the app. -->
+    <%= js  :main %>
+    <%= css :main %>
+</head>
+<body>
+    <h1>Hello!</h1>
+    <h4>View the source of this file to see the JS files as they were included.</h4>
+
+    <h3>Image test:</h3>
+
+    <!-- This should have width and height. -->
+    <%= img '/images/icon.png' %>
+
+    <h3>Image embedding test:</h3>
+    <div id="image_embedding_test">
+        <!-- This should have a CSS background that uses a data: URI. --> 
+        <!-- Inspect that <div> to see. -->
+    </div>
+</body>
+</html>
