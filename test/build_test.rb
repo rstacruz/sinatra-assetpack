@@ -6,6 +6,7 @@ class BuildTest < UnitTest
   end
 
   test "build" do
+    app.assets.css_compression = :simple
     app.assets.build!
 
     assert File.file? File.join(app.root, 'public/js/app.js')

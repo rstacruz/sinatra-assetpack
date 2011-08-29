@@ -1,4 +1,4 @@
-$:.unshift File.expand_path('../../lib', __FILE__)
+$:.unshift File.expand_path('../../../lib', __FILE__)
 
 require 'sinatra/base'
 require 'sinatra/assetpack'
@@ -10,8 +10,8 @@ class Main < Sinatra::Base
 
   register Sinatra::AssetPack
 
-  disable :raise_exceptions
-  enable  :dump_errors
+  enable  :raise_errors
+  disable :show_exceptions
 
   assets {
     #serve '/js',     from: 'app/js'

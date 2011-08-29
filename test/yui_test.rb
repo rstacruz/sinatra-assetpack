@@ -9,7 +9,7 @@ class YuiTest < UnitTest
 
   teardown do
     app.assets.js_compression  = :jsmin
-    app.assets.css_compression = :sass
+    app.assets.css_compression = :simple
   end
 
   test "build" do

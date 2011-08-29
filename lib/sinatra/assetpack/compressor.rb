@@ -93,6 +93,7 @@ module Sinatra
         response.body
       end
 
+      # For others
       def sys(type, str, cmd)
         t = Tempfile.new ['', ".#{type}"]
         t.write(str)

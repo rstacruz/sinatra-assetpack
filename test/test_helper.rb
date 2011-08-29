@@ -4,7 +4,7 @@ require 'rack/test'
 require 'yaml'
 require 'mocha'
 
-require File.expand_path('../../example/app.rb', __FILE__)
+require File.expand_path('../app/app.rb', __FILE__)
 
 class UnitTest < Test::Unit::TestCase
   include Rack::Test::Methods

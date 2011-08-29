@@ -46,11 +46,18 @@ module Sinatra
             if AssetPack.supported_formats.include?(format)
               # It's a raw file, just send it
               not_found  unless format == fmt
-              send_file fn
+
+              if fmt == 'css'
+                asset_filter_css File.read(fn)
+              else
+                send_file fn
+              end
             else
               # Dynamic file
               not_found unless AssetPack.tilt_formats[format] == fmt
-              render format.to_sym, File.read(fn)
+              out = render format.to_sym, File.read(fn)
+              out = asset_filter_css(out)  if fmt == 'css'
+              out
             end
           end
         end

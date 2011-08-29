@@ -41,7 +41,7 @@ class AppTest < UnitTest
 
   test 'static css' do
     get '/css/style.css'
-    assert body == 'div { color: red; }'
+    assert body.include?('div { color: red; }')
   end
 
   test 'sass' do

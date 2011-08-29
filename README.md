@@ -182,7 +182,22 @@ To show images, use the `img` helper:
 This automatically adds width, height, and a cache buster thingie:
 
 ``` html
-    <img src='/images/email.873842.png' width='16' height='16' />
+<img src='/images/email.873842.png' width='16' height='16' />
+```
+
+In your CSS files, they will automatically be translated as well.
+
+``` css
+/* Original: */    .email { background: url(/images/email.png); }
+/* Output:   */    .email { background: url(/images/email.6783478.png); }
+```
+
+Want to embed images as `data:` URI's? Sure! Just add `?embed` at the end of the 
+URL.
+
+``` css
+/* Original: */    .email { background: url(/images/email.png?embed); }
+/* Output:   */    .email { background: url(data:image/png;base64,NF8dG3I...); } 
 ```
 
 Need to build the files?
@@ -224,7 +239,7 @@ To do
 
 AssetPack will eventually have:
 
- * Image cache busting
- * Image data: embedding
- * CDN support
+ * Cache folder support (best if your app has many workers)
+ * Refactor *Compressor* module
+ * CDN (Cloudfront, S3) support
  * Better support for Compass sprites
