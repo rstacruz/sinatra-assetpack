@@ -92,6 +92,12 @@ Features
  translated to `/js/jquery.8237898.js` to ensure visitors always get the latest 
  version.
 
+ * __Images support__: Image filenames in your CSS will automatically get a 
+ cache-busting suffix (eg, `/images/icon.742958.png`).
+
+ * __Embedded images support__: You can embed images in your CSS files as 
+ `data:` URIs by simply adding `?embed` to the end of your URL.
+
  * __No intermediate files needed__: You don't need to generate compiled files.
  You can, but it's optional. Keeps your source repo clean!
 
