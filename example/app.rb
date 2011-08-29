@@ -14,7 +14,7 @@ class Main < Sinatra::Base
   enable  :dump_errors
 
   assets {
-    serve '/js',     from: 'app/js'
+    #serve '/js',     from: 'app/js'
     serve '/css',    from: 'app/css'
     serve '/images', from: 'app/images'
 
@@ -28,9 +28,6 @@ class Main < Sinatra::Base
     css :application, '/css/application.css', [
       '/css/screen.css'
     ]
-
-    js_compression  = :jsmin
-    css_compression = :simple
   }
 
   get '/index.html' do

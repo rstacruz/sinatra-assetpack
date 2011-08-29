@@ -4,12 +4,8 @@ module Sinatra
     module ClassMethods
       # Sets asset options, or gets them
       def assets(&blk)
-        @options ||= Options.new(self)
-
-        if block_given?
-          @options.instance_eval &blk
-          self.assets_initialize!
-        end
+        @options ||= Options.new(self, &blk)
+        self.assets_initialize!  if block_given?
 
         @options
       end

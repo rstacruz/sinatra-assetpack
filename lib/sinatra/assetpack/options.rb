@@ -1,13 +1,20 @@
 module Sinatra
   module AssetPack
     class Options
-      def initialize(app)
+      def initialize(app, &blk)
         @app             = app
         @js_compression  = :jsmin
         @css_compression = :sass
         @output_path     = app.public
-        @served          = Hash.new    # Paths to be served
-        @packages        = Hash.new    # Hash with keys as "foo.js"
+
+        reset!
+
+        # Defaults!
+        serve '/css',    :from => 'app/css'
+        serve '/js',     :from => 'app/js'
+        serve '/images', :from => 'app/images'
+
+        instance_eval &blk  if block_given?
       end
 
       # =====================================================================
@@ -15,8 +22,15 @@ module Sinatra
 
       def serve(path, options={})
         raise Error  unless options[:from]
+        return  unless File.directory?(File.join(app.root, options[:from]))
+
         @served[path] = options[:from]
-        # ...
+      end
+
+      # Undo defaults.
+      def reset!
+        @served   = Hash.new
+        @packages = Hash.new
       end
 
       # Adds some JS packages.
@@ -35,12 +49,13 @@ module Sinatra
         @packages["#{name}.css"] = Package.new(self, name, :css, path, files)
       end
 
-      attr_reader   :app
-      attr_reader   :packages
+      attr_reader   :app        # Sinatra::Base instance
+      attr_reader   :packages   # Hash, keys are "foo.js", values are Packages
+      attr_reader   :served     # Hash, paths to be served
 
-      attr_accessor :js_compression
-      attr_accessor :css_compression
-      attr_accessor :output_path
+      attr_accessor :js_compression    # Symbol, compression method for JS
+      attr_accessor :css_compression   # Symbol, compression method for CSS
+      attr_accessor :output_path       # '/public'
 
       # =====================================================================
       # Stuff
