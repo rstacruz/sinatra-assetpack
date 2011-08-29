@@ -4,7 +4,7 @@ module Sinatra
       def initialize(app, &blk)
         @app             = app
         @js_compression  = :jsmin
-        @css_compression = :sass
+        @css_compression = :simple
         @output_path     = app.public
 
         @js_compression_options  = Hash.new

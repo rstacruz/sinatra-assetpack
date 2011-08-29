@@ -173,19 +173,15 @@ Available levels: `WHITESPACE_ONLY`, `SIMPLE_OPTIMIZATIONS`, `ADVANCED_OPTIMIZAT
 Images
 ------
 
-To show images, use the `img` helper:
-
-``` erb
-<%= img '/images/email.png' %>
-```
-
-This automatically adds width, height, and a cache buster thingie:
+To show images, use the `img` helper.
+This automatically adds width, height, and a cache buster thingie.
 
 ``` html
-<img src='/images/email.873842.png' width='16' height='16' />
+<!-- Original: --> <%= img '/images/email.png' %>
+<!-- Output:   --> <img src='/images/email.873842.png' width='16' height='16' />
 ```
 
-In your CSS files, they will automatically be translated as well.
+In your CSS files, `url()`'s will automatically be translated.
 
 ``` css
 /* Original: */    .email { background: url(/images/email.png); }
