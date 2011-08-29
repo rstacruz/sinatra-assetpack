@@ -25,7 +25,7 @@ Setup
         ]
 
         js_compression  = :jsmin      # Optional
-        css_compression = :simple     # Optional
+        css_compression = :sass       # Optional
       }
     end
     ```
@@ -48,13 +48,33 @@ Features
  in there (say, `app/css/screen.sass`) and they will be available as CSS files 
  (`http://localhost:4567/css/screen.css`).
 
- * __Cache busting__: the `css` and `js` helpers automatically adds
+ * __Cache busting__: the `css` and `js` helpers automatically ensures the URL 
+ is based on when the file was last modified. The URL `/js/jquery.js` may be 
+ translated to `/js/jquery.8237898.js` to ensure visitors always get the latest 
+ version.
 
- * __Auto minification (with caching)__: 
+ * __No intermediate files needed__: You don't need to generate compiled files.
+ You can, but it's optional. Keeps your source repo clean!
 
- * __No intermediate files__: Minified files will simply be cached as needed
+ * __Auto minification (with caching)__: JS and CSS files will be compressed as 
+ needed.
 
+ * __Heroku support__: That's right.
 
-Helpers
--------
+Need to build the files?
+------------------------
 
+Actually, you don't need to--this is optional! But add this to your Rakefile:
+
+    ``` ruby
+    APP_FILE  = 'app.rb'
+    APP_CLASS = 'Main'
+
+    require 'sinatra/assetpack/rake'
+    ```
+
+Now:
+
+    $ rake assetpack:build
+
+This will create files in `/public`.
