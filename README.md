@@ -15,10 +15,15 @@ No-siree!
 Setup
 -----
 
+ * Bundler: `gem 'sinatra-assetpack'`
+ * Else: `$ gem install sinatra-assetpack`
+
 Install the plugin and add some options. (Feel free to omit the *Optional* 
     items, they're listed here for posterity):
 
 ``` ruby
+require 'sinatra/assetpack'
+
 class Main < Sinatra::Base
   set :root, File.dirname(__FILE__)
   register Sinatra::AssetPack
