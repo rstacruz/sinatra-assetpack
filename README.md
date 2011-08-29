@@ -8,8 +8,8 @@ No-siree!
 1. Drop your JavaScript/CoffeeScript files in `/app/js`
 2. Drop your CSS/sass/less/scss files in `/app/css`
 3. Add `register Sinatra::AssetPack` and set up options to your app
-4. Use `<%!= css :application %>` to your layouts instead of messy *<script>* 
-   and *<link>* tags
+4. Use `<%= css :application %>` to your layouts instead of messy *<script>* and 
+   *<link>* tags
 5. BOOM! You're in business baby!
 
 Setup
@@ -46,9 +46,11 @@ end
 In your layouts:
 
 ``` ruby
-!= css :application, :media => 'screen'
-!= js  :app
+<%= css :application, :media => 'screen' %>
+<%= js  :app %>
 ```
+
+*(Use haml? Great! Use `!= css :youreawesome`.)*
 
 And then what?
 --------------
