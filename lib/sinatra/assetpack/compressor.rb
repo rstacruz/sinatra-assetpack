@@ -63,9 +63,7 @@ module Sinatra
         t = Tempfile.new ['', ".#{type}"]
         t.write(str)
         t.close
-        t.path
 
-        p "#{cmd.gsub('%f', t.path)}"
         output = `#{cmd.gsub('%f', t.path)}`
         FileUtils.rm t
 
