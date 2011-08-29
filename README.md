@@ -50,7 +50,7 @@ end
 
 In your layouts:
 
-``` ruby
+``` erb
 <%= css :application, :media => 'screen' %>
 <%= js  :app %>
 ```
