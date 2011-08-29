@@ -1,6 +1,8 @@
 module Sinatra
   module AssetPack
     class Options
+      extend Configurator
+
       def initialize(app, &blk)
         @app             = app
         @js_compression  = :jsmin
@@ -57,12 +59,12 @@ module Sinatra
       attr_reader   :served     # Hash, paths to be served.
                                 # Key is URI path, value is local path
 
-      attr_accessor :js_compression    # Symbol, compression method for JS
-      attr_accessor :css_compression   # Symbol, compression method for CSS
-      attr_accessor :output_path       # '/public'
+      attrib :js_compression    # Symbol, compression method for JS
+      attrib :css_compression   # Symbol, compression method for CSS
+      attrib :output_path       # '/public'
 
-      attr_accessor :js_compression_options   # Hash
-      attr_accessor :css_compression_options  # Hash
+      attrib :js_compression_options   # Hash
+      attrib :css_compression_options  # Hash
       
       # =====================================================================
       # Stuff

@@ -42,8 +42,8 @@ class Main < Sinatra::Base
       '/css/screen.css'
     ]
 
-    js_compression  = :jsmin      # Optional
-    css_compression = :sass       # Optional
+    js_compression  :jsmin      # Optional
+    css_compression :sass       # Optional
   }
 end
 ```
@@ -115,8 +115,8 @@ compressors in the `assets` block:
 
 ``` ruby
 assets {
-  js_compression  = :jsmin    # :jsmin | :yui | :closure
-  css_compression = :simple   # :simple | :sass | :yui
+  js_compression  :jsmin    # :jsmin | :yui | :closure
+  css_compression :simple   # :simple | :sass | :yui | :sqwish
 }
 ```
 
@@ -125,9 +125,9 @@ assets {
 
 ``` ruby
 assets {
-  js_compression  = :yui
-  css_compression = :yui
-  js_compression_options = { :munge => true }  # Munge variable names
+  js_compression  :yui
+  css_compression :yui
+  js_compression_options { :munge => true }  # Munge variable names
 }
 ```
 
@@ -140,7 +140,7 @@ For YUI compression, you need the YUI compressor gem.
 
 ``` ruby
 assets {
-  css_compression  = :sass
+  css_compression :sass
 }
 ```
 
@@ -153,8 +153,8 @@ For SASS compression, you need the Sass gem.
 
 ``` ruby
 assets {
-  css_compression  = :sqwish
-  css_compression_options = { :strict => true }
+  css_compression :sqwish
+  css_compression_options { :strict => true }
 }
 ```
 
@@ -166,8 +166,8 @@ and NPM installed.
 
 ``` ruby
 assets {
-  js_compression  = :closure
-  js_compression_options = { :level => "SIMPLE_OPTIMIZATIONS" }
+  js_compression :closure
+  js_compression_options { :level => "SIMPLE_OPTIMIZATIONS" }
 }
 ```
 

@@ -45,6 +45,7 @@ module Sinatra
     autoload :Compressor,    "#{PREFIX}/assetpack/compressor"
     autoload :Image,         "#{PREFIX}/assetpack/image"
     autoload :Css,           "#{PREFIX}/assetpack/css"
+    autoload :Configurator,  "#{PREFIX}/assetpack/configurator"
 
     Error = Class.new(StandardError)
 

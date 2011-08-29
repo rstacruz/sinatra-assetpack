@@ -81,12 +81,12 @@ class AppTest < UnitTest
 
   test "compressed css" do
     get '/css/application.css'
-    assert_includes body, "background{color:rgba(0,0,255,0.3)}"
+    assert_includes body, "rgba(0,0,255,0.3)"
   end
 
   test "compressed css with cache bust" do
     get '/css/application.388783.css'
-    assert_includes body, "background{color:rgba(0,0,255,0.3)}"
+    assert_includes body, "rgba(0,0,255,0.3)"
   end
 
   test "helpers css" do
