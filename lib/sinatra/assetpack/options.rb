@@ -1,5 +1,42 @@
 module Sinatra
   module AssetPack
+    # Assets.
+    #
+    # == Common usage
+    #
+    #     SinatraApp.assets {
+    #       # dsl stuff here
+    #     }
+    #
+    #     a = SinatraApp.assets
+    #
+    # Getting options:
+    #
+    #     a.js_compression
+    #     a.output_path
+    #
+    # Served:
+    #
+    #     a.served         # { '/js' => '/var/www/project/app/js', ... }
+    #                      # (URL path => local path)
+    #
+    # Packages:
+    #
+    #     a.packages       # { 'app.css' => #<Package>, ... }
+    #                      # (name.type => package instance)
+    #
+    # Build:
+    #
+    #     a.build! { |path| puts "Building #{path}" }
+    #
+    # Lookup:
+    #
+    #     a.local_path_for('/images/bg.gif')
+    #     a.served?('/images/bg.gif')
+    #
+    #     a.glob('/js/*.js', '/js/vendor/**/*.js')
+    #     # Returns a Hash of (local => remote)
+    #
     class Options
       extend Configurator
 
@@ -149,10 +186,12 @@ module Sinatra
 
       # Returns an array of URI paths of those matching given globs.
       def glob(*match)
-        # Only those matching `match`
-        keys   = files.keys.select { |f| match.any? { |spec| File.fnmatch?(spec, f) } }
-        tuples = keys.map { |key| [key, files[key]] }.flatten
-        Hash[*tuples]
+        tuples = match.map { |spec|
+          paths = files.keys.select { |f| File.fnmatch?(spec, f) }.sort
+          paths.map { |key| [key, files[key]] }
+        }
+
+        Hash[*tuples.flatten]
       end
 
       def cache

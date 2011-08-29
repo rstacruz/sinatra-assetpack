@@ -1,5 +1,23 @@
 module Sinatra
   module AssetPack
+    # A package.
+    #
+    # == Common usage
+    #
+    #     package = assets.packages['application.css']
+    #
+    #     package.files   # List of local files
+    #     package.paths   # List of URI paths
+    #
+    #     package.type    # :css or :js
+    #     package.css?
+    #     package.js?
+    #
+    #     package.path    # '/css/application.css' => where to serve the compressed file
+    #
+    #     package.to_development_html
+    #     package.to_production_html
+    #
     class Package
       include HtmlHelpers
       include BusterHelpers

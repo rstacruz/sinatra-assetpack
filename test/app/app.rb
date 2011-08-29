@@ -14,9 +14,9 @@ class Main < Sinatra::Base
   disable :show_exceptions
 
   assets {
-    #serve '/js',     from: 'app/js'
-    serve '/css',    from: 'app/css'
-    serve '/images', from: 'app/images'
+    #serve '/js',     :from => 'app/js'
+    serve '/css',    :from => 'app/css'
+    serve '/images', :from => 'app/images'
 
     js :app, '/js/app.js', [
       '/js/vendor/**/*.js',
