@@ -17,8 +17,11 @@ class Sqwish < UnitTest
 
   if sqwish?
     test "build" do
+      Sinatra::AssetPack::Compressor.expects(:`).with() { |cmd|
+        cmd.match /^sqwish .*? --strict$/
+      }
+
       get '/css/sq.css'
-      assert body.include?('background:green;color:red')
     end
   else
     puts "(No Sqwish found; skipping sqwish tests)"

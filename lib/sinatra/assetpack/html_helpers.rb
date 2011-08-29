@@ -4,7 +4,9 @@ module Sinatra
       extend self
 
       def e(str)
-        Rack::Utils.escape_html str
+        re = Rack::Utils.escape_html str
+        re = re.gsub("&#x2F;", '/')  # Rack sometimes insists on munging slashes in Ruby 1.8.
+        re
       end
 
       def kv(hash)
