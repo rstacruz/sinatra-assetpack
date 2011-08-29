@@ -209,5 +209,7 @@ To do
 
 AssetPack will eventually have:
 
+ * Image cache busting
+ * Image data: embedding
  * CDN support
  * Better support for Compass sprites
