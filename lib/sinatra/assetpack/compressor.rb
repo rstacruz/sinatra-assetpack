@@ -20,8 +20,11 @@ module Sinatra
 
       def compressors
         @compressors ||= {
-          :'js/jsmin' => method(:jsmin),
-          :'css/sass' => method(:sass)
+          :'js/jsmin'    => method(:jsmin),
+          :'js/yui'      => method(:yui_js),
+          :'css/sass'    => method(:sass),
+          :'css/yui'     => method(:yui_css),
+          :'css/simple'  => method(:simple_css),
         }
       end
 
@@ -35,6 +38,38 @@ module Sinatra
 
       def sass(str)
         Tilt.new("scss", {:style => :compressed}) { str }.render
+      rescue LoadError
+        simple_css str
+      end
+
+      def yui_css(str)
+        sys :css, str, "yuicompressor %f"
+      rescue Errno::ENOENT
+        sass str
+      end
+
+      def yui_js(str)
+        sys :js, str, "yuicompressor %f"
+      rescue Errno::ENOENT
+        jsmin str
+      end
+
+      def simple_css(str)
+        str.gsub! /[ \r\n\t]+/m, ' '
+        str.gsub! %r{ *([;\{\},:]) *}, '\1'
+      end
+
+      def sys(type, str, cmd)
+        t = Tempfile.new ['', ".#{type}"]
+        t.write(str)
+        t.close
+        t.path
+
+        p "#{cmd.gsub('%f', t.path)}"
+        output = `#{cmd.gsub('%f', t.path)}`
+        FileUtils.rm t
+
+        output
       end
     end
   end

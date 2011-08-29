@@ -12,4 +12,5 @@ Gem::Specification.new do |s|
   s.executables = Dir["bin/*"].map { |f| File.basename(f) }
 
   s.add_dependency "sinatra"
+  s.add_dependency "jsmin"
 end

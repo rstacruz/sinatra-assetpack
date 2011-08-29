@@ -28,6 +28,10 @@ class Main < Sinatra::Base
     css :application, '/css/application.css', [
       '/css/screen.css'
     ]
+
+    css :js2, '/css/js2.css', [
+      '/css/js2c.css'
+    ]
   }
 
   get '/index.html' do
