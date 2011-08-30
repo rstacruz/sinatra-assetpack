@@ -10,7 +10,7 @@ module Sinatra
       end
 
       def kv(hash)
-        hash.map { |k, v| " #{e k}='#{e v}'" }.join('')
+        hash.map { |k, v| " #{e k}='#{e v}'" }.join('')  if hash.is_a?(Hash)
       end
     end
   end

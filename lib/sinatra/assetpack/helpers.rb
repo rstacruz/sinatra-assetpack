@@ -1,12 +1,12 @@
 module Sinatra
   module AssetPack
     module Helpers
-      def css(name, options={})
-        show_asset_pack :css, name, options
+      def css(*args)
+        show_asset_pack :css, *args
       end
 
-      def js(name, options={})
-        show_asset_pack :js, name, options
+      def js(*args)
+        show_asset_pack :js, *args
       end
 
       def img(src, options={})
@@ -25,7 +25,20 @@ module Sinatra
         "<img#{HtmlHelpers.kv attrs} />"
       end
 
-      def show_asset_pack(type, name, options={})
+      def show_asset_pack(type, *args)
+        names = Array.new
+        while args.first.is_a?(Symbol)
+          names << args.shift
+        end
+
+        options = args.shift  if args.first.is_a?(Hash)
+
+        names.map { |name|
+          show_one_asset_pack type, name, (options || Hash.new)
+        }.join "\n"
+      end
+
+      def show_one_asset_pack(type, name, options={})
         pack = settings.assets.packages["#{name}.#{type}"]
         return ""  unless pack
 

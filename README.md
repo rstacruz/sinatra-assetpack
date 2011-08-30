@@ -346,13 +346,18 @@ These are helpers you can use in your views.
 ### css
 
 __Usage:__ `css :PACKAGE`  
+__Usage:__ `css :PACKAGE_1, :PACKAGE_2, ...  :PACKAGE_N, OPTIONS_HASH`
 __Usage:__ `css :PACKAGE, OPTIONS_HASH`
 
 Shows a CSS package named `PACKAGE`. If `OPTIONS_HASH` is given, they will we 
 passed onto the `<link>` tag to be generated as attributes.
 
-__Example:__ `css :main, media: 'screen'`
+You may specify as many packages as you need, as shown in the second usage line.
+
+__Example 1:__ `css :main, media: 'screen'`
 __Output:__ `<link rel='stylesheet' type='text/css' href='/css/main.873984.css' media='screen' />`
+
+__Example 2:__ `css :base, :app, :main, media: 'screen'`
 
 ----
 
@@ -362,6 +367,8 @@ __Usage:__ `js :PACKAGE`
 __Usage:__ `js :PACKAGE, OPTIONS_HASH`
 
 Same as `css`, but obviously for JavaScript.
+
+You may also specify as many packages as you need.
 
 __Example:__ `js :main, id: 'main_script'`  
 __Output:__ `<script type='text/javascript' src='/js/main.783439.js' id='main_script'></script>`
