@@ -121,6 +121,18 @@ module Sinatra
 
       attrib :js_compression_options   # Hash
       attrib :css_compression_options  # Hash
+
+      def js_compression(name=nil, options=nil)
+        @js_compression = name  unless name.nil?
+        @js_compression_options = options  if options.is_a?(Hash)
+        @js_compression
+      end
+
+      def css_compression(name=nil, options=nil)
+        @css_compression = name  unless name.nil?
+        @css_compression_options = options  if options.is_a?(Hash)
+        @css_compression
+      end
       
       # =====================================================================
       # Stuff

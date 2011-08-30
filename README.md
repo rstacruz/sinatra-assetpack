@@ -132,8 +132,9 @@ assets {
 ``` ruby
 assets {
   js_compression  :yui
+  js_compression  :yui, :munge => true   # Munge variable names
+
   css_compression :yui
-  js_compression_options { :munge => true }  # Munge variable names
 }
 ```
 
@@ -164,7 +165,7 @@ For SASS compression, you need the Sass gem.
 ``` ruby
 assets {
   css_compression :sqwish
-  css_compression_options { :strict => true }
+  css_compression :sqwish, :strict => true
 }
 ```
 
@@ -179,7 +180,7 @@ and NPM installed.
 ``` ruby
 assets {
   js_compression :closure
-  js_compression_options { :level => "SIMPLE_OPTIMIZATIONS" }
+  js_compression :closure, :level => "SIMPLE_OPTIMIZATIONS"
 }
 ```
 
@@ -283,10 +284,17 @@ serve '/js', from: '/app/javascripts'
 ### assets.css_compression
 
 __Usage:__ `js_compression :ENGINE`  
+__Usage:__ `js_compression :ENGINE, OPTIONS_HASH`  
 __Usage:__ `css_compression :ENGINE`  
+__Usage:__ `css_compression :ENGINE, OPTIONS_HASH`
 
 Sets the compression engine to use for JavaScript or CSS. This defaults to 
 `:jsmin` and `:simple`, respectively.
+
+If `OPTIONS_HASH` is given as a hash, it sets options for the engine to use.
+
+__Example 1:__ `css_compression :sqwish`  
+__Example 2:__ `css_compression :sqwish, :strict => true`
 
 ----
 
@@ -296,7 +304,8 @@ Sets the compression engine to use for JavaScript or CSS. This defaults to
 __Usage:__ `js_compression_options HASH`  
 __Usage:__ `css_compression_options HASH`
 
-Sets the options for the compression engine to use.
+Sets the options for the compression engine to use. This is usually not needed 
+as you can already set options using `js_compression` and `css_compression`.
 
 __Example:__ `js_compression_options :munge => true`
 
