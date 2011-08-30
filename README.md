@@ -26,7 +26,7 @@ Install the plugin and add some options. (Feel free to omit the *Optional*
 ``` ruby
 require 'sinatra/assetpack'
 
-class Main < Sinatra::Base
+class App < Sinatra::Base
   set :root, File.dirname(__FILE__)
   register Sinatra::AssetPack
 
@@ -213,7 +213,7 @@ Actually, you don't need to--this is optional! But add this to your Rakefile:
 
 ``` ruby
 APP_FILE  = 'app.rb'
-APP_CLASS = 'Main'
+APP_CLASS = 'App'
 
 require 'sinatra/assetpack/rake'
 ```
@@ -223,6 +223,149 @@ Now:
     $ rake assetpack:build
 
 This will create files in `/public`.
+
+API reference: asset block
+--------------------------
+
+All configuration happens in the `asset` block. You may invoke it in 2 ways:
+
+``` ruby
+class App < Sinatra::Base
+  register Sinatra::AssetPack
+
+  # Style 1
+  assets {
+    css :hello, [ '/css/*.css' ]
+    js_compression :yui
+  }
+
+  # Style 2
+  assets { |a|
+    a.css :hello, ['/css/*.css' ]
+    js_compression :yui
+  }
+end
+```
+
+Invoking it without a block allows you to access the options.
+
+``` ruby
+App.assets
+App.assets.js_compression   #=> :yui
+```
+
+### assets.serve
+
+__Usage:__ `serve 'PATH', :from => 'LOCALPATH'`
+
+Serves files from `LOCALPATH` in the URI path `PATH`. Both parameters are 
+required.
+
+``` ruby
+# ..This makes /app/javascripts/vendor/jquery.js
+# available as http://localhost:4567/js/vendor/jquery.js
+serve '/js', from: '/app/javascripts'
+```
+
+### assets.js_compression + assets.css_compression
+
+__Usage:__ `js_compression :ENGINE`  
+__Usage:__ `css_compression :ENGINE`  
+
+Sets the compression engine to use for JavaScript or CSS. This defaults to 
+`:jsmin` and `:simple`, respectively.
+
+### assets.js_compression_options + assets.css_compression_options
+
+__Usage:__ `js_compression_options HASH`  
+__Usage:__ `css_compression_options HASH`
+
+Sets the options for the compression engine to use.
+
+__Example:__ `js_compression_options :munge => true`
+
+### assets.css + assets.js
+
+__Usage:__ `css :NAME, [ PATH1, PATH2, ... ]`  
+__Usage:__ `css :NAME, 'URI', [ PATH1, PATH2, ... ]`  
+__Usage:__ `js  :NAME, [ PATH1, PATH2, ... ]`  
+__Usage:__ `js  :NAME, 'URI', [ PATH1, PATH2, ... ]`
+
+Adds packages to be used.
+
+The `NAME` is a symbol defines the ID for that given package that you can use 
+for the helpers. That is, If a CSS package was defined as `css :main, [ ... ]`, 
+then you will need to use `<%= css :main %>` to render it in views.
+
+the `URI` is a string that defines where the compressed version will be served.  
+It is optional. If not provided, it will default to `"/type/name.type"` (eg: 
+`/css/main.css`).
+
+the `PATHs` is an array that defines files that will be served. Take note that 
+this is an array of URI paths, not local paths.
+
+If a `PATH` contains wildcards, it will be expanded in alphabetical order.  
+Redundancies will be taken care of.
+
+__Examples:__
+
+In this example, JavaScript files will be served compressed as 
+`/js/application.js` (default since no `URI` is given). The files will be taken 
+from `./app/javascripts/vendor/jquery*.js`.
+
+``` ruby
+class App < Sinatra::Base
+  serve '/js', from: '/app/javascripts'
+  assets {
+    js :application, [
+      '/js/vendor/jquery.*.js',
+      '/js/vendor/jquery.js'
+    ]
+  }
+end
+
+# In views: <%= js :application %>
+```
+
+API reference: helpers
+----------------------
+
+These are helpers you can use in your views.
+
+### css
+
+__Usage:__ `css :PACKAGE`  
+__Usage:__ `css :PACKAGE, OPTIONS_HASH`
+
+Shows a CSS package named `PACKAGE`. If `OPTIONS_HASH` is given, they will we 
+passed onto the `<link>` tag to be generated as attributes.
+
+__Example:__ `css :main, media: 'screen'`
+__Output:__ `<link rel='stylesheet' type='text/css' href='/css/main.873984.css' media='screen' />`
+
+### js
+
+__Usage:__ `js :PACKAGE`  
+__Usage:__ `js :PACKAGE, OPTIONS_HASH`
+
+Same as `css`, but obviously for JavaScript.
+
+__Example:__ `js :main, id: 'main_script'`  
+__Output:__ `<script type='text/javascript' src='/js/main.783439.js' id='main_script'></script>`
+
+### img
+
+__Usage:__ `img 'SRC'`  
+__Usage:__ `img 'SRC', OPTIONS_HASH`
+
+Shows an `<img>` tag from the given `SRC`. If the images is found in the asset 
+directories, `width` and `height` attributes will be added.
+
+If `OPTIONS_HASH` is given, they will we passed onto the `<img>` tag to be 
+generated as attributes.
+
+__Example:__ `img '/images/icon.png', alt: 'Icon'`
+__Output:__ `<img src='/images/icon.834782.png' width='24' height='24' alt='Icon' />`
 
 Need Compass support?
 ---------------------
@@ -245,6 +388,7 @@ To do
 
 AssetPack will eventually have:
 
+ * Nested packages
  * Ignored files (to ignore included sass files and such)
  * `rake assetpack:build` should be able to output to another folder
  * Cache folder support (best if your app has many workers)
