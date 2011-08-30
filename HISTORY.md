@@ -1,3 +1,17 @@
+v0.0.6 - Aug 30, 2011
+---------------------
+
+### Fixed:
+  * Redundant entries are now suppressed. (eg, when specifying 
+      `['vendor/jquery.js', 'vendor/*.js']`)
+
+### Added:
+  * Allow a parameter to the block in the `assets` configuration block.
+  * Update README with lots of info.
+  * Allow multiple packages in the js and css helpers. (eg, `css :base, :login`)
+  * Allow setting options for `js_compression` by passing a hash after it.
+  * Make the path parameter in `js` and `css` in the `assets` block optional.
+
 v0.0.5 - Aug 30, 2011
 ---------------------
 
