@@ -56,7 +56,7 @@ module Sinatra
         serve '/js',     :from => 'app/js'
         serve '/images', :from => 'app/images'
 
-        blk.arity == 0 ? instance_eval(&blk) : yield(self)  if block_given?
+        blk.arity <= 0 ? instance_eval(&blk) : yield(self)  if block_given?
       end
 
       # =====================================================================
