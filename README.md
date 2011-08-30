@@ -114,7 +114,7 @@ Compressors
 -----------
 
 By default, AssetPack uses [JSMin](http://rubygems.org/gems/jsmin) for JS 
-minifaction, and simple regexes for CSS minification. You can specify other
+compression, and simple regexes for CSS compression. You can specify other
 compressors in the `assets` block:
 
 ``` ruby
@@ -124,6 +124,8 @@ assets {
 }
 ```
 
+
+----
 
 ### YUI Compressor
 
@@ -140,6 +142,8 @@ For YUI compression, you need the YUI compressor gem.
  * Bundler? Add to *Gemfile*: `gem 'yui-compressor', :require => 'yui/compressor'`
  * Else, `gem install yui-compressor`
 
+----
+
 ### SASS compression
 
 ``` ruby
@@ -153,6 +157,8 @@ For SASS compression, you need the Sass gem.
  * Bundler? Add to *Gemfile*: `gem 'sass'`
  * Else, `gem install sass`
 
+----
+
 ### Sqwish CSS compression
 
 ``` ruby
@@ -165,6 +171,8 @@ assets {
 [Sqwish](http://github.com/ded/sqwish) is a NodeJS-based CSS compressor.  To use 
 Sqwish with AssetPack, install it using `npm install -g sqwish`. You need NodeJS 
 and NPM installed.
+
+----
 
 ### Google Closure compression
 
@@ -224,26 +232,26 @@ Now:
 
 This will create files in `/public`.
 
-API reference: asset block
---------------------------
+API reference: assets block
+---------------------------
 
-All configuration happens in the `asset` block. You may invoke it in 2 ways:
+All configuration happens in the `assets` block. You may invoke it in 2 ways:
 
 ``` ruby
 class App < Sinatra::Base
   register Sinatra::AssetPack
 
   # Style 1
-  assets {
+  assets do
     css :hello, [ '/css/*.css' ]
     js_compression :yui
-  }
+  end
 
   # Style 2
-  assets { |a|
+  assets do |a|
     a.css :hello, ['/css/*.css' ]
-    js_compression :yui
-  }
+    a.js_compression :yui
+  end
 end
 ```
 
@@ -343,10 +351,12 @@ API reference: helpers
 
 These are helpers you can use in your views.
 
+----
+
 ### css
 
 __Usage:__ `css :PACKAGE`  
-__Usage:__ `css :PACKAGE_1, :PACKAGE_2, ...  :PACKAGE_N, OPTIONS_HASH`
+__Usage:__ `css :PACKAGE_1, :PACKAGE_2, ...  :PACKAGE_N, OPTIONS_HASH`  
 __Usage:__ `css :PACKAGE, OPTIONS_HASH`
 
 Shows a CSS package named `PACKAGE`. If `OPTIONS_HASH` is given, they will we 
@@ -354,8 +364,9 @@ passed onto the `<link>` tag to be generated as attributes.
 
 You may specify as many packages as you need, as shown in the second usage line.
 
-__Example 1:__ `css :main, media: 'screen'`
-__Output:__ `<link rel='stylesheet' type='text/css' href='/css/main.873984.css' media='screen' />`
+__Example 1:__ `css :main, media: 'screen'`  
+__Output:__ `<link rel='stylesheet' type='text/css' href='/css/main.873984.css' 
+media='screen' />`
 
 __Example 2:__ `css :base, :app, :main, media: 'screen'`
 
@@ -386,7 +397,7 @@ directories, `width` and `height` attributes will be added.
 If `OPTIONS_HASH` is given, they will we passed onto the `<img>` tag to be 
 generated as attributes.
 
-__Example:__ `img '/images/icon.png', alt: 'Icon'`
+__Example:__ `img '/images/icon.png', alt: 'Icon'`  
 __Output:__ `<img src='/images/icon.834782.png' width='24' height='24' alt='Icon' />`
 
 Need Compass support?
