@@ -1,11 +1,14 @@
-desc "Invokes the test suite in multiple rubies"
-task :test do
-  system "rvm 1.9.2@sinatra,1.8.7@sinatra rake run_test"
+desc "Invokes the test suite in multiple RVM environments"
+task :'test!' do
+  # Override this by adding RVM_TEST_ENVS=".." in .rvmrc
+  envs = ENV['RVM_TEST_ENVS'] || '1.9.2@sinatra,1.8.7@sinatra'
+  puts "* Testing in the following RVM environments: #{envs.gsub(',', ', ')}"
+  system "rvm #{envs} rake test"
 end
 
 desc "Runs tests"
-task :run_test do
+task :test do
   Dir['test/*_test.rb'].each { |f| load f }
 end
 
-task :default => :run_test
+task :default => :test
