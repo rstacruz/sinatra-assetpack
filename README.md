@@ -254,6 +254,8 @@ App.assets
 App.assets.js_compression   #=> :yui
 ```
 
+----
+
 ### assets.serve
 
 __Usage:__ `serve 'PATH', :from => 'LOCALPATH'`
@@ -267,7 +269,10 @@ required.
 serve '/js', from: '/app/javascripts'
 ```
 
-### assets.js_compression + assets.css_compression
+----
+
+### assets.js_compression
+### assets.css_compression
 
 __Usage:__ `js_compression :ENGINE`  
 __Usage:__ `css_compression :ENGINE`  
@@ -275,7 +280,10 @@ __Usage:__ `css_compression :ENGINE`
 Sets the compression engine to use for JavaScript or CSS. This defaults to 
 `:jsmin` and `:simple`, respectively.
 
-### assets.js_compression_options + assets.css_compression_options
+----
+
+### assets.js_compression_options
+### assets.css_compression_options
 
 __Usage:__ `js_compression_options HASH`  
 __Usage:__ `css_compression_options HASH`
@@ -284,7 +292,10 @@ Sets the options for the compression engine to use.
 
 __Example:__ `js_compression_options :munge => true`
 
-### assets.css + assets.js
+----
+
+### assets.css
+### assets.js
 
 __Usage:__ `css :NAME, [ PATH1, PATH2, ... ]`  
 __Usage:__ `css :NAME, 'URI', [ PATH1, PATH2, ... ]`  
@@ -343,6 +354,8 @@ passed onto the `<link>` tag to be generated as attributes.
 __Example:__ `css :main, media: 'screen'`
 __Output:__ `<link rel='stylesheet' type='text/css' href='/css/main.873984.css' media='screen' />`
 
+----
+
 ### js
 
 __Usage:__ `js :PACKAGE`  
@@ -352,6 +365,8 @@ Same as `css`, but obviously for JavaScript.
 
 __Example:__ `js :main, id: 'main_script'`  
 __Output:__ `<script type='text/javascript' src='/js/main.783439.js' id='main_script'></script>`
+
+----
 
 ### img
 
