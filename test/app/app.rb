@@ -36,6 +36,13 @@ class Main < Sinatra::Base
     css :sq, '/css/sq.css', [
       '/css/sqwishable.css'
     ]
+
+    css :redundant, [
+      '/css/scre*.css',
+      '/css/scre*.css',
+      '/css/scre*.css',
+      '/css/screen.css'
+    ]
   }
 
   get '/index.html' do

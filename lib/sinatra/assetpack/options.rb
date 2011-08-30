@@ -217,10 +217,12 @@ module Sinatra
 
       # Returns an array of URI paths of those matching given globs.
       def glob(*match)
-        tuples = match.map { |spec|
-          paths = files.keys.select { |f| File.fnmatch?(spec, f) }.sort
-          paths.map { |key| [key, files[key]] }
-        }
+        paths = match.map { |spec|
+          files.keys.select { |f| File.fnmatch?(spec, f) }.sort
+        }.flatten
+
+        paths  = paths.uniq
+        tuples = paths.map { |key| [key, files[key]] }
 
         HashArray[*tuples.flatten]
       end
