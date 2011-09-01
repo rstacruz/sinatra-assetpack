@@ -3,7 +3,7 @@ task :'test!' do
   # Override this by adding RVM_TEST_ENVS=".." in .rvmrc
   envs = ENV['RVM_TEST_ENVS'] || '1.9.2@sinatra,1.8.7@sinatra'
   puts "* Testing in the following RVM environments: #{envs.gsub(',', ', ')}"
-  system "rvm #{envs} rake test"
+  system "rvm #{envs} rake test" or abort
 end
 
 desc "Runs tests"
