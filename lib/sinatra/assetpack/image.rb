@@ -1,6 +1,28 @@
 module Sinatra
   module AssetPack
+    # An image.
+    #
+    # == Common usage
+    #
+    #     i = Image['/app/images/background.png']    # Local file path
+    #
+    #     i.dimensions     # Tuple for [ width, height ]
+    #     i.width
+    #     i.height
+    #
+    #     i.dimensions?    # True if dimensions are available
+    #                      # (e.g., if ImageMagick is installed and working)
+    #
     class Image
+      # Looks up an image.
+      # This makes each image only have one associated instance forever.
+      def self.[](fname)
+        fname = File.expand_path(fname) || fname
+
+        @cache        ||= Hash.new
+        @cache[fname] ||= new fname
+      end
+
       def initialize(file)
         @file = file
       end

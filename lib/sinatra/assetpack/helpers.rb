@@ -14,7 +14,7 @@ module Sinatra
 
         local = settings.assets.local_file_for src
         if local
-          i = Image.new(local)
+          i = Image[local]
           attrs[:src] = BusterHelpers.add_cache_buster(src, local)
           if i.dimensions?
             attrs[:width]  ||= i.width
