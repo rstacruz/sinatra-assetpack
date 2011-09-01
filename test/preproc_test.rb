@@ -10,6 +10,11 @@ class PreprocTest < UnitTest
     get '/css/style.css'
     assert body =~ %r{background.[0-9]+.jpg}
   end
+  
+  test "preproc static files should not fail with images at a different path" do
+    get '/css/style.css'
+    assert_no_match %r{url\(url\(}, body
+  end
 
   test "preproc on minify" do
     get '/css/application.css'
