@@ -194,6 +194,7 @@ Images
 
 To show images, use the `img` helper.
 This automatically adds width, height, and a cache buster thingie.
+ImageMagick is required to generate full image tags with width and height.
 
 ``` html
 <!-- Original: --> <%= img '/images/email.png' %>
@@ -401,7 +402,8 @@ __Usage:__ `img 'SRC'`
 __Usage:__ `img 'SRC', OPTIONS_HASH`
 
 Shows an `<img>` tag from the given `SRC`. If the images is found in the asset 
-directories, `width` and `height` attributes will be added.
+directories (and ImageMagick is available), `width` and `height` attributes 
+will be added.
 
 If `OPTIONS_HASH` is given, they will we passed onto the `<img>` tag to be 
 generated as attributes.
