@@ -13,7 +13,7 @@ module Sinatra
               BusterHelpers.add_cache_buster(file, local)
             end
           else
-            url
+            file
           end
 
           "url(#{url})"
