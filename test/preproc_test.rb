@@ -11,6 +11,11 @@ class PreprocTest < UnitTest
     assert body =~ %r{background.[0-9]+.jpg}
   end
 
+  test "no cache-busting number for non-existent images" do
+    get '/css/style.css'
+    assert body.include?('background: url(/images/404.png)')
+  end
+
   test "preproc on minify" do
     get '/css/application.css'
     assert body =~ %r{email.[0-9]+.png}

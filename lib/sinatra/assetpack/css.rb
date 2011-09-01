@@ -3,7 +3,8 @@ module Sinatra
     module Css
       def self.preproc(str, assets)
         str.gsub(/url\(["']?(.*?)["']?\)/) { |url|
-          file, options = $1.split('?')
+          path = $1
+          file, options = path.split('?')
           local = assets.local_file_for file
 
           url = if local
@@ -13,7 +14,7 @@ module Sinatra
               BusterHelpers.add_cache_buster(file, local)
             end
           else
-            url
+            path
           end
 
           "url(#{url})"
