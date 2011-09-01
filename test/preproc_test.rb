@@ -13,7 +13,8 @@ class PreprocTest < UnitTest
   
   test "preproc static files should not fail with images at a different path" do
     get '/css/style.css'
-    assert_no_match %r{url\(url\(}, body
+    assert_no_match %r{url\(url\(}, body, "Error in CSS preprocessor! Invalid syntax in image reference."
+    assert body.include?("background: url(/images2/background.jpg)"), "CSS images that aren't in the main images directory shouldn't get a cache-buster filename"
   end
 
   test "preproc on minify" do
