@@ -100,7 +100,7 @@ module Sinatra
 
         # Account for "css :name, [ files ]"
         elsif args[0].respond_to?(:each)
-          path  = "/#{type}/#{name}.#{type}" # /css/foobar.css by default
+          path  = "/assets/#{name}.#{type}" # /assets/foobar.css by default
           files = args[0]
 
         else

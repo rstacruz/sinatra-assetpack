@@ -18,6 +18,6 @@ class OptionsTest < UnitTest
 
   test "options" do
     assert App.assets.js_compression == :closure
-    assert App.assets.packages['application.css'].path == "/css/application.css"
+    assert App.assets.packages['application.css'].path == "/assets/application.css"
   end
 end
