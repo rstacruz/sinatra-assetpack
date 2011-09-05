@@ -1,6 +1,5 @@
 require File.expand_path('../test_helper', __FILE__)
 
-
 class OptionsTest < UnitTest
   class App < Sinatra::Base
     set :root, File.expand_path('../app', __FILE__)

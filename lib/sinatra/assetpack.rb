@@ -19,12 +19,17 @@ module Sinatra
 
     # Returns a map of what MIME format each Tilt type returns.
     def self.tilt_formats
-      @formats ||= {
-        'scss' => 'css',
-        'sass' => 'css',
-        'less' => 'css',
-        'coffee' => 'js'
-      }
+      @formats ||= begin
+        hash = Hash.new
+        Tilt.mappings.each do |format, (engine, _)|
+          case engine.default_mime_type
+          when 'text/css' then hash[format] = 'css'
+          when 'application/javascript' then hash[format] = 'js'
+          end
+        end
+
+        hash
+      end
     end
 
     # Returns the inverse of tilt_formats.
