@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.strip.split("\n")
   s.executables = Dir["bin/*"].map { |f| File.basename(f) }
 
+  s.add_dependency "tilt", ">= 1.3.0"
   s.add_dependency "sinatra"
   s.add_dependency "jsmin"
   s.add_dependency "rack-test"
@@ -20,4 +21,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "coffee-script"
   s.add_development_dependency "contest"
   s.add_development_dependency "mocha"
+  s.add_development_dependency "stylus"
 end

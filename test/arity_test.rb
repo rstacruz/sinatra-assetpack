@@ -18,8 +18,8 @@ class ArityTest < UnitTest
 
   test "arity in #assets" do
     paths = App.assets.packages['a.css'].paths
-    assert paths ==
-      ["/css/screen.css", "/css/sqwishable.css", "/css/style.css", "/css/js2c.css"]
+    assert_equal paths,
+      [ "/css/screen.css", "/css/sqwishable.css", "/css/style.css", "/css/stylus.css", "/css/js2c.css" ]
 
     assert App.assets.js_compression == :closure
     assert App.assets.css_compression == :yui
