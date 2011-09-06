@@ -38,7 +38,7 @@ module Sinatra
     #     # Returns a HashArray of (local => remote)
     #
     class Options
-      extend Configurator
+      include Configurator
 
       def initialize(app, &blk)
         @app             = app
