@@ -1,0 +1,186 @@
+html, body {
+  margin: 0;
+  padding: 0; }
+
+body {
+  background: #fcfcfa;
+  font-family: lato, sans-serif;
+  color: #444;
+  font-size: 11pt;
+  line-height: 1.5; }
+
+h1, h2, h3, h4, h5, h6, p, ol, ul, pre, ol>li {
+  max-width: 500px;
+  margin: 20px 0; }
+
+ol, ul {
+  padding-left: 0;
+  margin-left: 30px; }
+
+#all {
+  min-width: 960px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+  padding: 40px; }
+
+/* Heading */
+h1 {
+  font-family: palatino, serif; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 40px;
+  color: #459;
+  font-family: 'pt sans', palatino, serif; }
+
+h4, h5, h6 {
+  color: #99a; }
+
+h2 {
+  max-width: none;
+  padding-top: 30px;
+  margin-top: 40px; }
+
+h3 {
+  max-width: none;
+  padding-top: 10px;
+  margin-top: 40px; }
+
+h1 { font-size: 24pt; }
+h2 { font-size: 20pt; }
+h3 { font-size: 14pt; }
+h4 { font-size: 12pt; }
+h5 { font-size: 10pt; }
+h6 { font-size: 10pt; }
+
+h2+p { margin-top: 0; }
+h2+pre.right+p { margin-top: 0; }
+
+/* Code */
+pre, code {
+  font-family: Monaco, monospace;
+  background: #f0f0fa;
+  padding: 1px 5px;
+  color: #60606f;
+  font-size: 9pt; }
+
+pre > code {
+  background: 0;
+  padding: 0;
+  border: 0; }
+
+pre {
+  padding-top: 5px;
+  background: transparent; }
+
+/* The header */
+.header h1, .header h2, .header h3,
+.header h4, .header h5, .header h6 {
+  color: #459;
+  line-height: 1.25;
+  margin: 0;
+  padding: 0; }
+
+.header h2, .header h3,
+.header h4, .header h5, .header h6 {
+  color: #78b; }
+
+#header h4 {
+  font-weight: normal; }
+
+/* Literate */
+body.literate h4, body.literate h5, body.literate h6, body.literate p,
+body.literate ol, body.literate ul, body.literate pre {
+  max-width: 400px; }
+
+body.literate pre.right {
+  clear: both;
+  max-width: none;
+  width: 490px;
+  margin-left: 50px;
+  float: right; }
+
+body.literate pre.right code {
+  color: #78a; }
+
+body.literate h1 + pre.right,
+body.literate h2 + pre.right,
+body.literate h3 + pre.right {
+  margin-top: 0; }
+
+h1, h2, h3 {
+  clear: both; }
+
+.clear {
+  clear: both; }
+
+br.post-pre {
+  clear: both; }
+
+h4 { margin-bottom: 5px; }
+h4+p,
+h4+pre.right,
+h4+pre.right+p { margin-top: 0; }
+
+/* Section-wrap */
+section {
+  width: 960px;
+  margin-top: 0;
+  margin-left: 0;
+  padding-left: 40px;
+  margin-left: -40px;
+  padding-right: 9000px; }
+
+section:first-of-type {
+  margin-top: 40px; }
+
+section.h1, section.h2, section.h3 {
+  padding-top: 30px;
+  padding-bottom: 40px;
+  border-top: solid 2px #ddd; }
+
+section.h3 {
+  padding-top: 20px;
+  margin-top: 40px;
+  border-top: solid 1px #eee; }
+
+section.h3 + section.h3 {
+  margin-top: -20px; }
+
+section.h1>:first-child, section.h2>:first-child, section.h3>:first-child {
+  padding-top: 0;
+  margin-top: 0; }
+
+/* Pretty printing styles. Used with prettify.js. */
+.str { color: #080; }
+.kwd { color: #008; }
+.com { color: #607077; background: rgba(0, 0, 0, 0.05); padding: 1px 3px; }
+.typ { color: #606; }
+.lit { color: #066; }
+.pun { color: #660; }
+.pln { color: #000; }
+.tag { color: #008; }
+.atn { color: #606; }
+.atv { color: #080; }
+.dec { color: #606; }
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums { margin-top: 0; margin-bottom: 0 } /* IE indents via margin-left */
+li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 { list-style-type: none }
+/* Alternate shading for lines */
+li.L1, li.L3, li.L5, li.L7, li.L9 { background: #eee }
+
+@media print {
+  .str { color: #060; }
+  .kwd { color: #006; font-weight: bold; }
+  .com { color: #600; font-style: italic; }
+  .typ { color: #404; font-weight: bold; }
+  .lit { color: #044; }
+  .pun { color: #440; }
+  .pln { color: #000; }
+  .tag { color: #006; font-weight: bold; }
+  .atn { color: #404; }
+  .atv { color: #060; }
+}
