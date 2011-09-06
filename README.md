@@ -389,7 +389,7 @@ API reference: helpers
 
 These are helpers you can use in your views.
 
-### css
+### <%= css %>
 
 Shows a CSS package named `PACKAGE`. If `OPTIONS_HASH` is given, they will we 
 passed onto the `<link>` tag to be generated as attributes.
@@ -425,7 +425,7 @@ You may also invoke it with multiple packages.
 <link rel='stylesheet' type='text/css' href='/css/main.873984.css' media='screen' />
 ```
 
-### js
+### <%= js %>
 
 Same as `css`, but obviously for JavaScript. You may also specify as many packages as you need, just with `css`.
 
@@ -446,7 +446,7 @@ This example embeds the *main* package with an ID.
 <script type='text/javascript' src='/js/main.783439.js' id='main_script'></script>
 ```
 
-### img
+### <%= img %>
 
 Shows an `<img>` tag from the given `SRC`. If the images is found in the asset 
 directories (and ImageMagick is available), `width` and `height` attributes will 
@@ -499,3 +499,16 @@ AssetPack will eventually have:
  * Refactor *Compressor* module
  * CDN (Cloudfront, S3) support
  * Better support for Compass sprites
+
+Acknowledgements
+----------------
+
+Sinatra-AssetPack is authored and maintained by [Rico Sta.  
+Cruz](http://ricostacruz.com) and sponsored by my startup, [Sinefunc, 
+Inc](http://sinefunc.com).
+
+ * [My website](http://ricostacruz.com) (ricostacruz.com)
+ * [Sinefunc, Inc.](http://sinefunc.com) (sinefunc.com)
+ * [Github](http://github.com/rstacruz) (@rstacruz)
+ * [Twitter](http://twitter.com/rstacruz) (@rstacruz)
+
