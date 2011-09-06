@@ -92,7 +92,10 @@ module Sinatra
 
       def combined
         session = Rack::Test::Session.new(@assets.app)
-        paths.map { |path| session.get(path).body }.join("\n")
+        paths.map { |path|
+          result = session.get(path)
+          result.body  if result.status == 200
+        }.join("\n")
       end
 
       def js?()  @type == :js; end
