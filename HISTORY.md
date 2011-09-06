@@ -1,3 +1,27 @@
+v0.0.7 - Sep 06, 2011
+---------------------
+
+### Fixed:
+  * Fixed the CSS preprocessing bug that gives invalid 'url()' properties to 
+  non-existing images. Closes #1.
+
+### Added:
+  * Allow adding CSS/JS files that don't exist. Closes #8.
+  * Support any Tilt-compatible CSS or JS engine. Related to #5.
+
+### Changed:
+  * Default to '/assets/x.js' then using assets.css without a path. Inspiration 
+  from Jammit.
+  * Ask browsers to cache assets for 1 month.
+
+### Misc:
+  * Add a note on the ImageMagick requirement.
+  * Stop the 'img' helper from invoking ImageMagick more times than it needs to.
+  * Make "rake test!" abort when it encounters an error.
+  * Stylus tests to stub stylus compilation.
+  * Added .rvmrc and .sass-cache to gitignore.
+  * Allow overridable multiple RVM environments in tests.
+
 v0.0.6 - Aug 30, 2011
 ---------------------
 
