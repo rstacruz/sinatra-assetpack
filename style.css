@@ -57,7 +57,7 @@ h3 {
   padding-top: 10px;
   margin-top: 40px; }
 
-h1 { font-size: 32pt; }
+h1 { font-size: 30pt; }
 h2 { font-size: 20pt; }
 h3 { font-size: 14pt; }
 h4 { font-size: 12pt; }
@@ -94,7 +94,7 @@ pre {
 
 .header h2, .header h3,
 .header h4, .header h5, .header h6 {
-  color: #78b; }
+  color: #a58; } /* color: #78b; */
 
 #header h4 {
   font-weight: normal; }
