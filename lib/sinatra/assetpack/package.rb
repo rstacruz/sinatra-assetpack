@@ -37,7 +37,7 @@ module Sinatra
 
       # Returns a list of URIs
       def paths_and_files
-        @assets.glob *@filespecs
+        @assets.glob @filespecs, :preserve => true
       end
 
       def files

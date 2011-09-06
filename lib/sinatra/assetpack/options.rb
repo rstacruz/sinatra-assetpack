@@ -34,7 +34,7 @@ module Sinatra
     #     a.local_path_for('/images/bg.gif')
     #     a.served?('/images/bg.gif')
     #
-    #     a.glob('/js/*.js', '/js/vendor/**/*.js')
+    #     a.glob(['/js/*.js', '/js/vendor/**/*.js'])
     #     # Returns a HashArray of (local => remote)
     #
     class Options
@@ -216,9 +216,24 @@ module Sinatra
       end
 
       # Returns an array of URI paths of those matching given globs.
-      def glob(*match)
+      #
+      #     glob('spec')
+      #     glob(['spec1', 'spec2' ...])
+      #     glob('spec', preserve: true)
+      #
+      # If `preserve` is set to true, it will preserve any specs that are not
+      # wildcards that don't match anything.
+      #
+      def glob(match, options={})
+
+        match = [*match]  # Force array-ness
+
         paths = match.map { |spec|
-          files.keys.select { |f| File.fnmatch?(spec, f) }.sort
+          if options[:preserve] && !spec.include?('*')
+            spec
+          else
+            files.keys.select { |f| File.fnmatch?(spec, f) }.sort
+          end
         }.flatten
 
         paths  = paths.uniq
