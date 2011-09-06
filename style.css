@@ -26,6 +26,14 @@ ol, ul {
   overflow-x: hidden;
   padding: 40px; }
 
+a, a:visited {
+  text-decoration: none;
+  border-bottom: solid 1px #ccf;
+  color: #46b; }
+
+a:hover {
+  background: #fafae0; }
+
 /* Heading */
 h1 {
   font-family: palatino, serif; }
@@ -189,3 +197,8 @@ li.L1, li.L3, li.L5, li.L7, li.L9 { background: #eee }
   .atn { color: #404; }
   .atv { color: #060; }
 }
+
+/* Workaround */
+section + ul {
+  margin-bottom: 30px;
+  margin-top: -30px; }

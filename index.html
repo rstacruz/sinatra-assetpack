@@ -402,7 +402,7 @@ from <code>./app/javascripts/vendor/jquery*.js</code>.</p></section>
 
 <p>These are helpers you can use in your views.</p>
 
-<section class="h3"><h3>css</h3>
+<section class="h3"><h3>&lt;%= css %&gt;</h3>
 <pre class=" lang- prettyprint right"><code class="ruby"># Usage:
 &lt;%= css :PACKAGE %&gt;
 &lt;%= css :PACKAGE_1, :PACKAGE_2, ...  :PACKAGE_N, OPTIONS_HASH %&gt;
@@ -440,7 +440,7 @@ passed onto the <code>&lt;link&gt;</code> tag to be generated as attributes.</p>
 
 </section><br class="post-pre"></section>
 
-<section class="h3"><h3 class=" after-pre">js</h3>
+<section class="h3"><h3 class=" after-pre">&lt;%= js %&gt;</h3>
 <pre class=" lang- prettyprint right"><code class="erb"># Usage:
 &lt;%= js :PACKAGE %&gt;
 &lt;%= js :PACKAGE_1, :PACKAGE_2, ...  :PACKAGE_N, OPTIONS_HASH %&gt;
@@ -462,7 +462,7 @@ passed onto the <code>&lt;link&gt;</code> tag to be generated as attributes.</p>
 
 </section><br class="post-pre"></section>
 
-<section class="h3"><h3 class=" after-pre">img</h3>
+<section class="h3"><h3 class=" after-pre">&lt;%= img %&gt;</h3>
 <pre class=" lang- prettyprint right"><code class="ruby"># Usage:
 img 'SRC'
 img 'SRC', OPTIONS_HASH
@@ -516,6 +516,22 @@ Support</a>:</p>
 <li>Refactor <em>Compressor</em> module</li>
 <li>CDN (Cloudfront, S3) support</li>
 <li>Better support for Compass sprites</li>
+</ul>
+<section class="h2"><h2>Acknowledgements</h2>
+
+<p>Sinatra-AssetPack is authored and maintained by <a href="http://ricostacruz.com">Rico Sta.<br>
+Cruz</a> and sponsored by my startup, <a href="http://sinefunc.com">Sinefunc, 
+Inc</a>.</p>
+
+</section><ul>
+<li>
+<a href="http://ricostacruz.com">My website</a> (ricostacruz.com)</li>
+<li>
+<a href="http://sinefunc.com">Sinefunc, Inc.</a> (sinefunc.com)</li>
+<li>
+<a href="http://github.com/rstacruz">Github</a> (@rstacruz)</li>
+<li>
+<a href="http://twitter.com/rstacruz">Twitter</a> (@rstacruz)</li>
 </ul></div>
   <script type='text/javascript' src='http://cachedcommons.org/cache/prettify/1.0.0/javascripts/prettify-min.js'></script>
   <script>prettyPrint();</script>
