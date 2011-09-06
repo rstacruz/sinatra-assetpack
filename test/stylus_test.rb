@@ -1,6 +1,6 @@
 require File.expand_path('../test_helper', __FILE__)
 
-class SqwishTest < UnitTest
+class StylusTest < UnitTest
   class App < Sinatra::Base
     set :root, File.expand_path('../app', __FILE__)
     register Sinatra::AssetPack
