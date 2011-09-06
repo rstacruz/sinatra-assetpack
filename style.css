@@ -4,7 +4,7 @@ html, body {
 
 body {
   background: #fcfcfa;
-  font-family: lato, sans-serif;
+  font-family: 'pt sans', sans-serif;
   color: #444;
   font-size: 11pt;
   line-height: 1.5; }
@@ -34,18 +34,27 @@ a, a:visited {
 a:hover {
   background: #fafae0; }
 
-/* Heading */
+/* List */
+ul li > p > strong:first-child {
+  display: block;
+  font-size: 1.1em; }
+
+/* Headings */
 h1 {
   font-family: palatino, serif; }
 
 h1, h2, h3, h4, h5, h6 {
-  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
+  text-shadow: 2px 2px 0 rgba(55, 55, 55, 0.1);
   margin-top: 40px;
-  color: #459;
-  font-family: 'pt sans', palatino, serif; }
+  color: #568;
+  font-weight: normal;
+  font-family: shanti, palatino, serif; }
+
+h3 {
+  color: #77a; }
 
 h4, h5, h6 {
-  color: #99a; }
+  color: #88a; }
 
 h2 {
   max-width: none;
@@ -69,34 +78,47 @@ h2+pre.right+p { margin-top: 0; }
 
 /* Code */
 pre, code {
-  font-family: Monaco, monospace;
-  background: #f0f0fa;
-  padding: 1px 5px;
-  color: #60606f;
-  font-size: 9pt; }
+  font-family: Monaco, monospace; }
+
+code {
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.99);
+  font-family: 'shanti', sans-serif;
+  color: #aac; }
 
 pre > code {
+  color: #60606f;
+  text-shadow: none;
+  font-family: Monaco, monospace;
   background: 0;
   padding: 0;
   border: 0; }
 
 pre {
+  font-size: 9pt;
   padding-top: 5px;
   background: transparent; }
 
 /* The header */
 .header h1, .header h2, .header h3,
 .header h4, .header h5, .header h6 {
-  color: #459;
-  line-height: 1.25;
+  text-shadow: none;
+  line-height: 1.35;
   margin: 0;
   padding: 0; }
 
+.header h1 {
+  font-family: 'pt sans', sans-serif;
+  font-weight: bold;
+  color: #779; }
+
 .header h2, .header h3,
 .header h4, .header h5, .header h6 {
-  color: #a58; } /* color: #78b; */
+  color: #aab; } /* color: #78b; */
 
-#header h4 {
+.header h4 {
+  font-size: 1.4em;
+  font-family: palatino, serif;
+  font-style: italic;
   font-weight: normal; }
 
 /* Literate */
@@ -157,7 +179,7 @@ section.h1, section.h2, section.h3 {
 section.h3 {
   padding-top: 20px;
   margin-top: 40px;
-  border-top: solid 1px #eee; }
+  border-top: dotted 1px #ddd; }
 
 section.h3 + section.h3 {
   margin-top: -20px; }

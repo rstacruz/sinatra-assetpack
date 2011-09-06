@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>Sinatra AssetPack</title>
     <link href="style.css" rel="stylesheet" />
-    <link href='http://fonts.googleapis.com/css?family=Muli:400,400italic|PT+Sans:700,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Shanti:400|PT+Sans:700,700italic' rel='stylesheet' type='text/css'>
 </head>
 <body class='hgroup literate brief sections github'>
   
@@ -16,8 +16,8 @@
 
 <hgroup class="header"><h1>Sinatra AssetPack</h1>
 <h4>Asset packer for Sinatra</h4></hgroup><p class=" brief">This is <em>the</em> most convenient way to set up your CSS/JS (and images) in a 
-Sinatra app. Seriously. No need for crappy routes to render Sass or whatever.
-No-siree!</p>
+<a href="http://sinatrarb.com">Sinatra</a> app. Seriously. No need for crappy routes to 
+render Sass or whatever. No-siree!</p>
 
 <ol>
 <li>Drop your assets into <code>/app</code> like so (you can configure directories don't worry):
@@ -37,18 +37,20 @@ messy <em>script</em> and <em>link</em> tags</li>
 <li>BOOM! You're in business baby!</li>
 </ol>
 <section class="h2"><h2>Installation</h2>
-<pre class=" lang- prettyprint right"><code class="ruby">gem 'sinatra-assetpack', :require =&gt; 'sinatra/assetpack'
+<pre class=" lang- prettyprint right"><code class="console">$ gem install sinatra-assetpack
 </code></pre>
 
-<p>If you use Bundler, add this to your <em>Gemfile</em>.</p>
+<p>Sinatra AssetPack is a simple Ruby gem. You can install it via <code>gem install</code>.</p>
 
 <br class="post-pre">
 
-<pre class=" lang- prettyprint right"><code class="console">$ gem install sinatra-assetpack
+<section class="h4"><h4 class=" after-pre">Bundler users</h4>
+<pre class=" lang- prettyprint right"><code class="ruby">gem 'sinatra-assetpack', :require =&gt; 'sinatra/assetpack'
 </code></pre>
-<p class=" after-pre">Otherwise, just install it.</p>
 
-<br class="post-pre"></section>
+<p>If you use Bundler, you will need to add it to your <em>Gemfile</em>.</p>
+
+</section><br class="post-pre"></section>
 
 <section class="h2"><h2 class=" after-pre">Setup</h2>
 <pre class=" lang- prettyprint right"><code class="ruby">require 'sinatra/assetpack'
@@ -95,6 +97,8 @@ end
 </section><br class="post-pre"></section>
 
 <section class="h2"><h2 class=" after-pre">And then what?</h2>
+
+<section class="h4"><h4>Development mode</h4>
 <pre class=" lang- prettyprint right"><code class="html">&lt;link rel='stylesheet' href='/css/screen.849289.css' media='screen' type='text/css' /&gt;
 &lt;script type='text/javascript' src='/js/vendor/jquery.283479.js'&gt;&lt;/script&gt;
 &lt;script type='text/javascript' src='/js/vendor/underscore.589491.js'&gt;&lt;/script&gt;
@@ -103,37 +107,39 @@ end
 
 <p>If you're on <strong>development</strong> mode, it serves each of the files as so:</p>
 
-<br class="post-pre">
+<br class="post-pre"></section>
 
+<section class="h4"><h4 class=" after-pre">Production mode</h4>
 <pre class=" lang- prettyprint right"><code class="html">&lt;link rel='stylesheet' href='/css/application.849289.css' media='screen' type='text/css' /&gt;
 &lt;script type='text/javascript' src='/js/app.589491.js'&gt;&lt;/script&gt;
 </code></pre>
-<p class=" after-pre">If you're on <strong>production</strong> mode, it serves a compressed version in the URLs you specify:</p>
 
-<br class="post-pre"></section>
+<p>If you're on <strong>production</strong> mode, it serves a compressed version in the URLs you specify:</p>
+
+</section><br class="post-pre"></section>
 
 <section class="h2"><h2 class=" after-pre">Features</h2>
 
 </section><ul>
-<li><p><strong>CoffeeScript support</strong>: Just add your coffee files in one of the paths 
+<li><p><strong>CoffeeScript support:</strong> Just add your coffee files in one of the paths 
 served (in the example, <code>app/js/hello.coffee</code>) and they will be available as JS 
 files (<code>http://localhost:4567/js/hello.js</code>).</p></li>
-<li><p><strong>Sass/Less/SCSS support</strong>: Works the same way. Place your dynamic CSS files 
+<li><p><strong>Sass/Less/SCSS support:</strong> Works the same way. Place your dynamic CSS files 
 in there (say, <code>app/css/screen.sass</code>) and they will be available as CSS files 
 (<code>http://localhost:4567/css/screen.css</code>).</p></li>
-<li><p><strong>Cache busting</strong>: the <code>css</code> and <code>js</code> helpers automatically ensures the URL 
+<li><p><strong>Cache busting:</strong> the <code>css</code> and <code>js</code> helpers automatically ensures the URL 
 is based on when the file was last modified. The URL <code>/js/jquery.js</code> may be 
 translated to <code>/js/jquery.8237898.js</code> to ensure visitors always get the latest 
 version.</p></li>
-<li><p><strong>Images support</strong>: Image filenames in your CSS will automatically get a 
+<li><p><strong>Images support:</strong> Image filenames in your CSS will automatically get a 
 cache-busting suffix (eg, <code>/images/icon.742958.png</code>).</p></li>
-<li><p><strong>Embedded images support</strong>: You can embed images in your CSS files as 
+<li><p><strong>Embedded images support:</strong> You can embed images in your CSS files as 
 <code>data:</code> URIs by simply adding <code>?embed</code> to the end of your URL.</p></li>
-<li><p><strong>No intermediate files needed</strong>: You don't need to generate compiled files.
+<li><p><strong>No intermediate files needed:</strong> You don't need to generate compiled files.
 You can, but it's optional. Keeps your source repo clean!</p></li>
-<li><p><strong>Auto minification (with caching)</strong>: JS and CSS files will be compressed as 
+<li><p><strong>Auto minification (with caching):</strong> JS and CSS files will be compressed as 
 needed.</p></li>
-<li><p><strong>Heroku support</strong>: Oh yes. That's right.</p></li>
+<li><p><strong>Heroku support:</strong> Oh yes. That's right.</p></li>
 </ul>
 <section class="h2"><h2>Compressors</h2>
 <pre class=" lang- prettyprint right"><code class="ruby">assets {
@@ -234,25 +240,28 @@ URL.</p>
 </section><br class="post-pre"></section>
 
 <section class="h2"><h2 class=" after-pre">Need to build the files?</h2>
-<pre class=" lang- prettyprint right"><code class="ruby">APP_FILE  = 'app.rb'
+<pre class=" lang- prettyprint right"><code class="ruby"># Rakefile
+APP_FILE  = 'app.rb'
 APP_CLASS = 'App'
 
 require 'sinatra/assetpack/rake'
 </code></pre>
 
-<p>Actually, you don't need to--this is optional! But add this to your Rakefile:</p>
+<p>Actually, you don't need to--this is optional! But add this to your <code>Rakefile</code>:</p>
 
 <br class="post-pre">
 
+<section class="h4"><h4 class=" after-pre">Invoking</h4>
 <pre class=" lang- prettyprint right"><code>$ rake assetpack:build
 </code></pre>
-<p class=" after-pre">Now:</p>
 
-<br class="post-pre">
+<p>Now invoke the <code>assetpack:build</code> Rake task. This will create files in <code>/public</code>.</p>
 
-<p class=" after-pre">This will create files in <code>/public</code>.</p></section>
+</section><br class="post-pre"></section>
 
-<section class="h2"><h2>API reference: assets block</h2>
+<section class="h2"><h2 class=" after-pre">API reference</h2>
+
+<section class="h4"><h4>Assets block</h4>
 <pre class=" lang- prettyprint right"><code class="ruby">class App &lt; Sinatra::Base
   register Sinatra::AssetPack
 
@@ -272,12 +281,15 @@ end
 
 <p>All configuration happens in the <code>assets</code> block. You may invoke it in 2 ways:</p>
 
-<br class="post-pre">
+<br class="post-pre"></section>
 
+<section class="h4"><h4 class=" after-pre">Getting options</h4>
 <pre class=" lang- prettyprint right"><code class="ruby">App.assets
 App.assets.js_compression   #=&gt; :yui
 </code></pre>
-<p class=" after-pre">Invoking it without a block allows you to access the options.</p>
+
+<p>Invoking it without a block allows you to access the options. This works for 
+almost all the options, with the exception for <code>css</code>, <code>js</code> and <code>serve</code>.</p>
 
 <br class="post-pre">
 
@@ -396,7 +408,7 @@ end
 <code>/js/application.js</code> (default since no <code>URI</code> is given). The files will be taken 
 from <code>./app/javascripts/vendor/jquery*.js</code>.</p></section>
 
-</section><br class="post-pre"></section>
+</section></section><br class="post-pre"></section>
 
 <section class="h2"><h2 class=" after-pre">API reference: helpers</h2>
 
