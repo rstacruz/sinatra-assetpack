@@ -326,9 +326,9 @@ The `NAME` is a symbol defines the ID for that given package that you can use
 for the helpers. That is, If a CSS package was defined as `css :main, [ ... ]`, 
 then you will need to use `<%= css :main %>` to render it in views.
 
-the `URI` is a string that defines where the compressed version will be served.  
-It is optional. If not provided, it will default to `"/type/name.type"` (eg: 
-`/css/main.css`).
+the `URI` is a string that defines where the compressed version will be served.
+It is optional. If not provided, it will default to `"/assets/name.type"` (eg:
+`/assets/main.css`).
 
 the `PATHs` is an array that defines files that will be served. Take note that 
 this is an array of URI paths, not local paths.
