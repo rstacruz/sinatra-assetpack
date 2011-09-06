@@ -179,7 +179,12 @@ section.h1, section.h2, section.h3 {
 section.h3 {
   padding-top: 20px;
   margin-top: 40px;
+  padding-left: 30px;
+  border-left: solid 10px #e7e7f4;
   border-top: dotted 1px #ddd; }
+
+section.h3:nth-child(odd) {
+  border-left-color: #d0d0e8; }
 
 section.h3 + section.h3 {
   margin-top: -20px; }
