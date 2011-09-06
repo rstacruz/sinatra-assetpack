@@ -12,3 +12,18 @@ task :test do
 end
 
 task :default => :test
+
+gh = "rstacruz/sinatra-assetpack"
+namespace :doc do
+  # http://github.com/rstacruz/reacco
+  desc "Builds the documentation into doc/"
+  task :build do
+    system "reacco -a --github #{gh}"
+  end
+
+  # http://github.com/rstacruz/git-update-ghpages
+  desc "Posts documentation to GitHub pages"
+  task :deploy => :build do
+    system "git update-ghpages #{gh} -i doc/"
+  end
+end
