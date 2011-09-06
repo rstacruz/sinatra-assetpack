@@ -1,0 +1,32 @@
+section.features {
+  background: #f6f6ff;
+  overflow: hidden; }
+
+h2 {
+  font-size: 26pt; }
+
+section.features h2 {
+  font-size: 32pt; }
+
+section.features ul {
+  max-width: none;
+  margin-left: 0;
+  padding-left: 0;
+  width: 100%; }
+
+section.features li {
+  list-style-type: none;
+  width: 420px;
+  float: left; margin-right: 40px; }
+
+section.features li:nth-child(odd) {
+  clear: both; }
+
+section.features li>p>strong {
+  font-family: shanti, sans-serif;
+  font-weight: normal;
+  font-size: 1.2em;
+  text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.1);
+  display: block;
+  margin-bottom: 5px;
+  color: #88a; }

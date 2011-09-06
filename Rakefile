@@ -18,7 +18,7 @@ namespace :doc do
   # http://github.com/rstacruz/reacco
   desc "Builds the documentation into doc/"
   task :build do
-    system "reacco -a --github #{gh}"
+    system "reacco -a --github #{gh} --css docsrc/style.css"
   end
 
   # http://github.com/rstacruz/git-update-ghpages

@@ -102,32 +102,32 @@ If you're on **production** mode, it serves a compressed version in the URLs you
 Features
 --------
 
- * __CoffeeScript support:__ Just add your coffee files in one of the paths 
+ * __CoffeeScript support__ Just add your coffee files in one of the paths 
  served (in the example, `app/js/hello.coffee`) and they will be available as JS 
  files (`http://localhost:4567/js/hello.js`).
 
- * __Sass/Less/SCSS support:__ Works the same way. Place your dynamic CSS files 
+ * __Sass/Less/SCSS support__ Works the same way. Place your dynamic CSS files 
  in there (say, `app/css/screen.sass`) and they will be available as CSS files 
  (`http://localhost:4567/css/screen.css`).
 
- * __Cache busting:__ the `css` and `js` helpers automatically ensures the URL 
+ * __Cache busting__ the `css` and `js` helpers automatically ensures the URL 
  is based on when the file was last modified. The URL `/js/jquery.js` may be 
  translated to `/js/jquery.8237898.js` to ensure visitors always get the latest 
  version.
 
- * __Images support:__ Image filenames in your CSS will automatically get a 
+ * __Images support__ Image filenames in your CSS will automatically get a 
  cache-busting suffix (eg, `/images/icon.742958.png`).
 
- * __Embedded images support:__ You can embed images in your CSS files as 
+ * __Embedded images support__ You can embed images in your CSS files as 
  `data:` URIs by simply adding `?embed` to the end of your URL.
 
- * __No intermediate files needed:__ You don't need to generate compiled files.
+ * __No intermediate files needed__ You don't need to generate compiled files.
  You can, but it's optional. Keeps your source repo clean!
 
- * __Auto minification (with caching):__ JS and CSS files will be compressed as 
+ * __Auto minification (with caching)__ JS and CSS files will be compressed as 
  needed.
 
- * __Heroku support:__ Oh yes. That's right.
+ * __Heroku support__ Oh yes. That's right.
 
 Compressors
 -----------
