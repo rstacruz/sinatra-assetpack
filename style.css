@@ -9,6 +9,9 @@ body {
   font-size: 11pt;
   line-height: 1.5; }
 
+::-moz-selection { background: #88a; color: #fff; text-shadow: none; }
+::selection      { background: #88a; color: #fff; text-shadow: none; }
+
 h1, h2, h3, h4, h5, h6, p, ol, ul, pre, ol>li {
   max-width: 500px;
   margin: 20px 0; }
@@ -67,7 +70,7 @@ h3 {
   margin-top: 40px; }
 
 h1 { font-size: 30pt; }
-h2 { font-size: 20pt; }
+h2 { font-size: 26pt; }
 h3 { font-size: 14pt; }
 h4 { font-size: 12pt; }
 h5 { font-size: 10pt; }
