@@ -16,17 +16,9 @@ class StylusTest < UnitTest
     App
   end
 
-  def self.stylus?
-    `which stylus` && true rescue false
-  end
-
-  if stylus?
-    test "build" do
-      get '/css/stylus.css'
-      assert body.gsub(/[ \t\r\n]/, '') == "body{background:#f00;color:#00f;}"
-    end
-
-  else
-    puts "(No Stylus found; skipping stylus tests)"
+  test "build" do
+    Stylus.expects(:compile).returns("body{background:#f00;color:#00f;}")
+    get '/css/stylus.css'
+    assert body.gsub(/[ \t\r\n]/, '') == "body{background:#f00;color:#00f;}"
   end
 end

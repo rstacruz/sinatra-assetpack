@@ -6,6 +6,7 @@ class BuildTest < UnitTest
   end
 
   test "build" do
+    Stylus.expects(:compile).returns("body{background:#f00;color:#00f;}")
     app.assets.css_compression = :simple
     app.assets.build!
 
