@@ -55,7 +55,7 @@ module Sinatra
       # Returns the regex for the route, including cache buster crap.
       def route_regex
         re = @path.gsub(/(.[^.]+)$/) { |ext| "(?:\.[0-9]+)?#{ext}" }
-        /#{re}/
+        /^#{re}$/
       end
 
       def to_development_html(options={})
