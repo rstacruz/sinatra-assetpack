@@ -1,4 +1,4 @@
-# Sinatra AssetPack
+# [Sinatra AssetPack](http://ricostacruz.com/sinatra-assetpack)
 #### Asset packer for Sinatra
 
 ----
