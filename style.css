@@ -172,7 +172,7 @@ section {
   padding-right: 9000px; }
 
 section.h2:nth-child(even) {
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   background: rgba(255, 255, 255, 0.8); }
 
 section:first-of-type {
@@ -181,7 +181,7 @@ section:first-of-type {
 section.h1, section.h2, section.h3 {
   padding-top: 30px;
   padding-bottom: 40px;
-  border-top: solid 1px #ddd; }
+  border-top: solid 1px #eee; }
 
 section.h3 {
   padding-top: 20px;
