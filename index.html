@@ -6,7 +6,7 @@
     <link href="style.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Shanti:400|PT+Sans:700,700italic' rel='stylesheet' type='text/css'>
 </head>
-<body class='hgroup literate brief sections github'>
+<body class='literate github'>
   
     <a href="https://github.com/rstacruz/sinatra-assetpack"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
   
@@ -247,7 +247,7 @@ APP_CLASS = 'App'
 require 'sinatra/assetpack/rake'
 </code></pre>
 
-<p>Actually, you don't need to--this is optional! But add this to your <code>Rakefile</code>:</p>
+<p>Actually, you don't need to—this is optional! But add this to your <code>Rakefile</code>:</p>
 
 <br class="post-pre">
 
@@ -428,14 +428,14 @@ passed onto the <code>&lt;link&gt;</code> tag to be generated as attributes.</p>
 
 <br class="post-pre">
 
-<section class="h4 example"><h4 class=" after-pre">Example</h4>
+<section class="h4 example_1"><h4 class=" after-pre">Example 1</h4>
 <pre class=" lang- prettyprint right"><code class="erb">&lt;%= css :main, media: 'screen' %&gt;
 
 &lt;!-- Output: --&gt;
 &lt;link rel='stylesheet' type='text/css' href='/css/main.873984.css' media='screen' /&gt;
 </code></pre>
 
-<p>Here are some ways to invoke it.</p>
+<p>This links to the <code>main</code> stylesheet for <em>screen</em> media.</p>
 
 <br class="post-pre">
 
@@ -496,7 +496,7 @@ generated as attributes.</p>
 &lt;img src='/images/icon.834782.png' width='24' height='24' alt='Icon' /&gt;`
 </code></pre>
 
-<p>This example renders an image with an icon.</p>
+<p>This example renders an image with an alt tag.</p>
 
 <br class="post-pre">
 
@@ -530,9 +530,11 @@ Support</a>:</p>
 <li>Better support for Compass sprites</li>
 </ul></section><section class="h2 acknowledgements"><h2 id="acknowledgements">Acknowledgements</h2>
 
-<p>Sinatra-AssetPack is authored and maintained by <a href="http://ricostacruz.com">Rico Sta.<br>
-Cruz</a> and sponsored by my startup, <a href="http://sinefunc.com">Sinefunc, 
-Inc</a>.</p>
+<p>© 2011, Rico Sta. Cruz. Released under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT 
+License</a>.</p>
+
+<p>Sinatra-AssetPack is authored and maintained by <a href="http://ricostacruz.com">Rico Sta.  Cruz</a> with help 
+from it's <a href="http://github.com/rstacruz/sinatra-assetpack">contributors</a>. It is sponsored by my startup, <a href="http://sinefunc.com">Sinefunc, Inc</a>.</p>
 
 <ul>
 <li>
