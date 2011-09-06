@@ -4,8 +4,8 @@
 ----
 
 This is *the* most convenient way to set up your CSS/JS (and images) in a 
-Sinatra app. Seriously. No need for crappy routes to render Sass or whatever.
-No-siree!
+[Sinatra](http://sinatrarb.com) app. Seriously. No need for crappy routes to 
+render Sass or whatever. No-siree!
 
 1. Drop your assets into `/app` like so (you can configure directories don't worry):
    * JavaScript/CoffeeScript files in `/app/js`
@@ -19,17 +19,19 @@ No-siree!
 Installation
 ------------
 
-If you use Bundler, add this to your *Gemfile*.
+Sinatra AssetPack is a simple Ruby gem. You can install it via `gem install`.
+
+``` console
+$ gem install sinatra-assetpack
+```
+
+#### Bundler users
+If you use Bundler, you will need to add it to your *Gemfile*.
 
 ``` ruby
 gem 'sinatra-assetpack', :require => 'sinatra/assetpack'
 ```
 
-Otherwise, just install it.
-
-``` console
-$ gem install sinatra-assetpack
-```
 
 Setup
 -----
@@ -79,6 +81,7 @@ In your layouts, use the `css` and `js` helpers:
 And then what?
 --------------
 
+#### Development mode
 If you're on **development** mode, it serves each of the files as so:
 
 ``` html
@@ -88,6 +91,7 @@ If you're on **development** mode, it serves each of the files as so:
 <script type='text/javascript' src='/js/app/main.589491.js'></script>
 ```
 
+#### Production mode
 If you're on **production** mode, it serves a compressed version in the URLs you specify:
 
 ``` html
@@ -98,32 +102,32 @@ If you're on **production** mode, it serves a compressed version in the URLs you
 Features
 --------
 
- * __CoffeeScript support__: Just add your coffee files in one of the paths 
+ * __CoffeeScript support:__ Just add your coffee files in one of the paths 
  served (in the example, `app/js/hello.coffee`) and they will be available as JS 
  files (`http://localhost:4567/js/hello.js`).
 
- * __Sass/Less/SCSS support__: Works the same way. Place your dynamic CSS files 
+ * __Sass/Less/SCSS support:__ Works the same way. Place your dynamic CSS files 
  in there (say, `app/css/screen.sass`) and they will be available as CSS files 
  (`http://localhost:4567/css/screen.css`).
 
- * __Cache busting__: the `css` and `js` helpers automatically ensures the URL 
+ * __Cache busting:__ the `css` and `js` helpers automatically ensures the URL 
  is based on when the file was last modified. The URL `/js/jquery.js` may be 
  translated to `/js/jquery.8237898.js` to ensure visitors always get the latest 
  version.
 
- * __Images support__: Image filenames in your CSS will automatically get a 
+ * __Images support:__ Image filenames in your CSS will automatically get a 
  cache-busting suffix (eg, `/images/icon.742958.png`).
 
- * __Embedded images support__: You can embed images in your CSS files as 
+ * __Embedded images support:__ You can embed images in your CSS files as 
  `data:` URIs by simply adding `?embed` to the end of your URL.
 
- * __No intermediate files needed__: You don't need to generate compiled files.
+ * __No intermediate files needed:__ You don't need to generate compiled files.
  You can, but it's optional. Keeps your source repo clean!
 
- * __Auto minification (with caching)__: JS and CSS files will be compressed as 
+ * __Auto minification (with caching):__ JS and CSS files will be compressed as 
  needed.
 
- * __Heroku support__: Oh yes. That's right.
+ * __Heroku support:__ Oh yes. That's right.
 
 Compressors
 -----------
@@ -226,24 +230,26 @@ URL.
 Need to build the files?
 ------------------------
 
-Actually, you don't need to--this is optional! But add this to your Rakefile:
+Actually, you don't need to--this is optional! But add this to your `Rakefile`:
 
 ``` ruby
+# Rakefile
 APP_FILE  = 'app.rb'
 APP_CLASS = 'App'
 
 require 'sinatra/assetpack/rake'
 ```
 
-Now:
+#### Invoking
+Now invoke the `assetpack:build` Rake task. This will create files in `/public`.
 
     $ rake assetpack:build
 
-This will create files in `/public`.
 
-API reference: assets block
----------------------------
+API reference
+-------------
 
+#### Assets block
 All configuration happens in the `assets` block. You may invoke it in 2 ways:
 
 ``` ruby
@@ -264,7 +270,9 @@ class App < Sinatra::Base
 end
 ```
 
-Invoking it without a block allows you to access the options.
+#### Getting options
+Invoking it without a block allows you to access the options. This works for 
+almost all the options, with the exception for `css`, `js` and `serve`.
 
 ``` ruby
 App.assets
@@ -289,7 +297,7 @@ available as `http://localhost:4567/js/vendor/jquery.js`.
 serve '/js', from: '/app/javascripts'
 ```
 
-### assets.js\_compression + assets.css\_compression
+### assets.js\_compression<br>assets.css\_compression
 
 Sets the compression engine to use for JavaScript or CSS. This defaults to 
 `:jsmin` and `:simple`, respectively.
@@ -317,7 +325,7 @@ assets {
 }
 ```
 
-### assets.js\_compression\_options + assets.css\_compression\_options
+### assets.js\_compression\_options<br>assets.css\_compression\_options
 
 Sets the options for the compression engine to use. This is usually not needed 
 as you can already set options using `js_compression` and `css_compression`.
@@ -337,7 +345,7 @@ This sets the option for `:munge` for the CSS compression engine.
 css_compression_options :munge => true
 ```
 
-### assets.css + assets.js
+### assets.css<br>assets.js
 
 Adds packages to be used.
 

@@ -27,3 +27,5 @@ namespace :doc do
     system "git update-ghpages #{gh} -i doc/"
   end
 end
+
+task :doc => :'doc:build'
