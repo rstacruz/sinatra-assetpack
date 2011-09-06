@@ -230,7 +230,7 @@ URL.
 Need to build the files?
 ------------------------
 
-Actually, you don't need to--this is optional! But add this to your `Rakefile`:
+Actually, you don't need to—this is optional! But add this to your `Rakefile`:
 
 ``` ruby
 # Rakefile
@@ -411,8 +411,8 @@ You may specify as many packages as you need, as shown in the second usage line.
 <%= css :PACKAGE, OPTIONS_HASH %>
 ```
 
-#### Example
-Here are some ways to invoke it.
+#### Example 1
+This links to the `main` stylesheet for *screen* media.
 
 ``` erb
 <%= css :main, media: 'screen' %>
@@ -470,7 +470,7 @@ If `OPTIONS_HASH` is given, they will we passed onto the `<img>` tag to be
 generated as attributes.
 
 #### Example
-This example renders an image with an icon.
+This example renders an image with an alt tag.
 
 ``` erb
 <%= img '/images/icon.png', alt: 'Icon' %>
@@ -511,12 +511,17 @@ AssetPack will eventually have:
 Acknowledgements
 ----------------
 
-Sinatra-AssetPack is authored and maintained by [Rico Sta.  
-Cruz](http://ricostacruz.com) and sponsored by my startup, [Sinefunc, 
-Inc](http://sinefunc.com).
+© 2011, Rico Sta. Cruz. Released under the [MIT 
+License](http://www.opensource.org/licenses/mit-license.php).
+
+Sinatra-AssetPack is authored and maintained by [Rico Sta. Cruz][rsc] with help 
+from it's [contributors][c]. It is sponsored by my startup, [Sinefunc, Inc][sf].
 
  * [My website](http://ricostacruz.com) (ricostacruz.com)
  * [Sinefunc, Inc.](http://sinefunc.com) (sinefunc.com)
  * [Github](http://github.com/rstacruz) (@rstacruz)
  * [Twitter](http://twitter.com/rstacruz) (@rstacruz)
 
+[rsc]: http://ricostacruz.com
+[c]:   http://github.com/rstacruz/sinatra-assetpack
+[sf]:  http://sinefunc.com
