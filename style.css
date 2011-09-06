@@ -31,6 +31,7 @@ h1 {
   font-family: palatino, serif; }
 
 h1, h2, h3, h4, h5, h6 {
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
   margin-top: 40px;
   color: #459;
   font-family: 'pt sans', palatino, serif; }
@@ -133,13 +134,17 @@ section {
   margin-left: -40px;
   padding-right: 9000px; }
 
+section.h2:nth-child(even) {
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.8); }
+
 section:first-of-type {
   margin-top: 40px; }
 
 section.h1, section.h2, section.h3 {
   padding-top: 30px;
   padding-bottom: 40px;
-  border-top: solid 2px #ddd; }
+  border-top: solid 1px #ddd; }
 
 section.h3 {
   padding-top: 20px;
