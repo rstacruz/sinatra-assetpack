@@ -33,6 +33,12 @@ class NonExistentTest < UnitTest
     assert body.include?('combine.js')
   end
 
+  test "dev non-existent files in js helper" do
+    App.expects(:environment).returns(:development).times(1..100)
+    get '/'
+    assert body.include?('combine.js')
+  end
+
   test "non-existent files in js minifier" do
     get '/script.min.js'
     assert body.include?('Spin spin sugar')

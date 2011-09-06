@@ -20,7 +20,7 @@ module Sinatra
         assets.packages.each do |name, package|
           get package.route_regex do
             content_type package.type
-            last_modified package.mtime
+            last_modified package.mtime  if package.mtime
 
             settings.assets.cache[package.hash] ||= package.minify
           end

@@ -49,7 +49,7 @@ module Sinatra
       end
 
       def mtime
-        files.map { |f| File.mtime(f).to_i }.max
+        BusterHelpers.mtime_for(files)
       end
 
       # Returns the regex for the route, including cache buster crap.

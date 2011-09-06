@@ -25,6 +25,13 @@ class UnitTest < Test::Unit::TestCase
     puts ""
   end
 
+  def get(*a)
+    super *a
+    has_error = body.include?('sinatra.error')
+    d if has_error
+    assert ! has_error, "Found a Sinatra error."
+  end
+
   def body
     last_response.body.strip
   end
