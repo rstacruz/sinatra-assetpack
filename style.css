@@ -224,8 +224,3 @@ li.L1, li.L3, li.L5, li.L7, li.L9 { background: #eee }
   .atn { color: #404; }
   .atv { color: #060; }
 }
-
-/* Workaround */
-section + ul {
-  margin-bottom: 30px;
-  margin-top: -30px; }

@@ -14,7 +14,7 @@
 
 
 
-<hgroup class="header"><h1>Sinatra AssetPack</h1>
+<hgroup class="header"><h1 id="sinatra_assetpack">Sinatra AssetPack</h1>
 <h4>Asset packer for Sinatra</h4></hgroup><p class=" brief">This is <em>the</em> most convenient way to set up your CSS/JS (and images) in a 
 <a href="http://sinatrarb.com">Sinatra</a> app. Seriously. No need for crappy routes to 
 render Sass or whatever. No-siree!</p>
@@ -36,7 +36,7 @@ render Sass or whatever. No-siree!</p>
 messy <em>script</em> and <em>link</em> tags</li>
 <li>BOOM! You're in business baby!</li>
 </ol>
-<section class="h2"><h2>Installation</h2>
+<section class="h2"><h2 id="installation">Installation</h2>
 <pre class=" lang- prettyprint right"><code class="console">$ gem install sinatra-assetpack
 </code></pre>
 
@@ -50,9 +50,9 @@ messy <em>script</em> and <em>link</em> tags</li>
 
 <p>If you use Bundler, you will need to add it to your <em>Gemfile</em>.</p>
 
-</section><br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h2"><h2 class=" after-pre">Setup</h2>
+</section></section><section class="h2"><h2 id="setup" class=" after-pre">Setup</h2>
 <pre class=" lang- prettyprint right"><code class="ruby">require 'sinatra/assetpack'
 
 class App &lt; Sinatra::Base
@@ -94,9 +94,9 @@ end
 <p>In your layouts, use the <code>css</code> and <code>js</code> helpers:
 <em>(Use haml? Great! Use <code>!= css :youreawesome</code> instead.)</em></p>
 
-</section><br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h2"><h2 class=" after-pre">And then what?</h2>
+</section></section><section class="h2"><h2 id="and_then_what" class=" after-pre">And then what?</h2>
 
 <section class="h4"><h4>Development mode</h4>
 <pre class=" lang- prettyprint right"><code class="html">&lt;link rel='stylesheet' href='/css/screen.849289.css' media='screen' type='text/css' /&gt;
@@ -107,20 +107,20 @@ end
 
 <p>If you're on <strong>development</strong> mode, it serves each of the files as so:</p>
 
-<br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h4"><h4 class=" after-pre">Production mode</h4>
+</section><section class="h4"><h4 class=" after-pre">Production mode</h4>
 <pre class=" lang- prettyprint right"><code class="html">&lt;link rel='stylesheet' href='/css/application.849289.css' media='screen' type='text/css' /&gt;
 &lt;script type='text/javascript' src='/js/app.589491.js'&gt;&lt;/script&gt;
 </code></pre>
 
 <p>If you're on <strong>production</strong> mode, it serves a compressed version in the URLs you specify:</p>
 
-</section><br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h2"><h2 class=" after-pre">Features</h2>
+</section></section><section class="h2"><h2 id="features" class=" after-pre">Features</h2>
 
-</section><ul>
+<ul>
 <li><p><strong>CoffeeScript support:</strong> Just add your coffee files in one of the paths 
 served (in the example, <code>app/js/hello.coffee</code>) and they will be available as JS 
 files (<code>http://localhost:4567/js/hello.js</code>).</p></li>
@@ -140,8 +140,7 @@ You can, but it's optional. Keeps your source repo clean!</p></li>
 <li><p><strong>Auto minification (with caching):</strong> JS and CSS files will be compressed as 
 needed.</p></li>
 <li><p><strong>Heroku support:</strong> Oh yes. That's right.</p></li>
-</ul>
-<section class="h2"><h2>Compressors</h2>
+</ul></section><section class="h2"><h2 id="compressors">Compressors</h2>
 <pre class=" lang- prettyprint right"><code class="ruby">assets {
   js_compression  :jsmin    # :jsmin | :yui | :closure
   css_compression :simple   # :simple | :sass | :yui | :sqwish
@@ -154,7 +153,7 @@ compressors in the <code>assets</code> block:</p>
 
 <br class="post-pre">
 
-<section class="h3"><h3 class=" after-pre">YUI Compressor</h3>
+<section class="h3"><h3 id="yui_compressor" class=" after-pre">YUI Compressor</h3>
 <pre class=" lang- prettyprint right"><code class="ruby">assets {
   js_compression  :yui
   js_compression  :yui, :munge =&gt; true   # Munge variable names
@@ -166,9 +165,9 @@ compressors in the <code>assets</code> block:</p>
 <p>This uses Yahoo's Java-powered YUI compressor. For YUI compression, you need the 
 YUI compressor gem (<code>gem install yui-compressor</code>).</p>
 
-<br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h3"><h3 class=" after-pre">SASS compression</h3>
+</section><section class="h3"><h3 id="sass_compression" class=" after-pre">SASS compression</h3>
 <pre class=" lang- prettyprint right"><code class="ruby">assets {
   css_compression :sass
 }
@@ -177,9 +176,9 @@ YUI compressor gem (<code>gem install yui-compressor</code>).</p>
 <p>For SASS compression, you need the Sass gem (<code>gem install sass</code>). This treats 
 the CSS files as Scss files and uses Sass's <code>output: :compressed</code>.</p>
 
-<br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h3"><h3 class=" after-pre">Sqwish CSS compression</h3>
+</section><section class="h3"><h3 id="sqwish_css_compression" class=" after-pre">Sqwish CSS compression</h3>
 <pre class=" lang- prettyprint right"><code class="ruby">assets {
   css_compression :sqwish
   css_compression :sqwish, :strict =&gt; true
@@ -190,9 +189,9 @@ the CSS files as Scss files and uses Sass's <code>output: :compressed</code>.</p
 Sqwish with AssetPack, install it using <code>npm install -g sqwish</code>. You need NodeJS 
 and NPM installed.</p>
 
-<br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h3"><h3 class=" after-pre">Google Closure compression</h3>
+</section><section class="h3"><h3 id="google_closure_compression" class=" after-pre">Google Closure compression</h3>
 <pre class=" lang- prettyprint right"><code class="ruby">assets {
   js_compression :closure
   js_compression :closure, :level =&gt; "SIMPLE_OPTIMIZATIONS"
@@ -207,9 +206,10 @@ to compress your JavaScript. Available levels are:</p>
 <li><code>WHITESPACE_ONLY</code></li>
 <li><code>SIMPLE_OPTIMIZATIONS</code></li>
 <li><code>ADVANCED_OPTIMIZATIONS</code></li>
-</ul></section><br class="post-pre"></section>
+</ul>
+<br class="post-pre">
 
-<section class="h2"><h2 class=" after-pre">Images</h2>
+</section></section><section class="h2"><h2 id="images" class=" after-pre">Images</h2>
 <pre class=" lang- prettyprint right"><code class="html">&lt;!-- Original: --&gt; &lt;%= img '/images/email.png' %&gt;
 &lt;!-- Output:   --&gt; &lt;img src='/images/email.873842.png' width='16' height='16' /&gt;
 </code></pre>
@@ -227,9 +227,9 @@ ImageMagick is required to generate full image tags with width and height.</p>
 
 <p>In your CSS files, <code>url()</code>'s will automatically be translated.</p>
 
-<br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h4"><h4 class=" after-pre">Image embedding</h4>
+</section><section class="h4"><h4 class=" after-pre">Image embedding</h4>
 <pre class=" lang- prettyprint right"><code class="css">/* Original: */    .email { background: url(/images/email.png?embed); }
 /* Output:   */    .email { background: url(data:image/png;base64,NF8dG3I...); } 
 </code></pre>
@@ -237,9 +237,9 @@ ImageMagick is required to generate full image tags with width and height.</p>
 <p>Want to embed images as <code>data:</code> URI's? Sure! Just add <code>?embed</code> at the end of the 
 URL.</p>
 
-</section><br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h2"><h2 class=" after-pre">Need to build the files?</h2>
+</section></section><section class="h2"><h2 id="need_to_build_the_files" class=" after-pre">Need to build the files?</h2>
 <pre class=" lang- prettyprint right"><code class="ruby"># Rakefile
 APP_FILE  = 'app.rb'
 APP_CLASS = 'App'
@@ -257,9 +257,9 @@ require 'sinatra/assetpack/rake'
 
 <p>Now invoke the <code>assetpack:build</code> Rake task. This will create files in <code>/public</code>.</p>
 
-</section><br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h2"><h2 class=" after-pre">API reference</h2>
+</section></section><section class="h2"><h2 id="api_reference" class=" after-pre">API reference</h2>
 
 <section class="h4"><h4>Assets block</h4>
 <pre class=" lang- prettyprint right"><code class="ruby">class App &lt; Sinatra::Base
@@ -281,9 +281,9 @@ end
 
 <p>All configuration happens in the <code>assets</code> block. You may invoke it in 2 ways:</p>
 
-<br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h4"><h4 class=" after-pre">Getting options</h4>
+</section><section class="h4"><h4 class=" after-pre">Getting options</h4>
 <pre class=" lang- prettyprint right"><code class="ruby">App.assets
 App.assets.js_compression   #=&gt; :yui
 </code></pre>
@@ -293,7 +293,7 @@ almost all the options, with the exception for <code>css</code>, <code>js</code>
 
 <br class="post-pre">
 
-<section class="h3"><h3 class=" after-pre">assets.serve</h3>
+<section class="h3"><h3 id="assets_serve" class=" after-pre">assets.serve</h3>
 <pre class=" lang- prettyprint right"><code class="ruby"># Usage
 serve 'PATH', :from =&gt; 'LOCALPATH'
 </code></pre>
@@ -310,9 +310,9 @@ required.</p>
 <p>This makes <code>/app/javascripts/vendor/jquery.js</code>
 available as <code>http://localhost:4567/js/vendor/jquery.js</code>.</p>
 
-</section><br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h3"><h3 class=" after-pre">assets.js_compression<br>assets.css_compression</h3>
+</section></section><section class="h3"><h3 id="assets_js_compressionassets_css_compression" class=" after-pre">assets.js_compression<br>assets.css_compression</h3>
 <pre class=" lang- prettyprint right"><code class="ruby"># Usage:
 assets {
   js_compression :ENGINE
@@ -339,9 +339,9 @@ assets {
 <p>Yo seriously check this out: the first line uses Sqwish with it's defaults, and 
 the second line uses Sqwish with it's magic.</p>
 
-</section><br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h3"><h3 class=" after-pre">assets.js_compression_options<br>assets.css_compression_options</h3>
+</section></section><section class="h3"><h3 id="assets_js_compression_optionsassets_css_compression_options" class=" after-pre">assets.js_compression_options<br>assets.css_compression_options</h3>
 <pre class=" lang- prettyprint right"><code class="ruby"># Usage:
 assets {
   js_compression_options HASH
@@ -360,9 +360,9 @@ as you can already set options using <code>js_compression</code> and <code>css_c
 
 <p>This sets the option for <code>:munge</code> for the CSS compression engine.</p>
 
-</section><br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h3"><h3 class=" after-pre">assets.css<br>assets.js</h3>
+</section></section><section class="h3"><h3 id="assets_cssassets_js" class=" after-pre">assets.css<br>assets.js</h3>
 <pre class=" lang- prettyprint right"><code class="ruby"># Usage:
 assets {
   css :NAME, [ PATH1, PATH2, ... ]
@@ -406,15 +406,15 @@ end
 
 <p>In this example, JavaScript files will be served compressed as 
 <code>/js/application.js</code> (default since no <code>URI</code> is given). The files will be taken 
-from <code>./app/javascripts/vendor/jquery*.js</code>.</p></section>
+from <code>./app/javascripts/vendor/jquery*.js</code>.</p>
 
-</section></section><br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h2"><h2 class=" after-pre">API reference: helpers</h2>
+</section></section></section></section><section class="h2"><h2 id="api_reference_helpers" class=" after-pre">API reference: helpers</h2>
 
 <p>These are helpers you can use in your views.</p>
 
-<section class="h3"><h3>&lt;%= css %&gt;</h3>
+<section class="h3"><h3 id="css">&lt;%= css %&gt;</h3>
 <pre class=" lang- prettyprint right"><code class="ruby"># Usage:
 &lt;%= css :PACKAGE %&gt;
 &lt;%= css :PACKAGE_1, :PACKAGE_2, ...  :PACKAGE_N, OPTIONS_HASH %&gt;
@@ -437,9 +437,9 @@ passed onto the <code>&lt;link&gt;</code> tag to be generated as attributes.</p>
 
 <p>Here are some ways to invoke it.</p>
 
-<br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h4"><h4 class=" after-pre">Example 2</h4>
+</section><section class="h4"><h4 class=" after-pre">Example 2</h4>
 <pre class=" lang- prettyprint right"><code class="erb">&lt;%= css :base, :app, :main, media: 'screen' %&gt;
 
 &lt;!-- Output: --&gt;
@@ -450,9 +450,9 @@ passed onto the <code>&lt;link&gt;</code> tag to be generated as attributes.</p>
 
 <p>You may also invoke it with multiple packages.</p>
 
-</section><br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h3"><h3 class=" after-pre">&lt;%= js %&gt;</h3>
+</section></section><section class="h3"><h3 id="js" class=" after-pre">&lt;%= js %&gt;</h3>
 <pre class=" lang- prettyprint right"><code class="erb"># Usage:
 &lt;%= js :PACKAGE %&gt;
 &lt;%= js :PACKAGE_1, :PACKAGE_2, ...  :PACKAGE_N, OPTIONS_HASH %&gt;
@@ -472,9 +472,9 @@ passed onto the <code>&lt;link&gt;</code> tag to be generated as attributes.</p>
 
 <p>This example embeds the <em>main</em> package with an ID.</p>
 
-</section><br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h3"><h3 class=" after-pre">&lt;%= img %&gt;</h3>
+</section></section><section class="h3"><h3 id="img" class=" after-pre">&lt;%= img %&gt;</h3>
 <pre class=" lang- prettyprint right"><code class="ruby"># Usage:
 img 'SRC'
 img 'SRC', OPTIONS_HASH
@@ -496,11 +496,11 @@ generated as attributes.</p>
 &lt;img src='/images/icon.834782.png' width='24' height='24' alt='Icon' /&gt;`
 </code></pre>
 
-<p>This example renders an image with an icon.</p></section>
+<p>This example renders an image with an icon.</p>
 
-</section><br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h2"><h2 class=" after-pre">Need Compass support?</h2>
+</section></section></section><section class="h2"><h2 id="need_compass_support" class=" after-pre">Need Compass support?</h2>
 <pre class=" lang- prettyprint right"><code class="ruby"># gem install sinatra/support
 Encoding.default_external = 'utf-8'
 require 'sinatra/support'
@@ -513,13 +513,13 @@ end
 <p>No, AssetPack doesn't have built-in Compass support, but you can use <a href="http://sinefunc.com/sinatra-support">Sinatra 
 Support</a>:</p>
 
-<br class="post-pre"></section>
+<br class="post-pre">
 
-<section class="h2"><h2 class=" after-pre">To do</h2>
+</section><section class="h2"><h2 id="to_do" class=" after-pre">To do</h2>
 
 <p>AssetPack will eventually have:</p>
 
-</section><ul>
+<ul>
 <li>Nested packages</li>
 <li>Ignored files (to ignore included sass files and such)</li>
 <li>
@@ -528,14 +528,13 @@ Support</a>:</p>
 <li>Refactor <em>Compressor</em> module</li>
 <li>CDN (Cloudfront, S3) support</li>
 <li>Better support for Compass sprites</li>
-</ul>
-<section class="h2"><h2>Acknowledgements</h2>
+</ul></section><section class="h2"><h2 id="acknowledgements">Acknowledgements</h2>
 
 <p>Sinatra-AssetPack is authored and maintained by <a href="http://ricostacruz.com">Rico Sta.<br>
 Cruz</a> and sponsored by my startup, <a href="http://sinefunc.com">Sinefunc, 
 Inc</a>.</p>
 
-</section><ul>
+<ul>
 <li>
 <a href="http://ricostacruz.com">My website</a> (ricostacruz.com)</li>
 <li>
@@ -544,7 +543,7 @@ Inc</a>.</p>
 <a href="http://github.com/rstacruz">Github</a> (@rstacruz)</li>
 <li>
 <a href="http://twitter.com/rstacruz">Twitter</a> (@rstacruz)</li>
-</ul></div>
+</ul></section></div>
   <script type='text/javascript' src='http://cachedcommons.org/cache/prettify/1.0.0/javascripts/prettify-min.js'></script>
   <script>prettyPrint();</script>
 </body>
