@@ -8,9 +8,15 @@ unless defined?(APP_FILE) && defined?(APP_CLASS)
   exit
 end
 
+def class_from_string(str)
+  str.split('::').inject(Object) do |mod, class_name|
+    mod.const_get(class_name)
+  end
+  end
+
 def app
   require File.expand_path(APP_FILE, Dir.pwd)
-  Object.const_get(APP_CLASS.to_sym)
+  class_from_string(APP_CLASS)
 end
 
 namespace :assetpack do
