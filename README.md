@@ -1,8 +1,6 @@
 # [Sinatra AssetPack](http://ricostacruz.com/sinatra-assetpack)
 #### Asset packer for Sinatra
 
-----
-
 This is *the* most convenient way to set up your CSS/JS (and images) in a 
 [Sinatra](http://sinatrarb.com) app. Seriously. No need for crappy routes to 
 render Sass or whatever. No-siree!
@@ -482,8 +480,13 @@ This example renders an image with an alt tag.
 Need Compass support?
 ---------------------
 
-No, AssetPack doesn't have built-in Compass support, but you can use [Sinatra 
-Support](http://sinefunc.com/sinatra-support):
+No, AssetPack doesn't have built-in [Compass](http://compassstyle.org) support, 
+but you can use [Sinatra Support](http://sinefunc.com/sinatra-support).
+
+For an example of how to use AssetPack with Compass, see the [Compass example 
+application.][compex]
+
+[compex]: https://github.com/rstacruz/sinatra-assetpack/tree/master/examples/compass
 
 ``` ruby
 # gem install sinatra/support
@@ -523,5 +526,5 @@ from it's [contributors][c]. It is sponsored by my startup, [Sinefunc, Inc][sf].
  * [Twitter](http://twitter.com/rstacruz) (@rstacruz)
 
 [rsc]: http://ricostacruz.com
-[c]:   http://github.com/rstacruz/sinatra-assetpack
+[c]:   http://github.com/rstacruz/sinatra-assetpack/contributors
 [sf]:  http://sinefunc.com
