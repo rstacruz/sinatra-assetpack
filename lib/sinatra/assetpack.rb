@@ -14,7 +14,7 @@ module Sinatra
     # Returns a list of formats that can be served.
     # Anything not in this list will be rejected.
     def self.supported_formats
-      @supported_formats ||= %w(css js png jpg gif otf eot ttf woff)
+      @supported_formats ||= %w(css js png jpg gif otf eot ttf woff htc)
     end
 
     # Returns a map of what MIME format each Tilt type returns.
