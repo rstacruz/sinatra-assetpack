@@ -37,7 +37,9 @@ module Sinatra
 
       # Returns a list of URIs
       def paths_and_files
-        @assets.glob @filespecs, :preserve => true
+        list = @assets.glob(@filespecs, :preserve => true)
+        list.reject! { |path, file| @assets.ignored?(path) }
+        list
       end
 
       def files

@@ -437,6 +437,59 @@ end
 # In views: <%= js :application %>
 ```
 
+### assets.ignore
+Excludes any URL paths that match the given spec.
+
+These files will not show up in packages, and they will not be accessible.
+
+By default, `.*` and `_*` are ignored. The former protects folders such as 
+`.svn` from being accessed, and the latter protects Sass partial files from 
+being accessed directly.
+
+Note that this matches against URL paths, not local file paths. This means 
+something like `*.scss` will not work, as all stylesheet files will be compiled 
+to `.css`.
+
+``` ruby
+# Usage:
+assets {
+  ignore FILESPEC
+}
+```
+
+#### Example
+Here's an example.
+
+``` ruby
+class App < Sinatra::Base
+  assets {
+    # Ignores all files matching *.private.js in any folder.
+    ignore '*.private.js'
+
+    # Ignores all files in `/app/js/foo/**/*`
+    ignore '/js/foo'
+  }
+end
+```
+
+#### Advanced usage
+By default, `.*` and `_*` are ignored. To disable this behavior, you can use 
+`clear_ignores!` before your `ignore` lines.
+
+``` ruby
+assets {
+  clear_ignores!
+  ignore '*.private.js'
+}
+```
+
+To check if a certain file is ignored, use `assets.ignore?`
+
+``` ruby
+assets.ignored?("/css/_chrome.css")   #=> true
+```
+
+
 ### assets.prebuild
 Caches the built packages on application startup.
 

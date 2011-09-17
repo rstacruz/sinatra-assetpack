@@ -38,20 +38,6 @@ module Sinatra
         new arr.each_slice(2).map { |(k, v)| Hash[k, v] }
       end
 
-      # Works like Hash#each.
-      #
-      # By extension, methods that rely on #each (like #inject) will work
-      # as intended.
-      #
-      def each(&block)
-        super { |hash| yield hash.to_a.flatten }
-      end
-
-      # Works like Hash#map.
-      def map(&block)
-        super { |hash| yield hash.to_a.flatten }
-      end
-
       # Works like Hash#values.
       def values
         inject([]) { |a, (k, v)| a << v; a }
@@ -64,6 +50,16 @@ module Sinatra
 
       def keys
         inject([]) { |a, (k, v)| a << k; a }
+      end
+
+      [:each, :map, :map!, :reject, :reject!, :select, :select!].each do |meth|
+        send(:define_method, meth) { |*a, &block|
+          if block.respond_to?(:call)
+            super(*a) { |hash| block.call *hash.to_a }
+          else
+            super(*a)
+          end
+        }
       end
     end
   end

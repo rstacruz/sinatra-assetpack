@@ -49,12 +49,17 @@ module Sinatra
         @js_compression_options  = Hash.new
         @css_compression_options = Hash.new
 
+        @ignored = Array.new
+
         reset!
 
         # Defaults!
         serve '/css',    :from => 'app/css'
         serve '/js',     :from => 'app/js'
         serve '/images', :from => 'app/images'
+
+        ignore '.*'
+        ignore '_*'
 
         blk.arity <= 0 ? instance_eval(&blk) : yield(self)  if block_given?
       end
@@ -73,6 +78,27 @@ module Sinatra
       def reset!
         @served   = Hash.new
         @packages = Hash.new
+      end
+
+      # Ignores a given path spec.
+      def ignore(spec)
+        if spec[0] == '/'
+          @ignored << "#{spec}"
+          @ignored << "#{spec}/**"
+        else
+          @ignored << "**/#{spec}"
+          @ignored << "**/#{spec}/**"
+        end
+      end
+
+      # Makes nothing ignored. Use this if you don't want to ignore dotfiles and underscore files.
+      def clear_ignores!
+        @ignored  = Array.new
+      end
+
+      # Checks if a given path is ignored.
+      def ignored?(fn)
+        @ignored.any? { |spec| File.fnmatch spec, fn }
       end
 
       # Adds some JS packages.
