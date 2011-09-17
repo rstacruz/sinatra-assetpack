@@ -155,10 +155,19 @@ assets {
 }
 ```
 
+__Note:__ This depends on the `yui-compressor` gem. You will need to install it.
+(`gem install yui-compressor`) If you use Bundler, you will need to add it to 
+your Gemfile as well.
+
+``` ruby
+# Gemfile
+gem 'yui-compressor', :require => 'yui/compressor'
+```
+
 ### SASS compression
 
 For SASS compression, you need the Sass gem (`gem install sass`). This treats 
-the CSS files as Scss files and uses Sass's `output: :compressed`.
+the CSS files as Scss files and uses Sass's `:output => :compressed`.
 
 ``` ruby
 assets {
@@ -166,8 +175,9 @@ assets {
 }
 ```
 
-#### Gem setup
-This depends on the `sass` gem. In your Gemfile, you will need to add it.
+__Note:__ This depends on the `sass` gem. You will need to install it (`gem
+install sass`). If you use Bundler, you will need to add it to your Gemfile as 
+well.
 
 ``` ruby
 # Gemfile
@@ -220,14 +230,16 @@ assets {
 }
 ```
 
-#### Gem setup
-This depends on the `uglifier` gem. In your Gemfile, you will need to add it.
-For Heroku support, you will need to add the `therubyracer-heroku` gem as well.
+__Note:__ This depends on the `uglifier` gem. In your Gemfile, you will need to 
+add it. For Heroku support, you will need to add the `therubyracer-heroku` gem 
+as well.
 
 ``` ruby
 # Gemfile
 gem 'uglifier'
-gem "therubyracer-heroku", "0.8.1.pre3", require: false
+
+# If you're on Heroku:
+gem "therubyracer-heroku", "0.8.1.pre3", :require => false
 ```
 
 
