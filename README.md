@@ -378,8 +378,8 @@ from `./app/javascripts/vendor/jquery*.js`.
 
 ``` ruby
 class App < Sinatra::Base
-  serve '/js', from: '/app/javascripts'
   assets {
+    serve '/js', from: '/app/javascripts'
     js :application, [
       '/js/vendor/jquery.*.js',
       '/js/vendor/jquery.js'
@@ -388,6 +388,41 @@ class App < Sinatra::Base
 end
 
 # In views: <%= js :application %>
+```
+
+### assets.prebuild
+Caches the built packages on application startup.
+
+If this is not used, the packages will be minified when they are first 
+requested. This only has an effect in the production environment (or when  
+    Sinatra's `reload_templates` is otherwise set to false).
+
+``` ruby
+# Usage:
+prebuild {true|false}
+```
+
+#### Example
+In this example, the package for `:application` will be built when the 
+application is started in the production environment.
+
+``` ruby
+class App < Sinatra::Base
+  assets {
+    js_compression :closure
+
+    js :application, [
+      '/js/vendor/jquery.*.js',
+      '/js/vendor/jquery.js'
+    ]
+    prebuild true
+  }
+end
+
+# $ RACK_ENV=production ruby app.rb
+# ** Biilding /assets/application.js...
+# == Sinatra/1.2.6 has taken the stage on 4567 for production
+# >> Listening on 0.0.0.0:4567, CTRL+C to stop
 ```
 
 API reference: helpers

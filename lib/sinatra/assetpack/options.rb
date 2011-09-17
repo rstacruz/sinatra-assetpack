@@ -122,6 +122,8 @@ module Sinatra
       attrib :js_compression_options   # Hash
       attrib :css_compression_options  # Hash
 
+      attrib :prebuild          # Bool
+
       def js_compression(name=nil, options=nil)
         @js_compression = name  unless name.nil?
         @js_compression_options = options  if options.is_a?(Hash)
@@ -154,6 +156,19 @@ module Sinatra
           write path, out, &blk
           write BusterHelpers.add_cache_buster(path, local), out, &blk
         }
+      end
+
+      # Caches the packages.
+      def cache!(&blk)
+        return false  if app.reload_templates
+
+        session = Rack::Test::Session.new app
+        packages.each { |_, pack|
+          yield pack.path  if block_given?
+          session.get(pack.path)
+        }
+
+        true
       end
 
       def served?(path)

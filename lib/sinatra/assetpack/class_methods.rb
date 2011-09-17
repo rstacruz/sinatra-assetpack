@@ -13,6 +13,11 @@ module Sinatra
       def assets_initialize!
         add_compressed_routes!
         add_individual_routes!
+
+        # Cache the built files.
+        if assets.prebuild && !reload_templates
+          assets.cache! { |file| $stderr.write "** Building #{file}...\n" }
+        end
       end
 
       # Add routes for the compressed versions

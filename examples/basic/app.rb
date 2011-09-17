@@ -1,4 +1,4 @@
-$:.unshift File.expand_path('../../lib', __FILE__)
+$:.unshift File.expand_path('../../../lib', __FILE__)
 
 require 'sinatra/base'
 require 'sinatra/assetpack'
@@ -8,6 +8,8 @@ class App < Sinatra::Base
   register Sinatra::AssetPack
 
   assets do
+    js_compression :closure
+
     js :main, '/js/main.js', [
       '/js/vendor/*.js',
       '/js/app.js'
@@ -22,6 +24,8 @@ class App < Sinatra::Base
     css :more, '/css/more.css', [
       '/css/more/*.css'
     ]
+
+    prebuild true
   end
 
   get '/' do
