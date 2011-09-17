@@ -170,17 +170,26 @@ module Sinatra
       def build!(&blk)
         session = Rack::Test::Session.new app
 
-        packages.each { |_, pack|
-          out = session.get(pack.path).body
+        get = lambda { |path|
+          response = session.get(path)
+          out      = response.body
+          mtime    = Time.parse(response.headers['Last-Modified'])  if response.headers['Last-Modified']
 
-          write pack.path, out, &blk
-          write pack.production_path, out, &blk
+          [ out, mtime ]
+        }
+
+        packages.each { |_, pack|
+          out, mtime = get[pack.path]
+
+          write pack.path, out, mtime, &blk
+          write pack.production_path, out, mtime, &blk
         }
 
         files.each { |path, local|
-          out = session.get(path).body
-          write path, out, &blk
-          write BusterHelpers.add_cache_buster(path, local), out, &blk
+          out, mtime = get[path]
+
+          write path, out, mtime, &blk
+          write BusterHelpers.add_cache_buster(path, local), out, mtime, &blk
         }
       end
 
@@ -230,7 +239,7 @@ module Sinatra
       end
 
       # Writes `public/#{path}` based on contents of `output`.
-      def write(path, output)
+      def write(path, output, mtime=nil)
         require 'fileutils'
 
         path = File.join(@output_path, path)
@@ -238,6 +247,10 @@ module Sinatra
 
         FileUtils.mkdir_p File.dirname(path)
         File.open(path, 'w') { |f| f.write output }
+
+        if mtime
+          File.utime mtime, mtime, path
+        end
       end
 
       # Returns the files as a hash.
