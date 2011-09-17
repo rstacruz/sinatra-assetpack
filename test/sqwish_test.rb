@@ -20,9 +20,8 @@ class SqwishTest < UnitTest
 
   if sqwish?
     test "build" do
-      Sinatra::AssetPack::Compressor.expects(:`).with() { |cmd|
-        cmd.match /^sqwish .*? --strict$/
-      }
+      Sinatra::AssetPack::Compressor
+      Sinatra::AssetPack::SqwishEngine.any_instance.expects(:css)
 
       get '/css/sq.css'
     end

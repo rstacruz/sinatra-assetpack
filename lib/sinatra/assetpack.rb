@@ -46,6 +46,7 @@ module Sinatra
     autoload :Helpers,       "#{PREFIX}/assetpack/helpers"
     autoload :HtmlHelpers,   "#{PREFIX}/assetpack/html_helpers"
     autoload :BusterHelpers, "#{PREFIX}/assetpack/buster_helpers"
+    autoload :Engine,        "#{PREFIX}/assetpack/engine"
     autoload :Package,       "#{PREFIX}/assetpack/package"
     autoload :Compressor,    "#{PREFIX}/assetpack/compressor"
     autoload :Image,         "#{PREFIX}/assetpack/image"

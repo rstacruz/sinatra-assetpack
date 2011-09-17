@@ -8,102 +8,46 @@ module Sinatra
       #     compress File.read('x.js'), :js, :jsmin
       #
       def compress(str, type, engine=nil, options={})
-        engine ||= 'jsmin'   if type == :js
-        engine ||= 'simple'  if type == :css
+        # Use defaults if no engine is given.
+        return fallback(str, type, options)  if engine.nil?
 
-        key  = :"#{type}/#{engine}"
-        meth = compressors[key]
-        return str  unless meth
+        # Ensure that the engine exists.
+        klass = compressors[[type, engine]]
+        raise Error, "Registered engine #{engine} (#{type}) doesn't have an engine class." unless klass
 
-        meth[str, options]
+        # Ensure that the engine can support that type.
+        engine = klass.new
+        raise Error, "#{klass} does not support #{type.upcase} compression."  unless engine.respond_to?(type)
+
+        # Build it using the engine, and fallback to defaults if it fails.
+        output   = engine.send type, str, options
+        output ||= fallback(str, type, options)  unless options[:no_fallback]
+        output
+      end
+
+      # Compresses a given string using the default engines.
+      def fallback(str, type, options)
+        if type == :js
+          compress str, :js, :jsmin, :no_fallback => true
+        elsif type == :css
+          compress str, :css, :simple, :no_fallback => true
+        end
       end
 
       def compressors
-        @compressors ||= {
-          :'js/jsmin'    => method(:jsmin),
-          :'js/yui'      => method(:yui_js),
-          :'js/closure'  => method(:closure_js),
-          :'css/sass'    => method(:sass),
-          :'css/yui'     => method(:yui_css),
-          :'css/simple'  => method(:simple_css),
-          :'css/sqwish'  => method(:sqwish_css)
-        }
+        @compressors ||= Hash.new
       end
 
-      # =====================================================================
-      # Compressors
-
-      def jsmin(str, options={})
-        require 'jsmin'
-        JSMin.minify str
-      end
-
-      def sass(str, options={})
-        Tilt.new("scss", {:style => :compressed}) { str }.render
-      rescue LoadError
-        simple_css str
-      end
-
-      def yui_css(str, options={})
-        require 'yui/compressor'
-        YUI::CssCompressor.new.compress(str)
-      rescue Errno::ENOENT
-        sass str
-      end
-
-      def yui_js(str, options={})
-        require 'yui/compressor'
-        YUI::JavaScriptCompressor.new(options).compress(str)
-      rescue LoadError
-        jsmin str
-      end
-
-      def simple_css(str, options={})
-        str.gsub! /[ \r\n\t]+/m, ' '
-        str.gsub! %r{ *([;\{\},:]) *}, '\1'
-      end
-
-      def sqwish_css(str, options={})
-        cmd = "#{sqwish_bin} %f "
-        cmd += "--strict"  if options[:strict]
-
-        _, input = sys :css, str, cmd
-        output   = input.gsub(/\.css/, '.min.css')
-
-        File.read(output)
-      rescue => e
-        simple_css str
-      end
-
-      def sqwish_bin
-        ENV['SQWISH_PATH'] || "sqwish"
-      end
-
-      def closure_js(str, options={})
-        require 'net/http'
-        require 'uri'
-
-        response = Net::HTTP.post_form(URI.parse('http://closure-compiler.appspot.com/compile'), {
-          'js_code' => str,
-          'compilation_level' => options[:level] || "ADVANCED_OPTIMIZATIONS",
-          'output_format' => 'text',
-          'output_info' => 'compiled_code'
-        })
-
-        response.body
-      end
-
-      # For others
-      def sys(type, str, cmd)
-        t = Tempfile.new ['', ".#{type}"]
-        t.write(str)
-        t.close
-
-        output = `#{cmd.gsub('%f', t.path)}`
-        FileUtils.rm t
-
-        [output, t.path]
+      def register(type, engine, meth)
+        compressors[[type, engine]] = meth
       end
     end
+
+    require "#{AssetPack::PREFIX}/assetpack/engines/simple"
+    require "#{AssetPack::PREFIX}/assetpack/engines/jsmin"
+    require "#{AssetPack::PREFIX}/assetpack/engines/yui"
+    require "#{AssetPack::PREFIX}/assetpack/engines/sass"
+    require "#{AssetPack::PREFIX}/assetpack/engines/sqwish"
+    require "#{AssetPack::PREFIX}/assetpack/engines/closure"
   end
 end

@@ -535,19 +535,6 @@ class Main
 end
 ```
 
-To do
------
-
-AssetPack will eventually have:
-
- * Nested packages
- * Ignored files (to ignore included sass files and such)
- * `rake assetpack:build` should be able to output to another folder
- * Cache folder support (best if your app has many workers)
- * Refactor *Compressor* module
- * CDN (Cloudfront, S3) support
- * Better support for Compass sprites
-
 Acknowledgements
 ----------------
 
