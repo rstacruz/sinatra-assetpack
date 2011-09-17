@@ -136,7 +136,7 @@ compressors in the `assets` block:
 
 ``` ruby
 assets {
-  js_compression  :jsmin    # :jsmin | :yui | :closure
+  js_compression  :jsmin    # :jsmin | :yui | :closure | :uglify
   css_compression :simple   # :simple | :sass | :yui | :sqwish
 }
 ```
@@ -195,6 +195,33 @@ assets {
   js_compression :closure, :level => "SIMPLE_OPTIMIZATIONS"
 }
 ```
+
+### UglifyJS compression
+
+This uses the [UglifyJS](https://github.com/mishoo/UglifyJS) compressor to 
+compress your JavaScript. You will need to install the 
+[uglifier](http://rubygems.org/gems/uglifier) gem.
+
+For options, refer to the [Uglifier 
+documentation](https://github.com/lautis/uglifier).
+
+``` ruby
+assets {
+  js_compression :uglify
+  js_compression :uglify, [options]
+}
+```
+
+#### Gem
+This depends on the `uglifier` gem. In your Gemfile, you will need to add it.
+For Heroku support, you will need to add the `therubyracer-heroku` gem as well.
+
+``` ruby
+# Gemfile
+gem 'uglifier'
+gem "therubyracer-heroku", "0.8.1.pre3", require: false
+```
+
 
 Images
 ------

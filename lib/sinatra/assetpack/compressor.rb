@@ -13,7 +13,7 @@ module Sinatra
 
         # Ensure that the engine exists.
         klass = compressors[[type, engine]]
-        raise Error, "Registered engine #{engine} (#{type}) doesn't have an engine class." unless klass
+        raise Error, "Engine #{engine} (#{type}) doesn't exist."  unless klass
 
         # Ensure that the engine can support that type.
         engine = klass.new
@@ -49,5 +49,6 @@ module Sinatra
     require "#{AssetPack::PREFIX}/assetpack/engines/sass"
     require "#{AssetPack::PREFIX}/assetpack/engines/sqwish"
     require "#{AssetPack::PREFIX}/assetpack/engines/closure"
+    require "#{AssetPack::PREFIX}/assetpack/engines/uglify"
   end
 end

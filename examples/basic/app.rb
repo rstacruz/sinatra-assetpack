@@ -8,7 +8,8 @@ class App < Sinatra::Base
   register Sinatra::AssetPack
 
   assets do
-    js_compression :closure
+    #js_compression :closure
+    js_compression :uglify
 
     js :main, '/js/main.js', [
       '/js/vendor/*.js',
