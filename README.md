@@ -394,8 +394,8 @@ end
 Caches the built packages on application startup.
 
 If this is not used, the packages will be minified when they are first 
-requested. This only has an effect in the production environment (or when  
-    Sinatra's `reload_templates` is otherwise set to false).
+requested. This only has an effect in the production environment (or when
+Sinatra's `reload_templates` is otherwise set to false).
 
 ``` ruby
 # Usage:
@@ -420,8 +420,10 @@ class App < Sinatra::Base
 end
 
 # $ RACK_ENV=production ruby app.rb
-# ** Biilding /assets/application.js...
+# ** Building /assets/application.js...
 # == Sinatra/1.2.6 has taken the stage on 4567 for production
+# >> Thin web server (v1.2.11 codename Bat-Shit Crazy)
+# >> Maximum connections set to 1024
 # >> Listening on 0.0.0.0:4567, CTRL+C to stop
 ```
 
