@@ -1,3 +1,17 @@
+v0.0.10 - Sep 18, 2011
+----------------------
+
+### Added:
+  * Support for 'prebuild' to build on startup.
+  * Add UglifyJS support via `js_compression :uglify`. (#18)
+  * Ignore '.*' and '_*' files. (#17)
+  * Allow specifying of files to be ignored. (#17)
+
+### Changed:
+  * Built files from 'rake assetpack:build' now match the mtimes of their
+    sources. (#12)
+  * Refactor Compressor into separate engine classes.
+
 v0.0.9 - Sep 18, 2011
 ---------------------
 
@@ -6,8 +20,8 @@ v0.0.9 - Sep 18, 2011
   * Fix the Rake task when the main App class is in a module. (#11)
 
 ### Changed:
-  * Use Sinatra's `template_cache`. This makes AssetPack honor Sinatra's 
-`reload_templates` setting. (#15)
+  * Use Sinatra's `template_cache`. This makes AssetPack honor Sinatra's
+    `reload_templates` setting. (#15)
 
 ### Added:
   * Added .htc (IE behavior files) to the list of file formats to be served.
@@ -17,16 +31,16 @@ v0.0.8 - Sep 06, 2011
 ---------------------
 
 ### Fixed:
-  * Fixed the CSS preprocessing bug that gives invalid 'url()' properties to 
-  non-existing images. Closes #1.
+  * Fixed the CSS preprocessing bug that gives invalid 'url()' properties to
+    non-existing images. (#1)
 
 ### Added:
-  * Allow adding CSS/JS files that don't exist. Closes #8.
-  * Support any Tilt-compatible CSS or JS engine. Related to #5.
+  * Allow adding CSS/JS files that don't exist. (#8)
+  * Support any Tilt-compatible CSS or JS engine. (#5)
 
 ### Changed:
-  * Default to '/assets/x.js' then using assets.css without a path. Inspiration 
-  from Jammit.
+  * Default to '/assets/x.js' then using assets.css without a path. Inspiration
+    from Jammit.
   * Ask browsers to cache assets for 1 month.
 
 ### Misc:
