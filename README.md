@@ -166,6 +166,14 @@ assets {
 }
 ```
 
+#### Gem setup
+This depends on the `sass` gem. In your Gemfile, you will need to add it.
+
+``` ruby
+# Gemfile
+gem 'sass'
+```
+
 ### Sqwish CSS compression
 
 [Sqwish](http://github.com/ded/sqwish) is a NodeJS-based CSS compressor.  To use 
@@ -212,7 +220,7 @@ assets {
 }
 ```
 
-#### Gem
+#### Gem setup
 This depends on the `uglifier` gem. In your Gemfile, you will need to add it.
 For Heroku support, you will need to add the `therubyracer-heroku` gem as well.
 
