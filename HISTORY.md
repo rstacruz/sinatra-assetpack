@@ -1,3 +1,18 @@
+v0.0.9 - Sep 18, 2011
+---------------------
+
+### Fixed:
+  * Fixed a bad route terminating issue. (#9)
+  * Fix the Rake task when the main App class is in a module. (#11)
+
+### Changed:
+  * Use Sinatra's `template_cache`. This makes AssetPack honor Sinatra's 
+`reload_templates` setting. (#15)
+
+### Added:
+  * Added .htc (IE behavior files) to the list of file formats to be served.
+  * Added examples.
+
 v0.0.8 - Sep 06, 2011
 ---------------------
 
