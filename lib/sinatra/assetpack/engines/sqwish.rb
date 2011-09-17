@@ -1,6 +1,6 @@
 module Sinatra::AssetPack
   class SqwishEngine < Engine
-    def sqwish_css(str, options={})
+    def css(str, options={})
       cmd = "#{sqwish_bin} %f "
       cmd += "--strict"  if options[:strict]
 
