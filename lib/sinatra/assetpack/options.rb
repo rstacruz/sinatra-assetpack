@@ -242,14 +242,6 @@ module Sinatra
         HashArray[*tuples.flatten]
       end
 
-      def cache
-        @cache ||= Hash.new
-      end
-
-      def reset_cache
-        @cache = nil && cache
-      end
-
     private
       # Returns a URI for a given file
       #     path = '/projects/x/app/css'

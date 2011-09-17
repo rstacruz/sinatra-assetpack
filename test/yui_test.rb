@@ -2,7 +2,7 @@ require File.expand_path('../test_helper', __FILE__)
 
 class YuiTest < UnitTest
   setup do
-    app.assets.reset_cache
+    app.set :reload_templates, true
     app.assets.js_compression  = :yui
     app.assets.css_compression = :yui
   end

@@ -19,10 +19,13 @@ module Sinatra
       def add_compressed_routes!
         assets.packages.each do |name, package|
           get package.route_regex do
-            content_type package.type
-            last_modified package.mtime  if package.mtime
+            mtime, contents = @template_cache.fetch(package.path) {
+              [ package.mtime, package.minify ]
+            }
 
-            settings.assets.cache[package.hash] ||= package.minify
+            content_type package.type
+            last_modified mtime
+            contents
           end
         end
       end
@@ -49,16 +52,19 @@ module Sinatra
               not_found  unless format == fmt
 
               if fmt == 'css'
-                asset_filter_css File.read(fn)
+                @template_cache.fetch(fn) { asset_filter_css File.read(fn) }
               else
                 send_file fn
               end
             else
               # Dynamic file
               not_found unless AssetPack.tilt_formats[format] == fmt
-              out = render format.to_sym, File.read(fn)
-              out = asset_filter_css(out)  if fmt == 'css'
-              out
+
+              @template_cache.fetch(fn) {
+                out = render format.to_sym, File.read(fn)
+                out = asset_filter_css(out)  if fmt == 'css'
+                out
+              }
             end
           end
         end

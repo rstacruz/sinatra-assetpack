@@ -11,6 +11,12 @@ require File.expand_path('../app/app.rb', __FILE__)
 class UnitTest < Test::Unit::TestCase
   include Rack::Test::Methods
 
+  class App < Sinatra::Base
+    set :root, File.expand_path('../app', __FILE__)
+    enable :raise_errors
+    disable :show_exceptions
+  end
+
   def app
     Main
   end
@@ -23,13 +29,6 @@ class UnitTest < Test::Unit::TestCase
     puts ""
     puts last_response.body.gsub(/^/m, '    ')
     puts ""
-  end
-
-  def get(*a)
-    super *a
-    has_error = body.include?('sinatra.error')
-    d if has_error
-    assert ! has_error, "Found a Sinatra error."
   end
 
   def body
