@@ -6,7 +6,7 @@
     <link href="style.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Shanti:400|PT+Sans:700,700italic' rel='stylesheet' type='text/css'>
 </head>
-<body class='literate github'>
+<body class='literate toc github'>
   
     <a href="https://github.com/rstacruz/sinatra-assetpack"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
   
@@ -339,7 +339,7 @@ almost all the options, with the exception for <code>css</code>, <code>js</code>
 
 <br class="post-pre">
 
-<section class=" after-pre h3 assets_serve"><h3 id="assets_serve" class=" after-pre">assets.serve</h3>
+</section><section class=" after-pre h3 assets_serve"><h3 id="assets_serve" class=" after-pre">assets.serve</h3>
 <pre class=" lang- prettyprint right"><code class="ruby"># Usage
 serve 'PATH', :from =&gt; 'LOCALPATH'
 </code></pre>
@@ -507,7 +507,7 @@ end
 
 <pre class=" lang- prettyprint right"><code class="ruby">assets.ignored?("/css/_chrome.css")   #=&gt; true
 </code></pre>
-<p class=" after-pre">To check if a certain file is ignored, use <code>assets.ignored?</code></p>
+<p class=" after-pre">To check if a certain file is ignored, use <code>assets.ignore?</code></p>
 
 <br class="post-pre">
 
@@ -550,7 +550,7 @@ application is started in the production environment.</p>
 
 <br class="post-pre">
 
-</section></section></section></section><section class=" after-pre h2 api_reference_helpers"><h2 id="api_reference_helpers" class=" after-pre">API reference: helpers</h2>
+</section></section></section><section class=" after-pre h2 api_reference_helpers"><h2 id="api_reference_helpers" class=" after-pre">API reference: helpers</h2>
 
 <p>These are helpers you can use in your views.</p>
 
@@ -676,7 +676,36 @@ from it's <a href="http://github.com/rstacruz/sinatra-assetpack/contributors">co
 <a href="http://github.com/rstacruz">Github</a> (@rstacruz)</li>
 <li>
 <a href="http://twitter.com/rstacruz">Twitter</a> (@rstacruz)</li>
-</ul></section></div>
+</ul></section><aside id="toc"><h1>Sinatra AssetPack</h1>
+<nav class="level-2"><h3><a href="#installation">Installation</a></h3>
+<ul></ul></nav><nav class="level-2"><h3><a href="#setup">Setup</a></h3>
+<ul></ul></nav><nav class="level-2"><h3><a href="#and_then_what">And then what?</a></h3>
+<ul></ul></nav><nav class="level-2"><h3><a href="#features">Features</a></h3>
+<ul></ul></nav><nav class="level-2"><h3><a href="#compressors">Compressors</a></h3>
+<ul>
+<li><a href="#yui_compressor">YUI Compressor</a></li>
+<li><a href="#sass_compression">SASS compression</a></li>
+<li><a href="#sqwish_css_compression">Sqwish CSS compression</a></li>
+<li><a href="#google_closure_compression">Google Closure compression</a></li>
+<li><a href="#uglifyjs_compression">UglifyJS compression</a></li>
+</ul></nav><nav class="level-2"><h3><a href="#images">Images</a></h3>
+<ul></ul></nav><nav class="level-2"><h3><a href="#need_to_build_the_files">Need to build the files?</a></h3>
+<ul></ul></nav><nav class="level-2"><h3><a href="#api_reference">API reference</a></h3>
+<ul>
+<li><a href="#assets_serve">assets.serve</a></li>
+<li><a href="#assets_js_compressionassets_css_compression">assets.js_compression<br>assets.css_compression</a></li>
+<li><a href="#assets_js_compression_optionsassets_css_compression_options">assets.js_compression_options<br>assets.css_compression_options</a></li>
+<li><a href="#assets_cssassets_js">assets.css<br>assets.js</a></li>
+<li><a href="#assets_ignore">assets.ignore</a></li>
+<li><a href="#assets_prebuild">assets.prebuild</a></li>
+</ul></nav><nav class="level-2"><h3><a href="#api_reference_helpers">API reference: helpers</a></h3>
+<ul>
+<li><a href="#css">&lt;%= css %&gt;</a></li>
+<li><a href="#js">&lt;%= js %&gt;</a></li>
+<li><a href="#img">&lt;%= img %&gt;</a></li>
+</ul></nav><nav class="level-2"><h3><a href="#need_compass_support">Need Compass support?</a></h3>
+<ul></ul></nav><nav class="level-2"><h3><a href="#acknowledgements">Acknowledgements</a></h3>
+<ul></ul></nav></aside></div>
   <script type='text/javascript' src='http://cachedcommons.org/cache/prettify/1.0.0/javascripts/prettify-min.js'></script>
   <script>prettyPrint();</script>
 </body>
