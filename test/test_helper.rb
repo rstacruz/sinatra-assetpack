@@ -1,3 +1,5 @@
+ENV['RACK_ENV'] = 'test'
+
 require 'contest'
 require 'jsmin'
 require 'tilt'

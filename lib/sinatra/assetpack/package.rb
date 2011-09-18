@@ -60,6 +60,18 @@ module Sinatra
         /^#{re}$/
       end
 
+      # ### to_html(options) [method]
+      # Returns the HTML link/script tags for the package.
+      #
+      # This runs `to_development_html` or `to_production_html`, depending
+      # on the environment.
+      #
+      def to_html(options={})
+        @assets.app.development? ?
+          to_development_html(options) :
+          to_production_html(options)
+      end
+
       def to_development_html(options={})
         paths_and_files.map { |path, file|
           path = add_cache_buster(path, file)  # app.css => app.829378.css

@@ -24,6 +24,7 @@ module Sinatra
     #
     #     a.packages       # { 'app.css' => #<Package>, ... }
     #                      # (name.type => package instance)
+    #     a.package_for '/main/app.css'
     #
     # Build:
     #
@@ -166,6 +167,12 @@ module Sinatra
       # Stuff
 
       attr_reader :served
+
+      # ### package_for(path) [method]
+      # Returns the package for the given minified path.
+      def package_for(path)
+        packages.values.detect { |pack| pack.path == path }
+      end
 
       def build!(&blk)
         session = Rack::Test::Session.new app
