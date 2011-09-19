@@ -38,7 +38,7 @@ module Sinatra
       # Add the routes for the individual files.
       def add_individual_routes!
         assets.served.each do |path, from|
-          get %r{#{"/#{path}/".squeeze('/')}(.*)} do |file|
+          get %r{#{"^/#{path}/".squeeze('/')}(.*)} do |file|
             fmt = File.extname(file)[1..-1]
 
             # Sanity checks
