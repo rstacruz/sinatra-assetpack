@@ -5,7 +5,7 @@ class AppTest < UnitTest
     get '/js/hello.js'
     assert body == '$(function() { alert("Hello"); });'
   end
-
+  
   test '/js/hi.js (coffeescript)' do
     get '/js/hi.js'
     assert body.include? 'yo'
@@ -33,7 +33,12 @@ class AppTest < UnitTest
     get '/js/hello.css'
     assert last_response.status == 404
   end
-
+  
+  test 'matches only from the site root' do
+    get '/not-the-root/js/hello.js'
+    assert last_response.status == 404
+  end
+  
   test 'wrong extension for dynamic coffeescript file' do
     get '/js/hi.css'
     assert last_response.status == 404
