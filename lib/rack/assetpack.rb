@@ -49,6 +49,8 @@ module Rack
       Sinatra::AssetPack::Options.superclass.instance_methods
     end
 
+    # Intercept calls to the Rack stack here.
+    # This is where we filter HTML.
     def call(*a, &blk)
       status, headers, content = super(*a, &blk)
 

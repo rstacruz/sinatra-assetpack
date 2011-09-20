@@ -18,7 +18,8 @@ namespace :doc do
   # http://github.com/rstacruz/reacco
   desc "Builds the documentation into doc/"
   task :build do
-    system "reacco -a --github #{gh} --css docsrc/style.css"
+    analytics = "--analytics #{ENV['ANALYTICS_ID']}"  if ENV['ANALYTICS_ID']
+    system "reacco --literate --toc --github #{gh} #{analytics} --css docsrc/style.css"
   end
 
   # http://github.com/rstacruz/git-update-ghpages
