@@ -106,9 +106,9 @@ module Sinatra
     private
       def link_tag(file, options={})
         if js?
-          "<script type='text/javascript' src='#{e file}'#{kv options}></script>"
+          "<script src='#{e file}'#{kv options}></script>"
         elsif css?
-          "<link rel='stylesheet' type='text/css' href='#{e file}'#{kv options} />"
+          "<link rel='stylesheet' href='#{e file}'#{kv options} />"
         end
       end
     end

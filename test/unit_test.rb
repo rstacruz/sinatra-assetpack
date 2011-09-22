@@ -62,14 +62,14 @@ class AppTest < UnitTest
 
   test "helpers" do
     get '/index.html'
-    assert body =~ /<script type='text\/javascript' src='\/js\/hello.[0-9]+.js'><\/script>/
-    assert body =~ /<script type='text\/javascript' src='\/js\/hi.[0-9]+.js'><\/script>/
+    assert body =~ /<script src='\/js\/hello.[0-9]+.js'><\/script>/
+    assert body =~ /<script src='\/js\/hi.[0-9]+.js'><\/script>/
   end
 
   test "helpers in production (compressed html thingie)" do
     app.expects(:production?).returns(true)
     get '/index.html'
-    assert body =~ /<script type='text\/javascript' src='\/js\/app.[0-9]+.js'><\/script>/
+    assert body =~ /<script src='\/js\/app.[0-9]+.js'><\/script>/
   end
 
   test "compressed js" do
@@ -96,6 +96,6 @@ class AppTest < UnitTest
 
   test "helpers css" do
     get '/helpers/css'
-    assert body =~ %r{link rel='stylesheet' type='text/css' href='/css/screen.[0-9]+.css' media='screen'}
+    assert body =~ %r{link rel='stylesheet' href='/css/screen.[0-9]+.css' media='screen'}
   end
 end
