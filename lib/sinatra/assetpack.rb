@@ -3,11 +3,6 @@ require 'rack/test'
 module Sinatra
   module AssetPack
     def self.registered(app)
-      unless app.root?
-        raise Error, "Please set :root in your Sinatra app."
-      end
-
-      app.extend  ClassMethods
       app.helpers Helpers
     end
 
@@ -54,8 +49,13 @@ module Sinatra
     autoload :Configurator,  "#{PREFIX}/assetpack/configurator"
     autoload :HashArray,     "#{PREFIX}/assetpack/hasharray"
 
+    include ClassMethods
+
     Error = Class.new(StandardError)
 
     require "#{PREFIX}/assetpack/version"
   end
+
+  # Autoload in Sinatra classic mode
+  register AssetPack
 end

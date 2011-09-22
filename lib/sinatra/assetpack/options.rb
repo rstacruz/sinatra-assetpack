@@ -41,6 +41,10 @@ module Sinatra
       include Configurator
 
       def initialize(app, &blk)
+        unless app.root?
+          raise Error, "Please set :root in your Sinatra app."
+        end
+
         @app             = app
         @js_compression  = :jsmin
         @css_compression = :simple
