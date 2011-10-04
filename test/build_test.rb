@@ -2,7 +2,7 @@ require File.expand_path('../test_helper', __FILE__)
 
 class BuildTest < UnitTest
   teardown do
-    FileUtils.rm_rf app.public
+    FileUtils.rm_rf File.join(app.root, 'public')
   end
 
   test "build" do

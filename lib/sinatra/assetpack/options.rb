@@ -48,7 +48,12 @@ module Sinatra
         @app             = app
         @js_compression  = :jsmin
         @css_compression = :simple
-        @output_path     = app.public
+
+        begin
+          @output_path   = app.public
+        rescue NoMethodError
+          @output_path   = app.public_folder
+        end
 
         @js_compression_options  = Hash.new
         @css_compression_options = Hash.new
