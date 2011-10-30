@@ -14,7 +14,7 @@ class HelpersTest < UnitTest
 
   test "img existing" do
     get '/helper/email'
-    assert body =~ %r{src='/images/email.[0-9]+.png'}
+    assert body =~ %r{src='/images/email.[a-f0-9]+.png'}
     assert body =~ %r{width='16'}
     assert body =~ %r{height='16'}
   end
