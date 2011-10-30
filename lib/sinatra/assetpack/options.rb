@@ -159,6 +159,8 @@ module Sinatra
 
       attrib :prebuild          # Bool
 
+      attrib :host # String
+
       def js_compression(name=nil, options=nil)
         @js_compression = name  unless name.nil?
         @js_compression_options = options  if options.is_a?(Hash)
@@ -303,6 +305,10 @@ module Sinatra
         tuples = paths.map { |key| [key, files[key]] }
 
         HashArray[*tuples.flatten]
+      end
+
+      def production_host
+        @host ? '//' + @host : ''
       end
 
     private
