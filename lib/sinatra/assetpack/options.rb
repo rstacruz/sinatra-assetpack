@@ -252,7 +252,7 @@ module Sinatra
         # Remove extension
         file.gsub!(/#{extension}$/, "")
         # Remove cache-buster (/js/app.28389 => /js/app)
-        file.gsub!(/\.[0-9]+$/, "")
+        file.gsub!(/\.[a-f0-9]+$/, "")
         matches = Dir[File.join(app.root, from, "#{file}.*")]
 
         # Fix for filenames with dots (can't do this with glob)

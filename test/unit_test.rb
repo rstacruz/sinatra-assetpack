@@ -17,19 +17,14 @@ class AppTest < UnitTest
     assert last_response.status == 404
   end
 
-  test '/js/hello.2834987.js (with cache buster)' do
-    get '/js/hello.283947.js'
+  test '/js/hi.7a1b92c3f56ab5cfa73c1aa8222961cf.js (with cache buster)' do
+    get '/js/hello.7a1b92c3f56ab5cfa73c1aa8222961cf.js'
     assert body == '$(function() { alert("Hello"); });'
   end
 
-  test '/js/hello.2.2834987.js (with cache buster)' do
-    get '/js/hello.2.283947.js'
-    assert body == '$(function() { alert("Hello.2"); });'
-  end
-
-  test '/js/hi.2834987.js (coffeescript with cache buster)' do
-    get '/js/hi.283947.js'
-    assert last_response.status == 200
+  test '/js/hi.7a1b92c3f56ab5cfa73c1aa8222961cf.js (coffeescript with cache buster)' do
+    get '/js/hi.7a1b92c3f56ab5cfa73c1aa8222961cf.js'
+    assert_equal 200, last_response.status
     assert body.include? 'yo'
     assert body.include? 'x = function'
   end
@@ -72,14 +67,14 @@ class AppTest < UnitTest
 
   test "helpers" do
     get '/index.html'
-    assert body =~ /<script src='\/js\/hello.[0-9]+.js'><\/script>/
-    assert body =~ /<script src='\/js\/hi.[0-9]+.js'><\/script>/
+    assert body =~ /<script src='\/js\/hello.[a-f0-9]+.js'><\/script>/
+    assert body =~ /<script src='\/js\/hi.[a-f0-9]+.js'><\/script>/
   end
 
   test "helpers in production (compressed html thingie)" do
     app.expects(:environment).returns(:production)
     get '/index.html'
-    assert body =~ /<script src='\/js\/app.[0-9]+.js'><\/script>/
+    assert body =~ /<script src='\/js\/app.[a-f0-9]+.js'><\/script>/
   end
 
   test "file with multiple dots in name" do
@@ -105,7 +100,7 @@ class AppTest < UnitTest
 
   test "helpers css" do
     get '/helpers/css'
-    assert body =~ %r{link rel='stylesheet' href='/css/screen.[0-9]+.css' media='screen'}
+    assert body =~ %r{link rel='stylesheet' href='/css/screen.[a-f0-9]+.css' media='screen'}
   end
 
   test 'default expiration of single assets' do
