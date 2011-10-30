@@ -244,7 +244,7 @@ module Sinatra
         file = $1  if file =~ /^(.*)(\.[^\.]+)$/
 
         # Remove cache-buster (/js/app.28389.js => /js/app)
-        file = $1  if file =~ /^(.*)\.[0-9]+$/
+        file = $1  if file =~ /^(.*)\.[a-f0-9]+$/
 
         Dir[File.join(app.root, from, "#{file}.*")].first
       end

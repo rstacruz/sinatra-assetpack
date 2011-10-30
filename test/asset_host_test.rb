@@ -24,11 +24,11 @@ class AssetHostTest < UnitTest
   end
 
   test "host gets added to css source path" do
-    assert App.assets.packages['a.css'].to_production_html =~ %r{href='//cdn.example.org/assets/a.[0-9]+.css'}
+    assert App.assets.packages['a.css'].to_production_html =~ %r{href='//cdn.example.org/assets/a.[a-f0-9]+.css'}
   end
 
   test "host gets added to js source path" do
-    assert App.assets.packages['b.js'].to_production_html =~ %r{src='//cdn.example.org/assets/b.[0-9]+.js'}
+    assert App.assets.packages['b.js'].to_production_html =~ %r{src='//cdn.example.org/assets/b.[a-f0-9]+.js'}
   end
 
   test "host gets added to image helper path in production" do
