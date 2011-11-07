@@ -30,6 +30,7 @@ module Sinatra
 
             content_type package.type
             last_modified mtime
+            expires 86400*30, :public
             contents
           end
         end
