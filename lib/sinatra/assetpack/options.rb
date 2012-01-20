@@ -170,7 +170,7 @@ module Sinatra
         @css_compression_options = options  if options.is_a?(Hash)
         @css_compression
       end
-      
+
       # =====================================================================
       # Stuff
 
@@ -194,8 +194,13 @@ module Sinatra
           write pack.production_path, out, mtime, &blk
         }
 
+
+
+
         files.each { |path, local|
           out, mtime = get[path]
+
+
 
           write path, out, mtime, &blk
           write BusterHelpers.add_cache_buster(path, local), out, mtime, &blk
@@ -224,6 +229,8 @@ module Sinatra
       def local_file_for(path)
         path = path.squeeze('/')
 
+
+
         uri, local = served.detect { |uri, local| path[0...uri.size] == uri }
 
         if local
@@ -237,19 +244,24 @@ module Sinatra
       # Returns the local file for a given URI path. (for dynamic files)
       # Returns nil if a file is not found.
       # TODO: consolidate with local_file_for
-      def dyn_local_file_for(file, from)
+      def dyn_local_file_for(requested_file, from)
         # Remove extension
-        file = $1  if file =~ /^(.*)(\.[^\.]+)$/
+        file = requested_file
+		extension = ''
+
+		file.sub(/^(.*)(\.[^\.]+)$/) { file, extension = $1, $2 }
 
         # Remove cache-buster (/js/app.28389.js => /js/app)
         file = $1  if file =~ /^(.*)\.[0-9]+$/
 
-        Dir[File.join(app.root, from, "#{file}.*")].first
+        Dir[File.join(app.root, from, "#{file}#{extension}")].first
       end
 
       # Writes `public/#{path}` based on contents of `output`.
       def write(path, output, mtime=nil)
         require 'fileutils'
+
+
 
         path = File.join(@output_path, path)
         yield path  if block_given?
