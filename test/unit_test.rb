@@ -5,7 +5,7 @@ class AppTest < UnitTest
     get '/js/hello.js'
     assert body == '$(function() { alert("Hello"); });'
   end
-  
+
   test '/js/hi.js (coffeescript)' do
     get '/js/hi.js'
     assert body.include? 'yo'
@@ -17,9 +17,14 @@ class AppTest < UnitTest
     assert last_response.status == 404
   end
 
-  test '/js/hi.2834987.js (with cache buster)' do
+  test '/js/hello.2834987.js (with cache buster)' do
     get '/js/hello.283947.js'
     assert body == '$(function() { alert("Hello"); });'
+  end
+
+  test '/js/hello.2.2834987.js (with cache buster)' do
+    get '/js/hello.2.283947.js'
+    assert body == '$(function() { alert("Hello.2"); });'
   end
 
   test '/js/hi.2834987.js (coffeescript with cache buster)' do
@@ -33,12 +38,12 @@ class AppTest < UnitTest
     get '/js/hello.css'
     assert last_response.status == 404
   end
-  
+
   test 'matches only from the site root' do
     get '/not-the-root/js/hello.js'
     assert last_response.status == 404
   end
-  
+
   test 'wrong extension for dynamic coffeescript file' do
     get '/js/hi.css'
     assert last_response.status == 404
