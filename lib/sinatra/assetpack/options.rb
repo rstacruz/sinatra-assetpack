@@ -194,13 +194,8 @@ module Sinatra
           write pack.production_path, out, mtime, &blk
         }
 
-
-
-
         files.each { |path, local|
           out, mtime = get[path]
-
-
 
           write path, out, mtime, &blk
           write BusterHelpers.add_cache_buster(path, local), out, mtime, &blk
@@ -229,8 +224,6 @@ module Sinatra
       def local_file_for(path)
         path = path.squeeze('/')
 
-
-
         uri, local = served.detect { |uri, local| path[0...uri.size] == uri }
 
         if local
@@ -247,9 +240,9 @@ module Sinatra
       def dyn_local_file_for(requested_file, from)
         # Remove extension
         file = requested_file
-		extension = ''
+        extension = ''
 
-		file.sub(/^(.*)(\.[^\.]+)$/) { file, extension = $1, $2 }
+        file.sub(/^(.*)(\.[^\.]+)$/) { file, extension = $1, $2 }
 
         # Remove cache-buster (/js/app.28389.js => /js/app)
         file = $1  if file =~ /^(.*)\.[0-9]+$/
@@ -260,8 +253,6 @@ module Sinatra
       # Writes `public/#{path}` based on contents of `output`.
       def write(path, output, mtime=nil)
         require 'fileutils'
-
-
 
         path = File.join(@output_path, path)
         yield path  if block_given?
