@@ -527,6 +527,32 @@ end
 # >> Listening on 0.0.0.0:4567, CTRL+C to stop
 ```
 
+### assets.expires
+Sets cache control headers for all assets handled by AssetPack. Defaults to `expires 86400*30, :public`. Passes the arguments to [Sinatras #expires](http://rubydoc.info/gems/sinatra/Sinatra/Helpers#expires-instance_method).
+
+``` ruby
+# Usage:
+expires amount, *values
+```
+
+#### Example
+In this example all assets get cached for a year.
+
+``` ruby
+class App < Sinatra::Base
+  assets {
+    js_compression :closure
+
+    js :application, [
+      '/js/vendor/jquery.*.js',
+      '/js/vendor/jquery.js'
+    ]
+    expires 86400*365, :public
+  }
+end
+```
+
+
 API reference: helpers
 ----------------------
 
