@@ -103,4 +103,37 @@ class AppTest < UnitTest
     get '/helpers/css'
     assert body =~ %r{link rel='stylesheet' href='/css/screen.[0-9]+.css' media='screen'}
   end
+
+  test 'default expiration of single assets' do
+    get '/js/hi.js'
+    assert_equal "public, max-age=#{86400*30}", last_response.headers['Cache-Control']
+    assert_equal (Time.now + (86400*30)).httpdate, last_response.headers['Expires']
+  end
+
+  test 'custom expiration of single assets' do
+    app.settings.assets.expires 86400*365, :public
+
+    get '/js/hi.js'
+    assert_equal "public, max-age=#{86400*365}", last_response.headers['Cache-Control']
+    assert_equal (Time.now + (86400*365)).httpdate, last_response.headers['Expires']
+
+    app.settings.assets.instance_variable_set('@expires', nil)
+  end
+
+  test 'default expiration of packed assets' do
+    get '/js/app.js'
+    assert_equal "public, max-age=#{86400*30}", last_response.headers['Cache-Control']
+    assert_equal (Time.now + (86400*30)).httpdate, last_response.headers['Expires']
+  end
+
+  test 'custom expiration of single assets' do
+    app.settings.assets.expires 86400*365, :public
+
+    get '/js/app.js'
+    assert_equal "public, max-age=#{86400*365}", last_response.headers['Cache-Control']
+    assert_equal (Time.now + (86400*365)).httpdate, last_response.headers['Expires']
+
+    app.settings.assets.instance_variable_set('@expires', nil)
+  end
+
 end
