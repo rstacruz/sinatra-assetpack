@@ -159,6 +159,14 @@ module Sinatra
 
       attrib :prebuild          # Bool
 
+      def expires(*args)
+        if args.empty?
+          @expires
+        else
+          @expires = args
+        end
+      end
+
       def js_compression(name=nil, options=nil)
         @js_compression = name  unless name.nil?
         @js_compression_options = options  if options.is_a?(Hash)
