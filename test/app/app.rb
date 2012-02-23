@@ -47,6 +47,7 @@ class Main < Sinatra::Base
       '/css/scre*.css',
       '/css/screen.css'
     ]
+    
   }
 
   get '/index.html' do
