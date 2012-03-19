@@ -29,6 +29,11 @@ class Main < Sinatra::Base
       '/js/hell*.js'
     ]
 
+    js :encoding, '/js/encoding.js', [
+      '/js/yoe.js',
+      '/js/helloe.js'
+    ]
+
     css :application, '/css/application.css', [
       '/css/screen.css'
     ]
