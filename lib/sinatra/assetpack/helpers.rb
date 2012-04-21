@@ -22,6 +22,8 @@ module Sinatra
           end
         end
 
+        attrs[:src] = settings.assets.production_host + attrs[:src] if settings.production?
+
         "<img#{HtmlHelpers.kv attrs} />"
       end
 
@@ -50,7 +52,7 @@ module Sinatra
       end
 
       def asset_filter_css(str)
-        Css.preproc str, settings.assets
+        Css.preproc str, settings
       end
 
       def asset_path_for(file, from)

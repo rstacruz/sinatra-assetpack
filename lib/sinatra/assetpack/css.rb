@@ -1,11 +1,11 @@
 module Sinatra
   module AssetPack
     module Css
-      def self.preproc(str, assets)
+      def self.preproc(str, settings)
         str.gsub(/url\(["']?(.*?)["']?\)/) { |url|
           path = $1
           file, options = path.split('?')
-          local = assets.local_file_for file
+          local = settings.assets.local_file_for file
 
           url = if local
             if options.to_s.include?('embed')
@@ -17,7 +17,7 @@ module Sinatra
             path
           end
 
-          "url(#{url})"
+          "url(#{settings.assets.production_host if settings.production?}#{url})"
         }
       end
 

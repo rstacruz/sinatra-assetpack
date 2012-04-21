@@ -56,7 +56,7 @@ module Sinatra
 
       # Returns the regex for the route, including cache buster crap.
       def route_regex
-        re = @path.gsub(/(.[^.]+)$/) { |ext| "(?:\.[0-9]+)?#{ext}" }
+        re = @path.gsub(/(.[^.]+)$/) { |ext| "(?:\.[a-f0-9]+)?#{ext}" }
         /^#{re}$/
       end
 
@@ -73,7 +73,7 @@ module Sinatra
       end
 
       def to_production_html(options={})
-        link_tag production_path, options
+        link_tag production_path, options, true
       end
 
       def minify
@@ -106,11 +106,11 @@ module Sinatra
       def css?() @type == :css; end
 
     private
-      def link_tag(file, options={})
+      def link_tag(file, options={}, production_host = false)
         if js?
-          "<script src='#{e file}'#{kv options}></script>"
+          "<script src='#{@assets.production_host if production_host}#{e file}'#{kv options}></script>"
         elsif css?
-          "<link rel='stylesheet' href='#{e file}'#{kv options} />"
+          "<link rel='stylesheet' href='#{@assets.production_host if production_host}#{e file}'#{kv options} />"
         end
       end
     end

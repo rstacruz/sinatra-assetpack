@@ -2,11 +2,10 @@ module Sinatra
   module AssetPack
     module BusterHelpers
       extend self
-      # Returns the cache buster suffix for given file(s).
-      # This implementation somewhat obfuscates the mtime to not reveal deployment dates.
+      # Returns the MD5 for all of the files concatenated together
       def cache_buster_hash(*files)
-        i = mtime_for(files)
-        (i * 4567).to_s.reverse[0...6]  if i
+        content = files.sort.map { |f| File.read(f).to_s if f.is_a?(String) && File.file?(f) }.compact
+        Digest::MD5.hexdigest(content.join) if content.any?
       end
 
       # Returns the maximum mtime for a given list of files.
