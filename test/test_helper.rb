@@ -21,6 +21,7 @@ class UnitTest < Test::Unit::TestCase
     Main
   end
 
+  # For debugging.
   def d
     puts "-"*80
     puts "#{last_response.status}"
@@ -35,6 +36,7 @@ class UnitTest < Test::Unit::TestCase
     last_response.body.strip
   end
 
+  # Returns the path of a fixture in the test app.
   def r(*a)
     File.join app.root, *a
   end

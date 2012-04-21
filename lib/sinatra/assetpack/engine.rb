@@ -1,6 +1,10 @@
 module Sinatra
   module AssetPack
     # The base class for all CSS/JS compression engines.
+    #
+    # An engine simply has to support #js and #css.
+    # Like `def js(string, options={})`.
+    #
     class Engine
       # Helper for system files.
       # Usage: sys('css', string, "sqwish %f")
