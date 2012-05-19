@@ -9,9 +9,9 @@ render Sass or whatever. No-siree!
    * JavaScript/CoffeeScript files in `/app/js`
    * CSS/Sass/Less/CSS files in `/app/css`
    * Images into `/app/images`
-3. Add `register Sinatra::AssetPack` and set up options to your app (see below)
-4. Use `<%= css :application %>` to your layouts. Use this instead of
-   messy *script* and *link* tags
+3. Add `register Sinatra::AssetPack` and set up options to your app (see below).
+4. Use `<%= js :app %>` and `<%= css :application %>` to your layouts. Use these instead of
+   messy *script* and *link* tags.
 5. BOOM! You're in business baby!
 
 Installation
