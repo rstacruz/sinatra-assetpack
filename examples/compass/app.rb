@@ -35,6 +35,20 @@ class App < Sinatra::Base
     css :main, ['/css/*.css']
   end
 
+  # If you wish to put your scss files into a folder that is not 'app/css',
+  # you need to add some more configurations (refer to 
+  #
+  # https://github.com/chriseppstein/compass/wiki/Sinatra-Integration
+  #
+  # for more infos)
+  #
+  # stylesheets_dir = 'assets/stylesheets' # Change at your desire
+  # c.sass_dir = stylesheets_dir
+  # set :sass, { :load_paths => Compass.sass_engine_options[:load_paths] + [ stylesheets_dir ] }
+  # assets do
+  #   serve '/css', :from => stylesheets_dir
+  # end
+
   get '/' do
     erb :index
   end
