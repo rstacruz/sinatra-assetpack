@@ -4,8 +4,12 @@ module Sinatra
       extend self
       # Returns the MD5 for all of the files concatenated together
       def cache_buster_hash(*files)
-        content = files.sort.map { |f| File.read(f).to_s if f.is_a?(String) && File.file?(f) }.compact
-        Digest::MD5.hexdigest(content.join) if content.any?
+        files = files.sort
+        cache_key = files.join(':') + ':' + mtime_for(files).to_s
+        (@cache ||= {})[cache_key] ||= begin
+          content = files.map { |f| File.read(f).to_s if f.is_a?(String) && File.file?(f) }.compact
+          Digest::MD5.hexdigest(content.join) if content.any?
+        end
       end
 
       # Returns the maximum mtime for a given list of files.
