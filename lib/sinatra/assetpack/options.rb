@@ -258,7 +258,7 @@ module Sinatra
         yield path  if block_given?
 
         FileUtils.mkdir_p File.dirname(path)
-        File.open(path, 'w') { |f| f.write output }
+        File.open(path, 'w') { |f| f.write output.force_encoding("UTF-8") }
 
         if mtime
           File.utime mtime, mtime, path
