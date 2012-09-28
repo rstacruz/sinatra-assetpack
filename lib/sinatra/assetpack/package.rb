@@ -111,9 +111,17 @@ module Sinatra
     private
       def link_tag(file, options={})
         if js?
-          "<script src='#{e file}'#{kv options}></script>"
+          unless @assets.host_name.nil?
+            "<script src='#{@assets.host_name}#{e file}'#{kv options}></script>"
+          else
+            "<script src='#{e file}'#{kv options}></script>"
+          end
         elsif css?
-          "<link rel='stylesheet' href='#{e file}'#{kv options} />"
+          unless @assets.host_name.nil?
+            "<link rel='stylesheet' href='#{@assets.host_name}#{e file}'#{kv options} />"
+          else
+            "<link rel='stylesheet' href='#{e file}'#{kv options} />"
+          end
         end
       end
     end
