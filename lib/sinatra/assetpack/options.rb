@@ -153,6 +153,7 @@ module Sinatra
       attrib :js_compression    # Symbol, compression method for JS
       attrib :css_compression   # Symbol, compression method for CSS
       attrib :output_path       # '/public'
+      attrib :host_name         # 'http://www.yourdomain.com'
 
       attrib :js_compression_options   # Hash
       attrib :css_compression_options  # Hash
