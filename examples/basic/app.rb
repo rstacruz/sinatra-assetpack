@@ -26,7 +26,13 @@ class App < Sinatra::Base
       '/css/more/*.css'
     ]
 
-    prebuild true
+    prebuild false
+
+    # Can set this as an environment variable like "HOST" or "CDN_HOST"
+    # This will add the domain name to the beginning of compiled assets
+    # Useful if you need to serve production assets from a CDN
+    host_name 'http://localhost:4567'
+
   end
 
   get '/' do

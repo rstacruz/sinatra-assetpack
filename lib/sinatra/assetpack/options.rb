@@ -153,6 +153,7 @@ module Sinatra
       attrib :js_compression    # Symbol, compression method for JS
       attrib :css_compression   # Symbol, compression method for CSS
       attrib :output_path       # '/public'
+      attrib :host_name         # 'http://www.yourdomain.com'
 
       attrib :js_compression_options   # Hash
       attrib :css_compression_options  # Hash
@@ -258,7 +259,7 @@ module Sinatra
         yield path  if block_given?
 
         FileUtils.mkdir_p File.dirname(path)
-        File.open(path, 'w') { |f| f.write output }
+        File.open(path, 'w') { |f| f.write output.force_encoding("UTF-8") }
 
         if mtime
           File.utime mtime, mtime, path
