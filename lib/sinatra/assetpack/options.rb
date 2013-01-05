@@ -260,7 +260,7 @@ module Sinatra
         yield path  if block_given?
 
         FileUtils.mkdir_p File.dirname(path)
-        File.open(path, 'w') { |f| f.write output }
+        File.open(path, 'wb') { |f| f.write output }
 
         if mtime
           File.utime mtime, mtime, path
