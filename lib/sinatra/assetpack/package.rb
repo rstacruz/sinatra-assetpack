@@ -96,9 +96,12 @@ module Sinatra
         session = Rack::Test::Session.new(@assets.app)
         paths.map { |path|
           result = session.get(path)
-          response_encoding = result.content_type.split(/;\s*charset\s*=\s*/).last.upcase rescue 'ASCII-8BIT'
-          # p [:combined, path, result.body.encoding.name, response_encoding]
-          result.body.force_encoding(response_encoding).encode(Encoding.default_external || 'ASCII-8BIT')  if result.status == 200
+          if result.body.respond_to?(:force_encoding)
+            response_encoding = result.content_type.split(/;\s*charset\s*=\s*/).last.upcase rescue 'ASCII-8BIT'
+            result.body.force_encoding(response_encoding).encode(Encoding.default_external || 'ASCII-8BIT')  if result.status == 200
+          else
+            result.body  if result.status == 200
+          end
         }.join("\n")
       end
 
