@@ -1,3 +1,16 @@
+v0.0.12 - Coming soon
+----------------------
+
+### Changed
+  * Using `file` utility instead `identify` utility. (#26)
+
+### Fixed
+  * Deal with different encodings in combined assets. (#47)
+  * Serve files with dots in name. (#32, #66)
+  * Deal with character encoding issues in ruby 1.8. (#51)
+  * Add missing depedency for development unit test. (#63)
+  * Deal with binary files copy (ex. images), fix errors like `"\x89" from ASCII-8BIT to UTF-8"`. (#38, #67)
+
 v0.0.11 - Feb 21, 2012
 ----------------------
 
