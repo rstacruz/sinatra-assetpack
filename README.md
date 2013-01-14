@@ -14,6 +14,8 @@ render Sass or whatever. No-siree!
    messy *script* and *link* tags
 5. BOOM! You're in business baby!
 
+[![Build Status](https://travis-ci.org/rstacruz/sinatra-assetpack.png)](https://travis-ci.org/rstacruz/sinatra-assetpack)
+
 Installation
 ------------
 
