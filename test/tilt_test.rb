@@ -5,6 +5,7 @@ class OptionsTest < UnitTest
     @formats = Sinatra::AssetPack.tilt_formats
     assert @formats['sass'] == 'css'
     assert @formats['scss'] == 'css'
+    assert @formats['less'] == 'css'
     assert @formats['coffee'] == 'js'
   end
 end
