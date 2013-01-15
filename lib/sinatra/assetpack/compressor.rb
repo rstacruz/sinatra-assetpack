@@ -47,6 +47,7 @@ module Sinatra
     require "#{AssetPack::PREFIX}/assetpack/engines/jsmin"
     require "#{AssetPack::PREFIX}/assetpack/engines/yui"
     require "#{AssetPack::PREFIX}/assetpack/engines/sass"
+    require "#{AssetPack::PREFIX}/assetpack/engines/less"
     require "#{AssetPack::PREFIX}/assetpack/engines/sqwish"
     require "#{AssetPack::PREFIX}/assetpack/engines/closure"
     require "#{AssetPack::PREFIX}/assetpack/engines/uglify"
