@@ -1,3 +1,11 @@
+v0.1.1 - Jan 15, 2013
+----------------------
+
+### Fixed
+  * Added less engine support and test (#69)
+  * Support for fonts & other AssetPack.supported_formats file format. (#50)
+  * Deal with multiple static files with same name but different extensions (ex. fonts).
+
 v0.1.0 - Jan 14, 2013
 ----------------------
 
