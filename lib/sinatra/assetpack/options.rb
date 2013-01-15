@@ -245,7 +245,7 @@ module Sinatra
         file.sub(/^(.*)(\.[^\.]+)$/) { file, extension = $1, $2 }
 
         # Remove cache-buster (/js/app.28389.js => /js/app)
-        file = $1  if file =~ /^(.*)\.[0-9]+$/
+        file = $1 if file =~ /^(.*)\.[0-9]+$/
 
         matches = Dir[File.join(app.root, from, "#{file}.*")]
         # Fix for filenames with dots (can't do this with glob)

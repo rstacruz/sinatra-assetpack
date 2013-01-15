@@ -43,9 +43,9 @@ module Sinatra
 
             # Sanity checks
             pass unless AssetPack.supported_formats.include?(fmt)
-            fn = asset_path_for(file, from)  or pass
+            fn = asset_path_for(file, from) or pass
 
-            pass  if settings.assets.ignored?("#{path}/#{file}")
+            pass if settings.assets.ignored?("#{path}/#{file}")
 
             # Send headers
             content_type fmt.to_sym
