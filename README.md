@@ -639,6 +639,11 @@ class Main
 end
 ```
 
+Running the tests
+---------------
+
+    rake
+
 Acknowledgements
 ----------------
 
