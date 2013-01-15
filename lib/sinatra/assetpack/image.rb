@@ -30,8 +30,8 @@ module Sinatra
       def dimensions
         return @dimensions  unless @dimensions.nil?
 
-         _, _, dim = `identify "#{@file}"`.split(' ')
-         w, h = dim.split('x')
+        dim = /(\d+) x (\d+)/.match(`file "#{@file}"`)
+        w, h = dim[1,2]
 
          if w.to_i != 0 && h.to_i != 0
            @dimensions = [w.to_i, h.to_i]

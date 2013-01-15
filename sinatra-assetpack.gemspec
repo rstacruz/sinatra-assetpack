@@ -23,5 +23,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "mocha"
   s.add_development_dependency "stylus"
   s.add_development_dependency "uglifier"
+  s.add_development_dependency "rake"
   s.add_development_dependency "less"
 end
