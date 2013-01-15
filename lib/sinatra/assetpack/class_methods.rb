@@ -55,12 +55,13 @@ module Sinatra
             format = File.extname(fn)[1..-1]
 
             if AssetPack.supported_formats.include?(format)
-              # It's a raw file, just send it
-              not_found  unless format == fmt
-
+              # Static file
               if fmt == 'css'
+                # Matching static file format
+                pass unless fmt == File.extname(fn)[1..-1]
                 @template_cache.fetch(fn) { asset_filter_css File.read(fn) }
               else
+                # It's a raw file, just send it
                 send_file fn
               end
             else

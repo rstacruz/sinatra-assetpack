@@ -6,12 +6,18 @@ class LocalFileTest < UnitTest
 
     assets {
       css :application, [ '/css/*.css' ]
+      serve '/fonts',    :from => 'app/fonts'
     }
   end
 
   test "local file for (in existing files)" do
     fn = App.assets.local_file_for '/images/background.jpg'
     assert_equal r('app/images/background.jpg'), fn
+  end
+
+  test "local file for (in existing files, custom serve path)" do
+    fn = App.assets.local_file_for '/fonts/cantarell-regular-webfont.ttf'
+    assert_equal r('app/fonts/cantarell-regular-webfont.ttf'), fn
   end
 
   test "local file for (in nonexisting files)" do

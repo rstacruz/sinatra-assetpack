@@ -17,6 +17,7 @@ class Main < Sinatra::Base
     #serve '/js',     :from => 'app/js'
     serve '/css',    :from => 'app/css'
     serve '/images', :from => 'app/images'
+    serve '/fonts',    :from => 'app/fonts'
 
     js :skitch, '/skitch.js', [
       '/js/hi.js',

@@ -30,4 +30,29 @@ class AppTest < UnitTest
     get '/skitch.js'
     assert last_response.content_type =~ %r[^.*?/javascript]
   end
+
+  test 'eot' do
+    get '/fonts/cantarell-regular-webfont.eot'
+    assert last_response.content_type =~ %r[^application/vnd.ms-fontobject]
+  end
+
+  test 'svg' do
+    get '/fonts/cantarell-regular-webfont.svg'
+    assert last_response.content_type =~ %r[^image/svg\+xml]
+  end
+
+  test 'ttf' do
+    get '/fonts/cantarell-regular-webfont.ttf'
+    assert last_response.content_type =~ %r[^application/octet-stream]
+  end
+
+  test 'woff' do
+    get '/fonts/cantarell-regular-webfont.woff'
+    assert last_response.content_type =~ %r[^application/font-woff]
+  end
+
+  test 'woff' do
+    get '/fonts/cantarell-regular-webfont.woff'
+    assert last_response.content_type =~ %r[^application/font-woff]
+  end
 end
