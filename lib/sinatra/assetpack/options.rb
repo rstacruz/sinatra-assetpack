@@ -248,8 +248,13 @@ module Sinatra
         file = $1 if file =~ /^(.*)\.[0-9]+$/
 
         matches = Dir[File.join(app.root, from, "#{file}.*")]
+
         # Fix for filenames with dots (can't do this with glob)
-        matches.select { |f| f =~ /#{file}\.[^.]+$/ }.first
+        matches.select! { |f| f =~ /#{file}\.[^.]+$/ }
+
+        # Sort static file match first
+        matches.sort! { |f| File.basename(f) == "#{file}#{extension}" ? -1 : 1 }
+        matches.first
       end
 
       # Writes `public/#{path}` based on contents of `output`.
