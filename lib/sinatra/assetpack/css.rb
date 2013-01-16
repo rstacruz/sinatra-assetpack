@@ -11,11 +11,7 @@ module Sinatra
             if options.to_s.include?('embed')
               to_data_uri(local)
             else
-              unless assets.host_name.nil?
-                assets.host_name+BusterHelpers.add_cache_buster(file, local)
-              else
-                BusterHelpers.add_cache_buster(file, local)
-              end
+              HtmlHelpers.get_file_uri(file, assets)
             end
           else
             path
