@@ -247,7 +247,7 @@ module Sinatra
 
         # Remove cache-buster (/js/app.28389.js => /js/app)
 
-        #matches = Dir[File.join(app.root, from, "#{file}.*")]
+        matches = Dir[File.join(app.root, from, "#{file}.*")]
         file = $1  if file =~ /^(.*)\.[a-f0-9]+$/
 
         # Fix for filenames with dots (can't do this with glob)
