@@ -5,6 +5,7 @@ require 'stylus'
 require 'rack/test'
 require 'yaml'
 require 'mocha'
+require 'debugger'
 
 require File.expand_path('../app/app.rb', __FILE__)
 
