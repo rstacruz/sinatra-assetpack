@@ -28,14 +28,9 @@ module Sinatra
               [ package.mtime, package.minify ]
             }
 
-            if settings.assets.expires.nil?
-              expires 86400*30, :public
-            else
-              expires *settings.assets.expires
-            end
-
             content_type package.type
             last_modified mtime
+            assets_expires
             contents
           end
         end
@@ -56,12 +51,7 @@ module Sinatra
             # Send headers
             content_type fmt.to_sym
             last_modified File.mtime(fn).to_i
-
-            if settings.assets.expires.nil?
-              expires 86400*30, :public
-            else
-              expires *settings.assets.expires
-            end
+            assets_expires
 
             format = File.extname(fn)[1..-1]
 

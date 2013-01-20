@@ -56,6 +56,15 @@ module Sinatra
       def asset_path_for(file, from)
         settings.assets.dyn_local_file_for file, from
       end
+
+      def assets_expires
+        if settings.assets.expires.nil?
+          expires 86400*30, :public
+        else
+          expires *settings.assets.expires
+        end
+      end
+
     end
   end
 end
