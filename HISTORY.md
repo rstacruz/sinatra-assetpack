@@ -1,3 +1,9 @@
+v0.1.2
+----------------------
+
+### Added:
+  * Support for custom cache control headers for packed assets. (#43)
+
 v0.1.1 - Jan 15, 2013
 ----------------------
 
