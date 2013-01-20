@@ -25,7 +25,7 @@ module Sinatra
         assets.packages.each do |name, package|
           get package.route_regex do
             mtime, contents = @template_cache.fetch(package.path) {
-              [ Time.at(package.mtime), package.minify ]
+              [ package.mtime, package.minify ]
             }
 
             content_type package.type
@@ -49,7 +49,7 @@ module Sinatra
 
             # Send headers
             content_type fmt.to_sym
-            last_modified Time.at(File.mtime(fn).to_i)
+            last_modified File.mtime(fn)
             expires 86400*30, :public
 
             format = File.extname(fn)[1..-1]

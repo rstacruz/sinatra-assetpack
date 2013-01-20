@@ -5,14 +5,14 @@ module Sinatra
       # Returns the cache buster suffix for given file(s).
       # This implementation somewhat obfuscates the mtime to not reveal deployment dates.
       def cache_buster_hash(*files)
-        i = mtime_for(files)
+        i = mtime_for(files).to_i
         (i * 4567).to_s.reverse[0...6]  if i
       end
 
       # Returns the maximum mtime for a given list of files.
       # It will return nil if none of them are found.
       def mtime_for(files)
-        files.map { |f| File.mtime(f).to_i  if f.is_a?(String) && File.file?(f) }.compact.max
+        files.map { |f| File.mtime(f)  if f.is_a?(String) && File.file?(f) }.compact.max
       end
 
       # Adds a cache buster for the given path.
