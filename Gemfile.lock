@@ -63,6 +63,7 @@ GEM
       POpen4 (>= 0.1.4)
 
 PLATFORMS
+  java
   ruby
 
 DEPENDENCIES
