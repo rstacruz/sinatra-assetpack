@@ -261,7 +261,7 @@ module Sinatra
         matches.select! { |f| f =~ /#{file}\.[^.]+$/ }
 
         # Sort static file match first
-        matches.sort! { |f| File.basename(f) == "#{file}#{extension}" ? -1 : 1 }
+        matches.sort! { |f, _| File.basename(f) == "#{file}#{extension}" ? -1 : 1 }
         matches.first
       end
 
