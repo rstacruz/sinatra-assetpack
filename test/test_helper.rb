@@ -1,6 +1,8 @@
 require 'contest'
 require 'jsmin'
 require 'tilt'
+require 'haml'
+require 'sass'
 require 'stylus'
 require 'rack/test'
 require 'yaml'
