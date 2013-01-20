@@ -5,7 +5,11 @@ require 'stylus'
 require 'rack/test'
 require 'yaml'
 require 'mocha/setup'
-require 'debugger'
+if RUBY_VERSION < "1.9"
+  require 'ruby-debug'
+else
+  require 'debugger'
+end
 
 require File.expand_path('../app/app.rb', __FILE__)
 
