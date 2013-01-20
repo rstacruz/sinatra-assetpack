@@ -25,10 +25,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency "uglifier"
   s.add_development_dependency "rake"
   s.add_development_dependency "less"
-  s.add_development_dependency "awesome_print"
-  if RUBY_VERSION < "1.9"
-    s.add_runtime_dependency "ruby-debug"
-  else
-    s.add_development_dependency "debugger"
-  end
 end
