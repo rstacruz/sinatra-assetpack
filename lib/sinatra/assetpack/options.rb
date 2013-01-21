@@ -320,7 +320,7 @@ module Sinatra
         paths  = paths.uniq
         tuples = paths.map { |key| [key, files[key]] }
 
-        HashArray[*tuples.flatten]
+        Hash[*tuples.flatten]
       end
 
     private
