@@ -34,6 +34,7 @@ module Sinatra
 
             content_type package.type
             last_modified mtime
+            assets_expires
             contents
           end
         end
@@ -62,7 +63,7 @@ module Sinatra
             # Send headers
             content_type fmt.to_sym
             last_modified File.mtime(fn).to_i
-            expires 86400*30, :public
+            assets_expires
 
             format = File.extname(fn)[1..-1]
 

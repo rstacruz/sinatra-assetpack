@@ -20,8 +20,8 @@ class IgnoreTest < UnitTest
 
   test "ignore in package" do
     get '/main.js'
-    assert body.size > 0
-    assert !body.include?("BUMBLEBEE")
+    assert last_response.body.size > 0
+    assert !last_response.body.include?("BUMBLEBEE")
   end
 
   test "package files" do

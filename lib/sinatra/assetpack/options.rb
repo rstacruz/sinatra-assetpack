@@ -160,6 +160,14 @@ module Sinatra
 
       attrib :prebuild          # Bool
 
+      def expires(*args)
+        if args.empty?
+          @expires
+        else
+          @expires = args
+        end
+      end
+
       def js_compression(name=nil, options=nil)
         @js_compression = name  unless name.nil?
         @js_compression_options = options  if options.is_a?(Hash)
@@ -254,7 +262,7 @@ module Sinatra
         matches.select! { |f| f =~ /#{file}\.[^.]+$/ }
 
         # Sort static file match first
-        matches.sort! { |f| File.basename(f) == "#{file}#{extension}" ? -1 : 1 }
+        matches.sort! { |f, _| File.basename(f) == "#{file}#{extension}" ? -1 : 1 }
         matches.first
       end
 
@@ -313,7 +321,7 @@ module Sinatra
         paths  = paths.uniq
         tuples = paths.map { |key| [key, files[key]] }
 
-        HashArray[*tuples.flatten]
+        Hash[*tuples.flatten]
       end
 
     private
