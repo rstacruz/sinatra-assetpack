@@ -44,10 +44,10 @@ module Sinatra
         pack = settings.assets.packages["#{name}.#{type}"]
         return ""  unless pack
 
-        if settings.production?
-          pack.to_production_html options
-        else
+        if settings.development?
           pack.to_development_html options
+        else
+          pack.to_production_html options
         end
       end
 

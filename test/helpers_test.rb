@@ -12,9 +12,20 @@ class HelpersTest < UnitTest
     assert body == "<img src='/images/foo.jpg' />"
   end
 
-  test "img existing" do
+  test "img existing (development)" do
+    app.stubs(:development?).returns(true)
     get '/helper/email'
-    assert body =~ %r{src='/images/email.[a-f0-9]+.png'}
+
+    assert body =~ %r{src='/images/email.png'}
+    assert body =~ %r{width='16'}
+    assert body =~ %r{height='16'}
+  end
+  
+  test "img existing (production)" do
+    app.stubs(:development?).returns(false)
+    get '/helper/email'
+
+    assert body =~ %r{src='/images/email.[a-f0-9]{16,}.png'}
     assert body =~ %r{width='16'}
     assert body =~ %r{height='16'}
   end

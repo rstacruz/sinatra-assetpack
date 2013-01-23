@@ -17,13 +17,14 @@ class AppTest < UnitTest
     assert last_response.status == 404
   end
 
-  test '/js/hi.7a1b92c3f56ab5cfa73c1aa8222961cf.js (with cache buster)' do
-    get '/js/hello.7a1b92c3f56ab5cfa73c1aa8222961cf.js'
+  test '/js/hello.b1946ac92492d2347c6235b4d2611184.js (with cache buster)' do
+    get '/js/hello.b1946ac92492d2347c6235b4d2611184.js'
+    assert_equal 200, last_response.status
     assert body == '$(function() { alert("Hello"); });'
   end
 
-  test '/js/hi.7a1b92c3f56ab5cfa73c1aa8222961cf.js (coffeescript with cache buster)' do
-    get '/js/hi.7a1b92c3f56ab5cfa73c1aa8222961cf.js'
+  test '/js/hi.24dcf1d7835ed64640370d52967631f8.js (coffeescript with cache buster)' do
+    get '/js/hi.24dcf1d7835ed64640370d52967631f8.js'
     assert_equal 200, last_response.status
     assert body.include? 'yo'
     assert body.include? 'x = function'
@@ -61,13 +62,14 @@ class AppTest < UnitTest
   end
 
   test "helpers" do
+    app.stubs(:development?).returns(true)
     get '/index.html'
-    assert body =~ /<script src='\/js\/hello.[a-f0-9]+.js'><\/script>/
-    assert body =~ /<script src='\/js\/hi.[a-f0-9]+.js'><\/script>/
+    assert body =~ /<script src='\/js\/hello.js'><\/script>/
+    assert body =~ /<script src='\/js\/hi.js'><\/script>/
   end
 
   test "helpers in production (compressed html thingie)" do
-    app.expects(:production?).returns(true)
+    app.stubs(:development?).returns(false)
     get '/index.html'
     assert body =~ /<script src='\/js\/app.[a-f0-9]+.js'><\/script>/
   end
@@ -94,8 +96,15 @@ class AppTest < UnitTest
     assert_includes body, "rgba(0,0,255,0.3)"
   end
 
-  test "helpers css" do
+  test "helpers css (development)" do
+    app.stubs(:development?).returns(true)
     get '/helpers/css'
-    assert body =~ %r{link rel='stylesheet' href='/css/screen.[a-f0-9]+.css' media='screen'}
+    assert body =~ %r{link rel='stylesheet' href='/css/screen.css' media='screen'}
+  end
+  
+  test "helpers css (production)" do
+    app.stubs(:development?).returns(false)
+    get '/helpers/css'
+    assert body =~ %r{link rel='stylesheet' href='/css/application.[a-f0-9]+.css' media='screen'}
   end
 end
