@@ -1,5 +1,13 @@
 # [Sinatra AssetPack](http://ricostacruz.com/sinatra-assetpack)
-#### Asset packer for Sinatra
+
+>  Package your assets transparently in Sinatra.
+
+[![Build Status](https://travis-ci.org/rstacruz/sinatra-assetpack.png)](https://travis-ci.org/rstacruz/sinatra-assetpack)
+[![Dependency Status](https://gemnasium.com/rstacruz/sinatra-assetpack.png)](https://gemnasium.com/rstacruz/sinatra-assetpack)
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/rstacruz/sinatra-assetpack)
+
+How it works
+------------
 
 This is *the* most convenient way to set up your CSS/JS (and images) in a 
 [Sinatra](http://sinatrarb.com) app. Seriously. No need for crappy routes to 
@@ -13,10 +21,6 @@ render Sass or whatever. No-siree!
 4. Use `<%= js :app %>` and `<%= css :application %>` to your layouts. Use these instead of
    messy *script* and *link* tags.
 5. BOOM! You're in business baby!
-
-[![Build Status](https://travis-ci.org/rstacruz/sinatra-assetpack.png)](https://travis-ci.org/rstacruz/sinatra-assetpack)
-[![Dependency Status](https://gemnasium.com/rstacruz/sinatra-assetpack.png)](https://gemnasium.com/rstacruz/sinatra-assetpack)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/rstacruz/sinatra-assetpack)
 
 Installation
 ------------
