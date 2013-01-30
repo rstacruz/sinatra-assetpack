@@ -56,13 +56,13 @@ module Sinatra
 
       # Returns the regex for the route, including cache buster crap.
       def route_regex
-        re = @path.gsub(/(.[^.]+)$/) { |ext| "(?:\.[0-9]+)?#{ext}" }
+        re = @path.gsub(/(.[^.]+)$/) { |ext| "(?:\.[a-f0-9]+)?#{ext}" }
         /^#{re}$/
       end
 
       def to_development_html(options={})
         paths_and_files.map { |path, file|
-          path = add_cache_buster(path, file)  # app.css => app.829378.css
+          #path = add_cache_buster(path, file) # No cache buster in dev.
           link_tag(path, options)
         }.join("\n")
       end
@@ -110,10 +110,12 @@ module Sinatra
 
     private
       def link_tag(file, options={})
+        file_path = HtmlHelpers.get_file_uri(file, @assets)
+
         if js?
-          "<script src='#{e file}'#{kv options}></script>"
+          "<script src='#{file_path}'#{kv options}></script>"
         elsif css?
-          "<link rel='stylesheet' href='#{e file}'#{kv options} />"
+          "<link rel='stylesheet' href='#{file_path}'#{kv options} />"
         end
       end
     end

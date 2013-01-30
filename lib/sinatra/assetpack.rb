@@ -34,6 +34,12 @@ module Sinatra
       formats.each { |tilt, out| re[out] << tilt }
       out
     end
+    
+    # Clear Tilt::Cache (used for primarily for tests)
+    def self.clear_tilt_cache!(cache, app)
+      cache.clear
+      #app.clear_tilt_cache = false  # Maybe it can be an option on app we can enable/disable?
+    end
 
     PREFIX = File.dirname(__FILE__)
 

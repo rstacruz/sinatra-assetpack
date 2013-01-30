@@ -9,7 +9,7 @@ class ImgTest < UnitTest
   end
 
   test "get img with cache buster" do
-    get '/images/email.893748.png'
+    get '/images/email.7a1b92c3f56ab5cfa73c1aa8222961cf.png'
     assert_equal last_response.headers['Content-Length'], File.size(r("/app/images/email.png")).to_s
   end
 

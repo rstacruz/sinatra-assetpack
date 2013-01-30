@@ -153,6 +153,7 @@ module Sinatra
       attrib :js_compression    # Symbol, compression method for JS
       attrib :css_compression   # Symbol, compression method for CSS
       attrib :output_path       # '/public'
+      attrib :asset_hosts       # [ 'http://cdn0.example.org', 'http://cdn1.example.org' ]
 
       attrib :js_compression_options   # Hash
       attrib :css_compression_options  # Hash
@@ -253,9 +254,9 @@ module Sinatra
         file.sub(/^(.*)(\.[^\.]+)$/) { file, extension = $1, $2 }
 
         # Remove cache-buster (/js/app.28389.js => /js/app)
-        file = $1 if file =~ /^(.*)\.[0-9]+$/
 
         matches = Dir[File.join(app.root, from, "#{file}.*")]
+        file = $1  if file =~ /^(.*)\.[a-f0-9]+$/
 
         # Fix for filenames with dots (can't do this with glob)
         matches.select! { |f| f =~ /#{file}\.[^.]+$/ }

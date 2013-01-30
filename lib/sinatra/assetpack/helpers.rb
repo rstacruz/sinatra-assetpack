@@ -15,7 +15,9 @@ module Sinatra
         local = settings.assets.local_file_for src
         if local
           i = Image[local]
-          attrs[:src] = BusterHelpers.add_cache_buster(src, local)
+
+          attrs[:src] = HtmlHelpers.get_file_uri(src, settings.assets)
+
           if i.dimensions?
             attrs[:width]  ||= i.width
             attrs[:height] ||= i.height
@@ -42,10 +44,10 @@ module Sinatra
         pack = settings.assets.packages["#{name}.#{type}"]
         return ""  unless pack
 
-        if settings.production?
-          pack.to_production_html options
-        else
+        if settings.development?
           pack.to_development_html options
+        else
+          pack.to_production_html options
         end
       end
 
