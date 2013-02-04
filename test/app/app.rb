@@ -18,6 +18,11 @@ class Main < Sinatra::Base
     serve '/css',    :from => 'app/css'
     serve '/images', :from => 'app/images'
     serve '/fonts',    :from => 'app/fonts'
+    serve '/packages',    :from => 'app/packages'
+
+    js :a_package, '/packages/a_package.js', [
+      '/packages/a_package/package.js',
+    ]
 
     js :skitch, '/skitch.js', [
       '/js/hi.js',
