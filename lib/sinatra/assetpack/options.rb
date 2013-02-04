@@ -246,22 +246,21 @@ module Sinatra
       # Returns nil if a file is not found.
       # TODO: consolidate with local_file_for
       def dyn_local_file_for(requested_file, from)
-        # Remove extension
         file = requested_file
-        extension = ''
-
-        file.sub(/^(.*)(\.[^\.]+)$/) { file, extension = $1, $2 }
-
-        # Remove cache-buster (/js/app.28389.js => /js/app)
-        file = $1 if file =~ /^(.*)\.[0-9]+$/
-
+        extension = File.extname(requested_file)
+        # Remove extension
+        file.gsub!(/#{extension}$/, "")
+        # Remove cache-buster (/js/app.28389 => /js/app)
+        file.gsub!(/\.[0-9]+$/, "")
         matches = Dir[File.join(app.root, from, "#{file}.*")]
 
         # Fix for filenames with dots (can't do this with glob)
         matches.select! { |f| f =~ /#{file}\.[^.]+$/ }
 
-        # Sort static file match first
-        matches.sort! { |f, _| File.basename(f) == "#{file}#{extension}" ? -1 : 1 }
+        # Sort static file match, weighting exact file extension matches
+        matches.sort! do |f, _| 
+          (File.basename(f) == "#{file}#{extension}" || File.extname(f) == extension) ? -1 : 1
+        end
         matches.first
       end
 
