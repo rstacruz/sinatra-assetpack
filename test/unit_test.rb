@@ -49,6 +49,11 @@ class AppTest < UnitTest
     assert last_response.status == 404
   end
 
+  test 'returns file of requested type when mixed type assets of varying extension are present' do
+    get '/packages/a_package.010101.js'
+    assert body.include? 'function(){alert("Hello");'
+  end
+
   test 'static css' do
     get '/css/style.css'
     assert body.include?('div { color: red; }')
