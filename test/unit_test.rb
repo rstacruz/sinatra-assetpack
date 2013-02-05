@@ -69,8 +69,8 @@ class AppTest < UnitTest
   test "helpers" do
     app.settings.stubs(:environment).returns(:development)
     get '/index.html'
-    assert body =~ /<script src='\/js\/hello.js'><\/script>/
-    assert body =~ /<script src='\/js\/hi.js'><\/script>/
+    assert body =~ /<script src='\/js\/hello.8ac1b67adf7fa68c1c3b81791b3e116c.js'><\/script>/
+    assert body =~ /<script src='\/js\/hi.24dcf1d7835ed64640370d52967631f8.js'><\/script>/
   end
 
   test "helpers in production (compressed html thingie)" do
@@ -108,7 +108,7 @@ class AppTest < UnitTest
   test "helpers css (development)" do
     app.settings.stubs(:environment).returns(:development)
     get '/helpers/css'
-    assert body =~ %r{link rel='stylesheet' href='/css/screen.css' media='screen'}
+    assert body =~ %r{link rel='stylesheet' href='/css/screen.efa279aa02235f0a587791c1ac5d99b9.css' media='screen'}
   end
 
   test "helpers css (production)" do
