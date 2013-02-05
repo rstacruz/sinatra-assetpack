@@ -80,7 +80,12 @@ class AppTest < UnitTest
   end
 
   test "file with multiple dots in name" do
-    get '/js/jquery-1.8.0.min.js'
+    get '/js/lib-3.2.1.min.js'
+    assert body.include? '$(function() { alert("Hello"); });'
+  end
+
+  test "file in folder glob" do
+    get '/js/vendor/jquery-1.8.0.min.js'
     assert body.include? '$(function() { alert("Hello"); });'
   end
 
