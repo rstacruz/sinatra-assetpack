@@ -82,10 +82,9 @@ class AppTest < UnitTest
     assert body =~ /<script src='\/js\/app.[0-9]+.js'><\/script>/
   end
 
-  test "compressed js" do
-    get '/js/app.js'
-    assert body.include? 'function(){alert("Hello");'
-    assert_includes body, "var x;x=function(){"
+  test "file with multiple dots in name" do
+    get '/js/jquery-1.8.0.min.js'
+    assert body.include? '$(function() { alert("Hello"); });'
   end
 
   test "compressed js with cache bust" do
