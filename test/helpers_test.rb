@@ -25,7 +25,7 @@ class HelpersTest < UnitTest
     app.stubs(:development?).returns(false)
     get '/helper/email'
 
-    assert body =~ %r{src='/images/email.[a-f0-9]{16,}.png'}
+    assert body =~ %r{src='/images/email.[a-f0-9]{32}.png'}
     assert body =~ %r{width='16'}
     assert body =~ %r{height='16'}
   end

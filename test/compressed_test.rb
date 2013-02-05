@@ -24,7 +24,7 @@ class CompressedTest < UnitTest
   end
 
   test "lol" do
-    get '/app.4872837.js'
+    get '/app.b1946ac92492d2347c6235b4d2611184.js'
     assert last_response.status == 200
   end
 end

@@ -54,9 +54,9 @@ module Sinatra
         BusterHelpers.mtime_for(files)
       end
 
-      # Returns the regex for the route, including cache buster crap.
+      # Returns the regex for the route, including cache buster.
       def route_regex
-        re = @path.gsub(/(.[^.]+)$/) { |ext| "(?:\.[a-f0-9]+)?#{ext}" }
+        re = @path.gsub(/(.[^.]+)$/) { |ext| "(?:\.[a-f0-9]{32})?#{ext}" }
         /^#{re}$/
       end
 

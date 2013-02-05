@@ -5,14 +5,14 @@ class PreprocTest < UnitTest
     app.stubs(:clear_tilt_cache).returns(true)
     app.stubs(:development?).returns(false)
     get '/css/screen.css'
-    assert body =~ %r{email.[a-f0-9]{16,}.png}
+    assert body =~ %r{email.[a-f0-9]{32}.png}
   end
 
   test "preproc static files" do
     app.stubs(:clear_cache).returns(true)
     app.stubs(:development?).returns(false)
     get '/css/style.css'
-    assert body =~ %r{background.[a-f0-9]{16,}.jpg}
+    assert body =~ %r{background.[a-f0-9]{32}.jpg}
   end
 
   test "no cache-busting number for non-existent images" do
@@ -25,7 +25,7 @@ class PreprocTest < UnitTest
     app.stubs(:clear_cache).returns(true)
     app.stubs(:development?).returns(false)
     get '/css/application.css'
-    assert body =~ %r{email.[a-f0-9]{16,}.png}
+    assert body =~ %r{email.[a-f0-9]{32}.png}
   end
 
   test "embed" do

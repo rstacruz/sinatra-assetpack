@@ -46,7 +46,7 @@ module Sinatra
           get %r{#{"^/#{path}/".squeeze('/')}(.*)$} do |file|
             fmt = File.extname(file)[1..-1]
 
-            if file =~ /(.*)\.([a-f0-9]*{16,})\.(.*)/
+            if file =~ /(.*)\.([a-f0-9]{32})\.(.*)/
               clean_file = "#{$1}.#{$3}"
               requested_hash = $2
             else

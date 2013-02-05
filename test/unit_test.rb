@@ -46,7 +46,7 @@ class AppTest < UnitTest
   end
 
   test 'returns file of requested type when mixed type assets of varying extension are present' do
-    get '/packages/a_package.010101.js'
+    get '/packages/a_package.b1946ac92492d2347c6235b4d2611184.js'
     assert body.include? 'function(){alert("Hello");'
   end
 
@@ -76,7 +76,7 @@ class AppTest < UnitTest
   test "helpers in production (compressed html thingie)" do
     app.settings.stubs(:environment).returns(:production)
     get '/index.html'
-    assert body =~ /<script src='\/js\/app.[a-f0-9]+.js'><\/script>/
+    assert body =~ /<script src='\/js\/app.[a-f0-9]{32}.js'><\/script>/
   end
 
   test "file with multiple dots in name" do
@@ -85,7 +85,7 @@ class AppTest < UnitTest
   end
 
   test "compressed js with cache bust" do
-    get '/js/app.38987.js'
+    get '/js/app.b1946ac92492d2347c6235b4d2611184.js'
     assert body.include? 'function(){alert("Hello");'
     assert_includes body, "var x;x=function(){"
   end
@@ -96,7 +96,7 @@ class AppTest < UnitTest
   end
 
   test "compressed css with cache bust" do
-    get '/css/application.388783.css'
+    get '/css/application.b1946ac92492d2347c6235b4d2611184.css'
     assert_includes body, "rgba(0,0,255,0.3)"
   end
 
@@ -109,7 +109,7 @@ class AppTest < UnitTest
   test "helpers css (production)" do
     app.settings.stubs(:environment).returns(:production)
     get '/helpers/css'
-    assert body =~ %r{link rel='stylesheet' href='/css/application.[a-f0-9]+.css' media='screen'}
+    assert body =~ %r{link rel='stylesheet' href='/css/application.[a-f0-9]{32}.css' media='screen'}
   end
 
   test 'default expiration of single assets' do

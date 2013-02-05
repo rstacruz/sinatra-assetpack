@@ -34,18 +34,18 @@ class AssetHostTest < UnitTest
 
   test "host gets added to css source path" do
     app.stubs(:development?).returns(false)
-    assert TestApp.assets.packages['a.css'].to_production_html =~ %r{href='//cdn-[0|1].example.org/assets/a.[a-f0-9]+.css'}
+    assert TestApp.assets.packages['a.css'].to_production_html =~ %r{href='//cdn-[0|1].example.org/assets/a.[a-f0-9]{32}.css'}
   end
 
   test "host gets added to js source path" do
     app.stubs(:development?).returns(false)
-    assert TestApp.assets.packages['b.js'].to_production_html =~ %r{src='//cdn-[0|1].example.org/assets/b.[a-f0-9]+.js'}
+    assert TestApp.assets.packages['b.js'].to_production_html =~ %r{src='//cdn-[0|1].example.org/assets/b.[a-f0-9]{32}.js'}
   end
 
   test "host gets added to image helper path in production" do
     app.stubs(:development?).returns(false)
     get '/helper/img'
-    assert body =~ /<img src='\/\/cdn-[0|1].example.org\/images\/background.[a-f0-9]+.jpg' \/>/
+    assert body =~ /<img src='\/\/cdn-[0|1].example.org\/images\/background.[a-f0-9]{32}.jpg' \/>/
   end
 
   test "host doesn't get added to image helper path in development" do
