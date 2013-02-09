@@ -8,6 +8,8 @@ require 'rack/test'
 require 'yaml'
 require 'mocha/setup'
 
+ENV['RACK_ENV'] = 'test'
+
 require File.expand_path('../app/app.rb', __FILE__)
 
 class UnitTest < Test::Unit::TestCase
