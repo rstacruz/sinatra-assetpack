@@ -1,3 +1,13 @@
+v0.1.3 - Feb 3, 2013
+----------------------
+
+### Added
+  * JRuby 1.9 and 1.8 now supported.
+
+### Fixed:
+  * Deal with assets with exact same name but extensions. (#75)
+  * Ruby 1.8 support (broken in previous v0.1 releases).
+
 v0.1.2 - Jan 20, 2013
 ----------------------
 
