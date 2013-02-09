@@ -1,3 +1,9 @@
+v0.1.4 - Not released
+----------------------
+
+### Added
+  * Multiple asset hosts support. (#27)
+
 v0.1.3 - Feb 3, 2013
 ----------------------
 
