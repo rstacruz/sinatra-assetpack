@@ -29,7 +29,7 @@ GEM
     metaclass (0.0.1)
     mocha (0.13.2)
       metaclass (~> 0.0.1)
-    multi_json (1.5.0)
+    multi_json (1.6.0)
     open4 (1.3.0)
     rack (1.5.2)
     rack-protection (1.3.2)
@@ -66,6 +66,6 @@ DEPENDENCIES
   rake
   sass
   sinatra-assetpack!
-  stylus
+  stylus (< 0.7.1)
   uglifier
   yui-compressor
