@@ -2,7 +2,7 @@
 
 >  Package your assets transparently in Sinatra.
 
-[![Build Status](https://travis-ci.org/rstacruz/sinatra-assetpack.png)](https://travis-ci.org/rstacruz/sinatra-assetpack)
+[![Build Status](https://travis-ci.org/rstacruz/sinatra-assetpack.png?branch=master)](https://travis-ci.org/rstacruz/sinatra-assetpack)
 [![Dependency Status](https://gemnasium.com/rstacruz/sinatra-assetpack.png)](https://gemnasium.com/rstacruz/sinatra-assetpack)
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/rstacruz/sinatra-assetpack)
 
