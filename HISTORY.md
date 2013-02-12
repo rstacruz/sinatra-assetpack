@@ -1,8 +1,11 @@
-v0.1.4 - Not released
+v0.1.4 - Feb 12, 2013
 ----------------------
 
 ### Added
   * Multiple asset hosts support. (#27)
+
+### Fixed
+  * Lock stylus to 0.7.0 until 0.7.1 is supported.
 
 v0.1.3 - Feb 3, 2013
 ----------------------
