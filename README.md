@@ -680,17 +680,20 @@ See [CONTRIBUTING.md](https://github.com/rstacruz/sinatra-assetpack/blob/master/
 Acknowledgements
 ----------------
 
-© 2011, Rico Sta. Cruz. Released under the [MIT 
+© 2011-2013, Rico Sta. Cruz. Released under the [MIT
 License](http://www.opensource.org/licenses/mit-license.php).
 
-Sinatra-AssetPack is authored and maintained by [Rico Sta. Cruz][rsc] with help 
-from it's [contributors][c]. It is sponsored by my startup, [Sinefunc, Inc][sf].
+Sinatra-AssetPack is authored by [Rico Sta. Cruz][rsc] with help
+from it's [contributors][c]. It is sponsored by [Sinefunc, Inc][sf].
 
- * [My website](http://ricostacruz.com) (ricostacruz.com)
- * [Sinefunc, Inc.](http://sinefunc.com) (sinefunc.com)
- * [Github](http://github.com/rstacruz) (@rstacruz)
- * [Twitter](http://twitter.com/rstacruz) (@rstacruz)
+Sinatra-AssetPack is maintained by [Jean-Philipe Doyle][j15e] at [Hookt Studios][hookt].
+
+Github : [@rstacruz](http://github.com/rstacruz), [@j15e](http://github.com/j15e)
+
+Twitter : [@rstacruz](http://twitter.com/rstacruz), [@j15e](http://twitter.com/j15e)
 
 [rsc]: http://ricostacruz.com
 [c]:   http://github.com/rstacruz/sinatra-assetpack/contributors
 [sf]:  http://sinefunc.com
+[j15e]: http://github.com/j15e
+[hookt]: http://github.com/hooktstudios
