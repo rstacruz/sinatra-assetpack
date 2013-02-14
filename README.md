@@ -672,10 +672,10 @@ class Main
 end
 ```
 
-Running the tests
----------------
+Contributing
+------------
 
-    rake
+See [CONTRIBUTING.md](https://github.com/rstacruz/sinatra-assetpack/blob/master/CONTRIBUTING.md) for details on contributing and running test.
 
 Acknowledgements
 ----------------
