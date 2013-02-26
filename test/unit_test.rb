@@ -77,7 +77,7 @@ class AppTest < UnitTest
   end
 
   test "helpers in production (compressed html thingie)" do
-    app.expects(:production?).returns(true)
+    app.expects(:environment).returns(:production)
     get '/index.html'
     assert body =~ /<script src='\/js\/app.[0-9]+.js'><\/script>/
   end
