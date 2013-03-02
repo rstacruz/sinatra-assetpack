@@ -50,9 +50,4 @@ class AppTest < UnitTest
     get '/fonts/cantarell-regular-webfont.woff'
     assert last_response.content_type =~ %r[^application/font-woff]
   end
-
-  test 'woff' do
-    get '/fonts/cantarell-regular-webfont.woff'
-    assert last_response.content_type =~ %r[^application/font-woff]
-  end
 end
