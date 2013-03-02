@@ -1,3 +1,10 @@
+v0.1.6 - March 1, 2013
+----------------------
+
+### Fixed
+
+  * Do not use instance helpers for environment check. (#79)
+
 v0.1.5 - Feb 12, 2013
 ----------------------
 

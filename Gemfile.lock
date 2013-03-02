@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sinatra-assetpack (0.1.5)
+    sinatra-assetpack (0.1.6)
       jsmin
       rack-test
       sinatra
