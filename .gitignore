@@ -1,3 +1,4 @@
 /.rvmrc
 /.sass-cache
 /doc/
+*.gem
