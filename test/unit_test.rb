@@ -130,7 +130,7 @@ class AppTest < UnitTest
     assert_equal (Time.now + (86400*30)).httpdate, last_response.headers['Expires']
   end
 
-  test 'custom expiration of single assets' do
+  test 'custom expiration of packed assets' do
     app.settings.assets.expires 86400*365, :public
 
     get '/js/app.js'

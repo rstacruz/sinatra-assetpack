@@ -13,14 +13,14 @@ class ImgTest < UnitTest
     assert_equal last_response.headers['Content-Length'], File.size(r("/app/images/email.png")).to_s
   end
 
-  test "Image[]" do
+  test "compare" do
     i = Image['/app/images/email.png']
     j = Image['/app/images/email.png']
 
     assert j === i
   end
 
-  test "Image[]" do
+  test "dimensions" do
     i = Image['/app/images/email.png']
     j = Image['/app/images/email.png']
 
