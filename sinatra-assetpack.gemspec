@@ -10,6 +10,8 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/rstacruz/sinatra-assetpack"
   s.files = `git ls-files`.strip.split("\n")
   s.executables = Dir["bin/*"].map { |f| File.basename(f) }
+  s.cert_chain  = ['certs/j15e.pem']
+  s.signing_key = File.expand_path('~/.gem/private_key.pem') if $0 =~ /gem\z/
 
   s.add_dependency "tilt", ">= 1.3.0"
   s.add_dependency "sinatra"
