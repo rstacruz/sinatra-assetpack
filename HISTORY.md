@@ -1,3 +1,10 @@
+v0.1.7 - March 11, 2013
+----------------------
+
+### Added
+
+  * Gem is now certificate signed.
+
 v0.1.6 - March 1, 2013
 ----------------------
 
