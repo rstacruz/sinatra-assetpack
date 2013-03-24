@@ -5,7 +5,12 @@ module Sinatra::AssetPack
       str.gsub! %r{ *([;\{\},:]) *}, '\1'
       str
     end
+
+    def js(str, options={})
+      str
+    end
   end
 
   Compressor.register :css, :simple, SimpleEngine
+  Compressor.register :js,  :simple, SimpleEngine
 end
