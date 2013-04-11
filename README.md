@@ -26,14 +26,7 @@ render Sass or whatever. No-siree!
 Installation
 ------------
 
-Sinatra AssetPack is a simple Ruby gem. You can install it via `gem install`.
-
-``` console
-$ gem install sinatra-assetpack
-```
-
-#### Bundler users
-If you use Bundler, you will need to add it to your *Gemfile*.
+Add to your `Gemfile` :
 
 ``` ruby
 gem 'sinatra-assetpack', :require => 'sinatra/assetpack'
