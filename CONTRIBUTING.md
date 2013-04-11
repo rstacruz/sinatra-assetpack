@@ -18,7 +18,7 @@ Please follow theses simples steps to contribute to this project :
 
 ## Running the tests
 
-As simple as running the `rake` command.
+As simple as running `bundle exec rake` command.
 
 The default `rake` task is `rake test`.
 
