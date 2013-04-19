@@ -17,9 +17,8 @@ Gem::Specification.new do |s|
   s.add_dependency "sinatra"
   s.add_dependency "jsmin"
   s.add_dependency "rack-test"
-  if RUBY_VERSION < "1.9"
-    s.add_runtime_dependency "backports"
-  end
+  s.add_dependency "backports"
+
   s.add_development_dependency "yui-compressor"
   s.add_development_dependency "sass"
   s.add_development_dependency "haml"
