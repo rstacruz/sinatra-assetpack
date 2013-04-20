@@ -17,19 +17,15 @@ class AppTest < UnitTest
     assert last_response.status == 404
   end
 
-  test '/js/hello.2834987.js (with cache buster)' do
-    get '/js/hello.283947.js'
+  test '/js/hello.b1946ac92492d2347c6235b4d2611184.js (with cache buster)' do
+    get '/js/hello.b1946ac92492d2347c6235b4d2611184.js'
+    assert_equal 200, last_response.status
     assert body == '$(function() { alert("Hello"); });'
   end
 
-  test '/js/hello.2.2834987.js (with cache buster)' do
-    get '/js/hello.2.283947.js'
-    assert body == '$(function() { alert("Hello.2"); });'
-  end
-
-  test '/js/hi.2834987.js (coffeescript with cache buster)' do
-    get '/js/hi.283947.js'
-    assert last_response.status == 200
+  test '/js/hi.24dcf1d7835ed64640370d52967631f8.js (coffeescript with cache buster)' do
+    get '/js/hi.24dcf1d7835ed64640370d52967631f8.js'
+    assert_equal 200, last_response.status
     assert body.include? 'yo'
     assert body.include? 'x = function'
   end
@@ -50,7 +46,7 @@ class AppTest < UnitTest
   end
 
   test 'returns file of requested type when mixed type assets of varying extension are present' do
-    get '/packages/a_package.010101.js'
+    get '/packages/a_package.b1946ac92492d2347c6235b4d2611184.js'
     assert body.include? 'function(){alert("Hello");'
   end
 
@@ -71,24 +67,30 @@ class AppTest < UnitTest
   end
 
   test "helpers" do
+    app.settings.stubs(:environment).returns(:development)
     get '/index.html'
-    assert body =~ /<script src='\/js\/hello.[0-9]+.js'><\/script>/
-    assert body =~ /<script src='\/js\/hi.[0-9]+.js'><\/script>/
+    assert body =~ /<script src='\/js\/hello.8ac1b67adf7fa68c1c3b81791b3e116c.js'><\/script>/
+    assert body =~ /<script src='\/js\/hi.24dcf1d7835ed64640370d52967631f8.js'><\/script>/
   end
 
   test "helpers in production (compressed html thingie)" do
-    app.expects(:environment).returns(:production)
+    app.settings.stubs(:environment).returns(:production)
     get '/index.html'
-    assert body =~ /<script src='\/js\/app.[0-9]+.js'><\/script>/
+    assert body =~ /<script src='\/js\/app.[a-f0-9]{32}.js'><\/script>/
   end
 
   test "file with multiple dots in name" do
-    get '/js/jquery-1.8.0.min.js'
+    get '/js/lib-3.2.1.min.js'
+    assert body.include? '$(function() { alert("Hello"); });'
+  end
+
+  test "file in folder glob" do
+    get '/js/vendor/jquery-1.8.0.min.js'
     assert body.include? '$(function() { alert("Hello"); });'
   end
 
   test "compressed js with cache bust" do
-    get '/js/app.38987.js'
+    get '/js/app.b1946ac92492d2347c6235b4d2611184.js'
     assert body.include? 'function(){alert("Hello");'
     assert_includes body, "var x;x=function(){"
   end
@@ -99,13 +101,20 @@ class AppTest < UnitTest
   end
 
   test "compressed css with cache bust" do
-    get '/css/application.388783.css'
+    get '/css/application.b1946ac92492d2347c6235b4d2611184.css'
     assert_includes body, "rgba(0,0,255,0.3)"
   end
 
-  test "helpers css" do
+  test "helpers css (development)" do
+    app.settings.stubs(:environment).returns(:development)
     get '/helpers/css'
-    assert body =~ %r{link rel='stylesheet' href='/css/screen.[0-9]+.css' media='screen'}
+    assert body =~ %r{link rel='stylesheet' href='/css/screen.efa279aa02235f0a587791c1ac5d99b9.css' media='screen'}
+  end
+
+  test "helpers css (production)" do
+    app.settings.stubs(:environment).returns(:production)
+    get '/helpers/css'
+    assert body =~ %r{link rel='stylesheet' href='/css/application.[a-f0-9]{32}.css' media='screen'}
   end
 
   test 'default expiration of single assets' do
