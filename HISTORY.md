@@ -1,3 +1,15 @@
+v0.2.0 - April 20, 2013
+----------------------
+
+### Changed
+  * Using MD5 for cache busting URI. (#91, #71)
+
+### Added
+  * Add :simple compression for javascript. (#87)
+
+### Fixed
+  * Added backports correctly for 1.8.7 support.
+
 v0.1.7 - March 11, 2013
 ----------------------
 
