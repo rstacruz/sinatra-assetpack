@@ -24,6 +24,10 @@ module Sinatra
       def add_compressed_routes!
         assets.packages.each do |name, package|
           get package.route_regex do
+            if defined?(settings.assets.app.clear_tilt_cache) && settings.assets.app.clear_tilt_cache
+              AssetPack.clear_tilt_cache!(@template_cache, settings.assets.app)
+            end
+
             mtime, contents = @template_cache.fetch(package.path) {
               [ package.mtime, package.minify ]
             }
@@ -42,11 +46,19 @@ module Sinatra
           get %r{#{"^/#{path}/".squeeze('/')}(.*)$} do |file|
             fmt = File.extname(file)[1..-1]
 
+            if file =~ /(.*)\.([a-f0-9]{32})\.(.*)/
+              clean_file = "#{$1}.#{$3}"
+              requested_hash = $2
+            else
+              clean_file = file
+            end
+
             # Sanity checks
             pass unless AssetPack.supported_formats.include?(fmt)
-            fn = asset_path_for(file, from) or pass
 
-            pass if settings.assets.ignored?("#{path}/#{file}")
+            fn = asset_path_for(clean_file, from) or pass
+
+            pass if settings.assets.ignored?("#{path}/#{clean_file}")
 
             # Send headers
             content_type fmt.to_sym
@@ -54,6 +66,10 @@ module Sinatra
             assets_expires
 
             format = File.extname(fn)[1..-1]
+
+            if defined?(settings.assets.app.clear_tilt_cache) && settings.assets.app.clear_tilt_cache
+              AssetPack.clear_tilt_cache!(@template_cache, settings.assets.app)
+            end
 
             if AssetPack.supported_formats.include?(format)
               # Static file
@@ -77,7 +93,6 @@ module Sinatra
             end
           end
         end
-
       end
     end
   end
