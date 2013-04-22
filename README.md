@@ -554,7 +554,7 @@ class App < Sinatra::Base
 end
 ```
 
-### assets.cache_unmodified_dynamic_assets
+### assets.cache_dynamic_assets
 Caches dynamic files unless they have been modified.
 
 Useful during development if asset compilation of all dynamic assets on each request is slow. 
@@ -562,11 +562,11 @@ If set to true, dynamic assets will be compiled on the initial asset request, bu
 
 ``` ruby
 # Usage:
-cache_unmodified_dynamic_assets {true|false}
+cache_dynamic_assets {true|false}
 ```
 
 #### Example
-In this example, all dynamic files will be compiled on first request, but laster served from a cache unless the file is modified
+In this example, all dynamic files will be compiled on first request, but later requests will be served from a cache unless the file is modified
 
 ``` ruby
 class App < Sinatra::Base
@@ -577,7 +577,7 @@ class App < Sinatra::Base
       '/js/vendor/jquery.*.js',
       '/js/vendor/jquery.js'
     ]
-    cache_unmodified_dynamic_assets true
+    cache_dynamic_assets true
   }
 end
 
