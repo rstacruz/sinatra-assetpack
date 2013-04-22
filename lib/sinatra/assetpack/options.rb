@@ -57,6 +57,7 @@ module Sinatra
 
         @js_compression_options  = Hash.new
         @css_compression_options = Hash.new
+        @dynamic_asset_cache     = Hash.new
 
         @ignored = Array.new
 
@@ -159,6 +160,7 @@ module Sinatra
       attrib :css_compression_options  # Hash
 
       attrib :prebuild          # Bool
+      attrib :cache_unmodified_dynamic_assets # Bool
 
       def expires(*args)
         if args.empty?
@@ -321,6 +323,23 @@ module Sinatra
         tuples = paths.map { |key| [key, files[key]] }
 
         Hash[*tuples.flatten]
+      end
+
+      # Fetches the contents of a dynamic asset. If `cache_unmodified_dynamic_assets` is set,
+      # check file mtime and potentially return contents from cache instead of re-compiling.
+      # Yields to a block to compile & render the asset.
+      def fetch_dynamic_asset(path)
+        return yield unless cache_unmodified_dynamic_assets
+
+        mtime = File.mtime(path)
+        cached_mtime, contents = @dynamic_asset_cache[path]
+
+        if cached_mtime.nil? || mtime != cached_mtime
+          @dynamic_asset_cache[path] = [mtime, yield]
+          @dynamic_asset_cache[path][1]
+        else
+          contents
+        end
       end
 
     private
