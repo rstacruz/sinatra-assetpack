@@ -1,20 +1,27 @@
+require 'uri'
+
 module Sinatra
   module AssetPack
     module Css
       def self.preproc(str, assets)
         str.gsub(/url\((["']?)(.*?)(["']?)\)/) { |url|
-          path = $2
-          file, options = path.split('?')
+          css_url = URI.parse($2)
+          file = css_url.path
+          options = css_url.query
           local = assets.local_file_for file
 
           url = if local
             if options.to_s.include?('embed')
               to_data_uri(local)
             else
-              HtmlHelpers.get_file_uri(file, assets)
+              url = HtmlHelpers.get_file_uri(file, assets)
+              serve = URI(url)
+              serve.query = css_url.query
+              serve.fragment = css_url.fragment
+              serve.to_s
             end
           else
-            path
+            $2
           end
 
           "url(#{$1}#{url}#{$3})"
