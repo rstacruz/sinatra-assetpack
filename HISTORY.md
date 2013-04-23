@@ -1,3 +1,9 @@
+v0.2.1 - April 23, 2013
+----------------------
+
+### Fixed
+  * Fixed CSS preproc to keep original CSS url quotes & url fragment.
+
 v0.2.0 - April 20, 2013
 ----------------------
 
