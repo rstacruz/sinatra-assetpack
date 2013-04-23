@@ -210,16 +210,11 @@ assets {
 }
 ```
 
-__Note:__ This depends on the `uglifier` gem. In your Gemfile, you will need to 
-add it. For Heroku support, you will need to add the `therubyracer-heroku` gem 
-as well.
+__Note:__ This depends on the `uglifier` gem :
 
 ``` ruby
 # Gemfile
 gem 'uglifier'
-
-# If you're on Heroku:
-gem "therubyracer-heroku", "0.8.1.pre3", :require => false
 ```
 
 ## Images
