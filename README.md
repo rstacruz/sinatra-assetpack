@@ -128,8 +128,7 @@ assets {
 
 ### YUI Compressor
 
-This uses Yahoo's Java-powered YUI compressor. For YUI compression, you need the 
-YUI compressor gem (`gem install yui-compressor`).
+This uses Yahoo's Java-powered YUI compressor.
 
 ``` ruby
 assets {
@@ -140,9 +139,7 @@ assets {
 }
 ```
 
-__Note:__ This depends on the `yui-compressor` gem. You will need to install it.
-(`gem install yui-compressor`) If you use Bundler, you will need to add it to 
-your Gemfile as well.
+__Note:__ This depends on the `yui-compressor` gem :
 
 ``` ruby
 # Gemfile
@@ -151,7 +148,7 @@ gem 'yui-compressor', :require => 'yui/compressor'
 
 ### SASS compression
 
-For SASS compression, you need the Sass gem (`gem install sass`). This treats 
+For SASS compression, you need the Sass gem (`gem 'sass'`). This treats
 the CSS files as Scss files and uses Sass's `:output => :compressed`.
 
 ``` ruby
@@ -160,9 +157,7 @@ assets {
 }
 ```
 
-__Note:__ This depends on the `sass` gem. You will need to install it (`gem
-install sass`). If you use Bundler, you will need to add it to your Gemfile as 
-well.
+__Note:__ This depends on the `sass` gem :
 
 ``` ruby
 # Gemfile
@@ -636,7 +631,12 @@ application.][compex]
 [compsprite]: http://compass-style.org/reference/compass/utilities/sprites/
 
 ``` ruby
-# gem install sinatra/support
+# Gemfile
+gem 'sinatra-support', :require => 'sinatra/support'
+```
+
+``` ruby
+# app.rb
 Encoding.default_external = 'utf-8'
 require 'sinatra/support'
 
