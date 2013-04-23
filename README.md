@@ -22,7 +22,8 @@ Register the extension and set your assets configuration.
 require 'sinatra/assetpack'
 
 class App < Sinatra::Base
-  set :root, File.dirname(__FILE__)
+  set :root, File.dirname(__FILE__) # You must set app root
+
   register Sinatra::AssetPack
 
   assets {
@@ -56,15 +57,19 @@ end
 
 #### Using in layouts
 In your layouts, use the `css` and `js` helpers:
-*(Use haml? Great! Use `!= css :youreawesome` instead.)*
 
 ``` erb
+# layout.erb
 <%= css :application, :media => 'screen' %>
 <%= js  :app %>
 ```
+```
+# layout.haml
+!= css :application, :media => 'screen'
+!= css :app
+```
 
-
-## Result
+## Results
 
 #### Development mode
 If you're on **development** mode, it serves each of the files as so:
@@ -148,8 +153,7 @@ gem 'yui-compressor', :require => 'yui/compressor'
 
 ### SASS compression
 
-For SASS compression, you need the Sass gem (`gem 'sass'`). This treats
-the CSS files as Scss files and uses Sass's `:output => :compressed`.
+This treats the CSS files as Scss files and uses Sass's `:output => :compressed`.
 
 ``` ruby
 assets {
@@ -245,10 +249,7 @@ URL.
 /* Output:   */    .email { background: url(data:image/png;base64,NF8dG3I...); } 
 ```
 
-Need to build the files?
-------------------------
-
-Actually, you don't need to—this is optional! But add this to your `Rakefile`:
+## Precompile
 
 ``` ruby
 # Rakefile
