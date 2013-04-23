@@ -1,6 +1,9 @@
 v0.2.1 - April 23, 2013
 ----------------------
 
+### Added
+  * New cache_dynamic_assets option for development cache. (#94)
+
 ### Fixed
   * Fixed CSS preproc to keep original CSS url quotes & url fragment.
 
