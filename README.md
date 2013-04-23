@@ -41,8 +41,8 @@ class App < Sinatra::Base
       '/css/screen.css'
     ]
 
-    js_compression  :jsmin      # Default
-    css_compression :simple     # Default, set to :sass, :less, etc.
+    js_compression  :jsmin    # :jsmin | :yui | :closure | :uglify
+    css_compression :simple   # :simple | :sass | :yui | :sqwish
   }
 end
 ```
