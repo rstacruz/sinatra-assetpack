@@ -13,20 +13,23 @@ Gem::Specification.new do |s|
   s.cert_chain  = ['certs/j15e.pem']
   s.signing_key = File.expand_path('~/.gem/private_key.pem') if $0 =~ /gem\z/
 
-  s.add_dependency "tilt", ">= 1.3.0"
-  s.add_dependency "sinatra"
+  s.add_dependency "backports"
   s.add_dependency "jsmin"
   s.add_dependency "rack-test"
-  s.add_dependency "backports"
+  s.add_dependency "sinatra"
+  s.add_dependency "tilt", ">= 1.3.0"
 
-  s.add_development_dependency "yui-compressor"
-  s.add_development_dependency "sass"
-  s.add_development_dependency "haml"
+  # Supported preprocessors
   s.add_development_dependency "coffee-script"
   s.add_development_dependency "contest"
-  s.add_development_dependency "mocha"
+  s.add_development_dependency "haml"
+  s.add_development_dependency "less"
+  s.add_development_dependency "sass"
   s.add_development_dependency "stylus"
   s.add_development_dependency "uglifier"
+  s.add_development_dependency "yui-compressor"
+
+  # For tests
   s.add_development_dependency "rake"
-  s.add_development_dependency "less"
+  s.add_development_dependency "mocha"
 end
