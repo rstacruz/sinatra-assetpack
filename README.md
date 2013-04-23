@@ -646,7 +646,7 @@ Need Compass support?
 ---------------------
 
 No, AssetPack doesn't have built-in [Compass](http://compass-style.org) support, 
-but you can use [Sinatra Support](http://sinefunc.com/sinatra-support).
+but you can use [Sinatra Support](https://github.com/sinefunc/sinatra-support/).
 
 For an example of how to use AssetPack with Compass, including on how to use it 
 to generate image [sprites][compsprite], see the [Compass example 
