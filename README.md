@@ -1,43 +1,22 @@
 # [Sinatra AssetPack](http://ricostacruz.com/sinatra-assetpack)
 
->  Package your assets transparently in Sinatra.
+>  The most convenient way to manage your assets in Sinatra. 
 
 [![Build Status](https://travis-ci.org/rstacruz/sinatra-assetpack.png?branch=master)](https://travis-ci.org/rstacruz/sinatra-assetpack)
 [![Gem Version](https://badge.fury.io/rb/sinatra-assetpack.png)](http://badge.fury.io/rb/sinatra-assetpack)
 [![Dependency Status](https://gemnasium.com/rstacruz/sinatra-assetpack.png)](https://gemnasium.com/rstacruz/sinatra-assetpack)
 [![Code Climate](https://codeclimate.com/github/rstacruz/sinatra-assetpack.png)](https://codeclimate.com/github/rstacruz/sinatra-assetpack)
 
-How it works
-------------
-
-This is *the* most convenient way to set up your CSS/JS (and images) in a 
-[Sinatra](http://sinatrarb.com) app. Seriously. No need for crappy routes to 
-render Sass or whatever. No-siree!
-
-1. Drop your assets into `/app` like so (you can configure directories don't worry):
-   * JavaScript/CoffeeScript files in `/app/js`
-   * CSS/Sass/Less/CSS files in `/app/css`
-   * Images into `/app/images`
-3. Add `register Sinatra::AssetPack` and set up options to your app (see below).
-4. Use `<%= js :app %>` and `<%= css :application %>` to your layouts. Use these instead of
-   messy *script* and *link* tags.
-5. BOOM! You're in business baby!
-
-Installation
-------------
-
-Add to your `Gemfile` :
+##  Installation
 
 ``` ruby
+# Gemfile
 gem 'sinatra-assetpack', :require => 'sinatra/assetpack'
 ```
 
+## Setup
 
-Setup
------
-
-Install the plugin and add some options. (Feel free to omit the *Optional* 
-    items, they're listed here for posterity):
+Register the extension and set your assets configuration.
 
 ``` ruby
 require 'sinatra/assetpack'
@@ -47,26 +26,33 @@ class App < Sinatra::Base
   register Sinatra::AssetPack
 
   assets {
-    serve '/js',     from: 'app/js'        # Optional
-    serve '/css',    from: 'app/css'       # Optional
-    serve '/images', from: 'app/images'    # Optional
+    serve '/js',     from: 'app/js'        # Default
+    serve '/css',    from: 'app/css'       # Default
+    serve '/images', from: 'app/images'    # Default
 
     # The second parameter defines where the compressed version will be served.
     # (Note: that parameter is optional, AssetPack will figure it out.)
     js :app, '/js/app.js', [
       '/js/vendor/**/*.js',
-      '/js/app/**/*.js'
+      '/js/lib/**/*.js'
     ]
 
     css :application, '/css/application.css', [
       '/css/screen.css'
     ]
 
-    js_compression  :jsmin      # Optional
-    css_compression :sass       # Optional
+    js_compression  :jsmin      # Default
+    css_compression :simple     # Default, set to :sass, :less, etc.
   }
 end
 ```
+
+## Usage
+
+1. Drop your assets into `/app/css`, `/app/js`, `/app/images`.
+2. Add `register Sinatra::AssetPack` (see setup options).
+3. Use `<%= js :app %>` and `<%= css :application %>` in your layout.
+4. You now have proper assets management!
 
 #### Using in layouts
 In your layouts, use the `css` and `js` helpers:
@@ -78,8 +64,7 @@ In your layouts, use the `css` and `js` helpers:
 ```
 
 
-And then what?
---------------
+## Result
 
 #### Development mode
 If you're on **development** mode, it serves each of the files as so:
@@ -99,8 +84,7 @@ If you're on **production** mode, it serves a compressed version in the URLs you
 <script type='text/javascript' src='/js/app.589491.js'></script>
 ```
 
-Features
---------
+## Features
 
  * __CoffeeScript support__ Just add your coffee files in one of the paths 
  served (in the example, `app/js/hello.coffee`) and they will be available as JS 
@@ -129,8 +113,7 @@ Features
 
  * __Heroku support__ Oh yes. That's right.
 
-Compressors
------------
+## Compressors
 
 By default, AssetPack uses [JSMin](http://rubygems.org/gems/jsmin) for JS 
 compression, and simple regexes for CSS compression. You can specify other
@@ -244,9 +227,7 @@ gem 'uglifier'
 gem "therubyracer-heroku", "0.8.1.pre3", :require => false
 ```
 
-
-Images
-------
+## Images
 
 To show images, use the `img` helper.
 This automatically adds width, height, and a cache buster thingie.
@@ -293,10 +274,10 @@ Now invoke the `assetpack:build` Rake task. This will create files in `/public`.
     $ rake assetpack:build
 
 
-API reference
--------------
+## Settings
 
 #### Assets block
+
 All configuration happens in the `assets` block. You may invoke it in 2 ways:
 
 ``` ruby
@@ -555,8 +536,7 @@ end
 ```
 
 
-API reference: helpers
-----------------------
+## Helpers
 
 These are helpers you can use in your views.
 
@@ -665,13 +645,11 @@ class Main
 end
 ```
 
-Contributing
-------------
+## Contributing
 
 See [CONTRIBUTING.md](https://github.com/rstacruz/sinatra-assetpack/blob/master/CONTRIBUTING.md) for details on contributing and running test.
 
-Acknowledgements
-----------------
+## Acknowledgements
 
 © 2011-2013, Rico Sta. Cruz. Released under the [MIT
 License](http://www.opensource.org/licenses/mit-license.php).
