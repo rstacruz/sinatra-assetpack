@@ -2,8 +2,8 @@ module Sinatra
   module AssetPack
     module Css
       def self.preproc(str, assets)
-        str.gsub(/url\(["']?(.*?)["']?\)/) { |url|
-          path = $1
+        str.gsub(/url\((["']?)(.*?)(["']?)\)/) { |url|
+          path = $2
           file, options = path.split('?')
           local = assets.local_file_for file
 
@@ -17,7 +17,7 @@ module Sinatra
             path
           end
 
-          "url(#{url})"
+          "url(#{$1}#{url}#{$3})"
         }
       end
 
