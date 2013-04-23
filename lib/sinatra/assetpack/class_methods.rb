@@ -86,9 +86,11 @@ module Sinatra
               not_found unless AssetPack.tilt_formats[format] == fmt
 
               @template_cache.fetch(fn) {
-                out = render format.to_sym, File.read(fn)
-                out = asset_filter_css(out)  if fmt == 'css'
-                out
+                settings.assets.fetch_dynamic_asset(fn) {
+                  out = render format.to_sym, File.read(fn)
+                  out = asset_filter_css(out)  if fmt == 'css'
+                  out
+                }
               }
             end
           end
