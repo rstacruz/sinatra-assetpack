@@ -27,7 +27,7 @@ class App < Sinatra::Base
   c = Compass.configuration
   c.project_path     = root
   c.images_dir       = "app/images"
-  c.http_images_path = "/images"
+  c.http_generated_images_path = "/images"
 
   # Asset Pack.
   register Sinatra::AssetPack

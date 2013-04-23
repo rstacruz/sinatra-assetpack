@@ -1,0 +1,5 @@
+source 'https://rubygems.org'
+
+gem 'sinatra-assetpack'
+gem 'sinatra-support', :require => 'sinatra/support'
+gem 'compass'

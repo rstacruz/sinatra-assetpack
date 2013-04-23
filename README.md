@@ -612,33 +612,15 @@ This example renders an image with an alt tag.
 <img src='/images/icon.834782.png' width='24' height='24' alt='Icon' />`
 ```
 
-Need Compass support?
----------------------
+## Compass
 
-No, AssetPack doesn't have built-in [Compass](http://compass-style.org) support, 
-but you can use [Sinatra Support](https://github.com/sinefunc/sinatra-support/).
+AssetPack doesn't have built-in [Compass](http://compass-style.org)
+support, but you can include it easily with
+[Sinatra Support](https://github.com/sinefunc/sinatra-support/).
 
-For an example of how to use AssetPack with Compass, including on how to use it 
-to generate image [sprites][compsprite], see the [Compass example 
-application.][compex]
+See also the [Compass example application.][compass]
 
-[compex]: https://github.com/rstacruz/sinatra-assetpack/tree/master/examples/compass
-[compsprite]: http://compass-style.org/reference/compass/utilities/sprites/
-
-``` ruby
-# Gemfile
-gem 'sinatra-support', :require => 'sinatra/support'
-```
-
-``` ruby
-# app.rb
-Encoding.default_external = 'utf-8'
-require 'sinatra/support'
-
-class Main
-  register Sinatra::CompassSupport
-end
-```
+[compass]: https://github.com/rstacruz/sinatra-assetpack/tree/master/examples/compass
 
 ## Contributing
 
