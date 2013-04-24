@@ -34,4 +34,11 @@ class PreprocTest < UnitTest
     get '/css/screen.css'
     assert body =~ %r{data:image/png;base64,[A-Za-z0-9=/]{100,}}
   end
+
+  test "ignores data-uris" do
+    app.stubs(:clear_cach).returns(true)
+    app.stubs(:development?).returns(false)
+    get '/css/bariol.css'
+    assert body =~ %r{data:application/x-font-woff;charset=utf-8;base64,[A-Za-z0-9=/]{100,}}
+  end
 end
