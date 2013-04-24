@@ -19,6 +19,7 @@ gem 'sinatra-assetpack', :require => 'sinatra/assetpack'
 Register the extension and set your assets configuration.
 
 ``` ruby
+require 'sinatra/base'
 require 'sinatra/assetpack'
 
 class App < Sinatra::Base
