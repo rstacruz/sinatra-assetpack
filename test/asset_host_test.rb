@@ -57,7 +57,7 @@ class AssetHostTest < UnitTest
   test "host gets added to css image path in production" do
     app.stubs(:development?).returns(false)
     get '/css/style.css'
-    assert body.include?('background: url(//cdn-1.example.org/images/background.b1946ac92492d2347c6235b4d2611184.jpg)')
+    assert body =~ /background: url\(\/\/cdn-[0|1].example.org\/images\/background.[a-f0-9]{32}.jpg\)/
 
     # does not alter non-existing files (design or flaw???)
     assert body.include?('background: url(/images/404.png)')
