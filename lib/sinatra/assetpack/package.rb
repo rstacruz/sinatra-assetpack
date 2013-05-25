@@ -60,20 +60,31 @@ module Sinatra
         /^#{re}$/
       end
 
-      def to_development_html(options={})
+      def to_development_html(path_prefix, options={})
         paths_and_files.map { |path, file|
           path = add_cache_buster(path, file)
+          path = add_path_prefix(path, path_prefix)
           link_tag(path, options)
         }.join("\n")
       end
 
-      # The URI path of the minified file (with cache buster)
+      # The URI path of the minified file (with cache buster, but not a path prefix)
       def production_path
         add_cache_buster @path, *files
       end
 
-      def to_production_html(options={})
-        link_tag production_path, options
+      def to_production_html(path_prefix, options={})
+        path = production_path
+        path = add_path_prefix(path, path_prefix)
+        link_tag path, options
+      end
+
+      def add_path_prefix(path, path_prefix)
+        if path_prefix == '/'
+          path
+        else
+          "#{path_prefix}#{path}"
+        end
       end
 
       def minify

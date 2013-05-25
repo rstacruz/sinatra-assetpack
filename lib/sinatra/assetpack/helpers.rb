@@ -45,9 +45,9 @@ module Sinatra
         return ""  unless pack
 
         if settings.environment == :production
-          pack.to_production_html options
+          pack.to_production_html request.script_name, options
         else
-          pack.to_development_html options
+          pack.to_development_html request.script_name, options
         end
       end
 
