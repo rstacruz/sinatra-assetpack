@@ -2,7 +2,7 @@ require './lib/sinatra/assetpack/version'
 
 Gem::Specification.new do |s|
   s.name = 'sinatra-assetpack'
-  s.version = Sinatra::AssetPack.version
+  s.version = Sinatra::AssetPack::VERSION
   s.summary = %{Asset packager for Sinatra.}
   s.description = %Q{Package your assets for Sinatra.}
   s.authors = ['Rico Sta. Cruz']
