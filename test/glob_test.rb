@@ -2,8 +2,6 @@ require File.expand_path('../test_helper', __FILE__)
 
 class GlobTest < UnitTest
   class App < Main
-    register Sinatra::AssetPack
-
     assets {
       serve '/js', :from => 'app/js_glob'
       js :a, '/a.js', [ '/js/**/*.js' ]

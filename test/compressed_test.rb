@@ -2,8 +2,6 @@ require File.expand_path('../test_helper', __FILE__)
 
 class CompressedTest < UnitTest
   class App < Main
-    register Sinatra::AssetPack
-
     assets {
       js :app, '/app.js', [ '/js/*.js' ]
     }

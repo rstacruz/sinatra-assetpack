@@ -2,8 +2,6 @@ require File.expand_path('../test_helper', __FILE__)
 
 class LocalFileTest < UnitTest
   class App < Main
-    register Sinatra::AssetPack
-
     assets {
       css :application, [ '/css/*.css' ]
       serve '/fonts',    :from => 'app/fonts'

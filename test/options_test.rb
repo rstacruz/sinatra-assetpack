@@ -2,8 +2,6 @@ require File.expand_path('../test_helper', __FILE__)
 
 class OptionsTest < UnitTest
   class App < Main
-    register Sinatra::AssetPack
-
     assets {
       css :application, [ '/css/*.css' ]
       js_compression :closure

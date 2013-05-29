@@ -2,8 +2,6 @@ require File.expand_path('../test_helper', __FILE__)
 
 class UglifyTest < UnitTest
   class App < Main
-    register Sinatra::AssetPack
-
     assets do
       js_compression :uglify, :mangle => true
       js :main, '/main.js', [

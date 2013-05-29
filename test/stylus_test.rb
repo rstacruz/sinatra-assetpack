@@ -2,8 +2,6 @@ require File.expand_path('../test_helper', __FILE__)
 
 class StylusTest < UnitTest
   class App < Main
-    register Sinatra::AssetPack
-
     assets do |a|
       a.css :a, '/css/a.css', [
         '/css/stylus.css'

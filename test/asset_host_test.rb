@@ -2,10 +2,6 @@ require File.expand_path('../test_helper', __FILE__)
 
 class AssetHostTest < UnitTest
   class App < Main
-    register Sinatra::AssetPack
-
-    set :root, File.join(File.dirname(__FILE__), "app")
-
     assets {
       serve '/css',     :from => 'app/css'
       serve '/js',      :from => 'app/js'

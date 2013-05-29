@@ -2,8 +2,6 @@ require File.expand_path('../test_helper', __FILE__)
 
 class NonExistentTest < UnitTest
   class App < Main
-    register Sinatra::AssetPack
-
     assets do |a|
       a.js :script, '/script.min.js', [
         '/js/h*.js',

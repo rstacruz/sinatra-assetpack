@@ -2,8 +2,6 @@ require File.expand_path('../test_helper', __FILE__)
 
 class TemplateCacheTest < UnitTest
   class App < Main
-    register Sinatra::AssetPack
-
     set :reload_templates, false
     assets do |a|
       a.css :a, '/a.css', %w[/css/screen.css]

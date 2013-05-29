@@ -2,8 +2,6 @@ require File.expand_path('../test_helper', __FILE__)
 
 class OrderTest < UnitTest
   class App < Main
-    register Sinatra::AssetPack
-
     assets {
       css :a, '/css/a.css', [
         '/css/s*.css',

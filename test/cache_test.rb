@@ -2,8 +2,6 @@ require File.expand_path('../test_helper', __FILE__)
 
 class CacheTest < UnitTest
   class App < Main
-    register Sinatra::AssetPack
-
     set :reload_templates, false
     assets {
       js :app, '/js/app.js', [

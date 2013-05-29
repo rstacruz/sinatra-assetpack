@@ -2,8 +2,6 @@ require File.expand_path('../test_helper', __FILE__)
 
 class IgnoreTest < UnitTest
   class App < Main
-    register Sinatra::AssetPack
-
     assets do
       js :main, '/main.js', %w[/js/*.js]
     end
