@@ -29,7 +29,11 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'uglifier'
   s.add_development_dependency 'yui-compressor'
 
-  # For tests
+  # For gem tests
   s.add_development_dependency 'rake'
   s.add_development_dependency 'mocha'
+
+  # For gem release mangement
+  s.add_development_dependency 'gem-release'
+
 end
