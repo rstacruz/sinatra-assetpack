@@ -1,7 +1,7 @@
 require File.expand_path('../test_helper', __FILE__)
 
 class OptionsTest < UnitTest
-  class App < UnitTest::App
+  class App < Main
     register Sinatra::AssetPack
 
     assets {

@@ -1,7 +1,7 @@
 require File.expand_path('../test_helper', __FILE__)
 
 class AssetHostTest < UnitTest
-  class TestApp < UnitTest::App
+  class App < Main
     register Sinatra::AssetPack
 
     set :root, File.join(File.dirname(__FILE__), "app")
@@ -24,7 +24,7 @@ class AssetHostTest < UnitTest
   end
 
   def app
-    TestApp
+    App
   end
 
   test "hosts sets option" do
@@ -34,12 +34,12 @@ class AssetHostTest < UnitTest
 
   test "host gets added to css source path" do
     app.stubs(:development?).returns(false)
-    assert TestApp.assets.packages['a.css'].to_production_html('/') =~ %r{href='//cdn-[0|1].example.org/assets/a.[a-f0-9]{32}.css'}
+    assert App.assets.packages['a.css'].to_production_html('/') =~ %r{href='//cdn-[0|1].example.org/assets/a.[a-f0-9]{32}.css'}
   end
 
   test "host gets added to js source path" do
     app.stubs(:development?).returns(false)
-    assert TestApp.assets.packages['b.js'].to_production_html('/') =~ %r{src='//cdn-[0|1].example.org/assets/b.[a-f0-9]{32}.js'}
+    assert App.assets.packages['b.js'].to_production_html('/') =~ %r{src='//cdn-[0|1].example.org/assets/b.[a-f0-9]{32}.js'}
   end
 
   test "host gets added to image helper path in production" do
@@ -66,12 +66,12 @@ class AssetHostTest < UnitTest
   test "do not add asset host to filename in dev mode" do
     app.stubs(:development?).returns(true)
     file = '/js/hello.js'
-    assert !(Sinatra::AssetPack::HtmlHelpers.get_file_uri(file, TestApp.assets) =~ /cdn-[0|1].example.org/)
+    assert !(Sinatra::AssetPack::HtmlHelpers.get_file_uri(file, App.assets) =~ /cdn-[0|1].example.org/)
   end
 
   test "add asset host to filename in production/qa mode" do
     app.stubs(:development?).returns(false)
     file = '/js/hello.js'
-    assert Sinatra::AssetPack::HtmlHelpers.get_file_uri(file, TestApp.assets) =~ /cdn-[0|1].example.org/
+    assert Sinatra::AssetPack::HtmlHelpers.get_file_uri(file, App.assets) =~ /cdn-[0|1].example.org/
   end
 end

@@ -1,7 +1,7 @@
 require File.expand_path('../test_helper', __FILE__)
 
 class TemplateCacheTest < UnitTest
-  class App < UnitTest::App
+  class App < Main
     register Sinatra::AssetPack
 
     set :reload_templates, false
@@ -10,7 +10,9 @@ class TemplateCacheTest < UnitTest
     end
   end
 
-  def app() App; end
+  def app
+    App
+  end
 
   test "cache dynamic files when reload templates is false" do
     App.any_instance.expects(:asset_filter_css).times(1).returns "OK"

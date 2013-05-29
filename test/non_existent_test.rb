@@ -1,7 +1,7 @@
 require File.expand_path('../test_helper', __FILE__)
 
 class NonExistentTest < UnitTest
-  class App < UnitTest::App
+  class App < Main
     register Sinatra::AssetPack
 
     assets do |a|

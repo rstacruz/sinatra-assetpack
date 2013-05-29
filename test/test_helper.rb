@@ -16,12 +16,6 @@ require File.expand_path('../app/app.rb', __FILE__)
 class UnitTest < Test::Unit::TestCase
   include Rack::Test::Methods
 
-  class App < Sinatra::Base
-    set :root, File.expand_path('../app', __FILE__)
-    enable :raise_errors
-    disable :show_exceptions
-  end
-
   def app
     Main
   end

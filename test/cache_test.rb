@@ -1,7 +1,7 @@
 require File.expand_path('../test_helper', __FILE__)
 
 class CacheTest < UnitTest
-  class App < UnitTest::App
+  class App < Main
     register Sinatra::AssetPack
 
     set :reload_templates, false
@@ -16,7 +16,9 @@ class CacheTest < UnitTest
     }
   end
 
-  def app() App; end
+  def app
+    App
+  end
 
   test "Compressed js caching" do
     app.set :reload_templates, false
