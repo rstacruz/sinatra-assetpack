@@ -1,3 +1,12 @@
+v0.2.3 - May 29, 2013
+----------------------
+
+### Added
+  * Support for Rack::URLMap / url prefix (#104)
+
+### Changed
+  * Use optimized MD5 file digest method. (#99)
+
 v0.2.2 - April 28, 2013
 ----------------------
 
@@ -167,7 +176,7 @@ v0.0.6 - Aug 30, 2011
 ---------------------
 
 ### Fixed:
-  * Redundant entries are now suppressed. (eg, when specifying 
+  * Redundant entries are now suppressed. (eg, when specifying
       `['vendor/jquery.js', 'vendor/*.js']`)
 
 ### Added:
@@ -195,8 +204,8 @@ v0.0.4 - Aug 30, 2011
   * Assets are now ordered properly.
 
 ### Changed:
-  * the config format for `js_compression` and family. In your `assets` block, 
-  you now have to use `js_compression :closure` instead of `js_compression = 
+  * the config format for `js_compression` and family. In your `assets` block,
+  you now have to use `js_compression :closure` instead of `js_compression =
   :closure`.
   * Use simple CSS compression by default.
 
