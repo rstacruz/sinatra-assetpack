@@ -67,7 +67,7 @@ In your layouts, use the `css` and `js` helpers:
 ```
 # layout.haml
 != css :application, :media => 'screen'
-!= css :app
+!= js :app
 ```
 
 ## Results
