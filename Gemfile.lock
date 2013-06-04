@@ -30,6 +30,7 @@ GEM
     jsmin (1.0.1)
     less (2.3.1)
       commonjs (~> 0.2.6)
+    libv8 (3.11.8.17)
     metaclass (0.0.1)
     mocha (0.13.3)
       metaclass (~> 0.0.1)
@@ -41,6 +42,7 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     rake (10.0.3)
+    ref (1.0.5)
     sass (3.2.7)
     sinatra (1.4.2)
       rack (~> 1.5, >= 1.5.2)
@@ -50,6 +52,9 @@ GEM
       execjs
       stylus-source
     stylus-source (0.31.0)
+    therubyracer (0.11.4)
+      libv8 (~> 3.11.8.12)
+      ref
     tilt (1.3.5)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
@@ -72,5 +77,6 @@ DEPENDENCIES
   sass
   sinatra-assetpack!
   stylus
+  therubyracer
   uglifier
   yui-compressor
