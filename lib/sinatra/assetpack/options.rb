@@ -252,7 +252,7 @@ module Sinatra
 
           path = File.join app.root, path
 
-          path  if File.exists?(path)
+          path if File.exists?(path)
         end
       end
 
@@ -266,7 +266,12 @@ module Sinatra
         file.gsub!(/#{extension}$/, "")
         # Remove cache-buster (/js/app.28389 => /js/app)
         file.gsub!(/\.[a-f0-9]{32}$/, "")
-        matches = Dir[File.join(app.root, from, "#{file}.*")]
+
+        local_path = from
+        local_path = File.join(app.root, from) unless File.exist?(from)
+        path = File.join(local_path, "#{file}.*")
+
+        matches = Dir[path]
 
         # Fix for filenames with dots (can't do this with glob)
         matches.select! { |f| f =~ /#{file}\.[^.]+$/ }
