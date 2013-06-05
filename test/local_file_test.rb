@@ -8,8 +8,8 @@ class LocalFileTest < UnitTest
 
     assets {
       css :application, [ '/css/*.css' ]
-      serve '/fonts', from: 'app/fonts'
-      serve '/abs_fonts', from: ABS_FONTS_PATH
+      serve '/fonts', :from => 'app/fonts'
+      serve '/abs_fonts', :from => ABS_FONTS_PATH
     }
   end
 
