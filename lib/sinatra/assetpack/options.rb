@@ -49,6 +49,8 @@ module Sinatra
         @js_compression  = :jsmin
         @css_compression = :simple
 
+        @reload_files_cache = true
+
         begin
           @output_path   = app.public
         rescue NoMethodError
@@ -82,12 +84,14 @@ module Sinatra
         return  unless File.directory?(File.join(app.root, options[:from]))
 
         @served[path] = options[:from]
+        @reload_files_cache = true
       end
 
       # Undo defaults.
       def reset!
         @served   = Hash.new
         @packages = Hash.new
+        @reload_files_cache = true
       end
 
       # Ignores a given path spec.
@@ -284,6 +288,8 @@ module Sinatra
 
       # Returns the files as a hash.
       def files(match=nil)
+          return @files unless @reload_files_cache
+
           # All
           # A buncha tuples
           tuples = @served.map { |prefix, local_path|
@@ -295,7 +301,9 @@ module Sinatra
             }
           }.flatten.compact
 
-          Hash[*tuples]
+          @reload_files_cache = false
+          @files = Hash[*tuples]
+          @files
       end
 
       # Returns an array of URI paths of those matching given globs.
