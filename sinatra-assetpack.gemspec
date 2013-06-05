@@ -27,7 +27,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'sass'
   s.add_development_dependency 'stylus'
   s.add_development_dependency 'uglifier'
-  s.add_development_dependency 'therubyracer'
   s.add_development_dependency 'yui-compressor'
 
   # For gem tests
