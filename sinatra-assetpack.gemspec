@@ -5,7 +5,8 @@ Gem::Specification.new do |s|
   s.version = Sinatra::AssetPack::VERSION
   s.summary = %{Asset packager for Sinatra.}
   s.description = %Q{Package your assets for Sinatra.}
-  s.authors = ['Rico Sta. Cruz']
+  s.authors = ['Rico Sta. Cruz', 'Jean-Philippe Doyle']
+  s.licenses ['MIT']
   s.email = ['rico@sinefunc.com']
   s.homepage = 'http://github.com/rstacruz/sinatra-assetpack'
   s.files = `git ls-files`.strip.split("\n")
