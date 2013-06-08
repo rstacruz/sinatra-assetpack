@@ -221,15 +221,13 @@ module Sinatra
 
       # Caches the packages.
       def cache!(&blk)
-        return false if app.reload_templates
+        return if app.reload_templates
 
         session = Rack::Test::Session.new app
         packages.each { |_, pack|
-          yield pack.path  if block_given?
+          yield pack.path if block_given?
           session.get(pack.path)
         }
-
-        true
       end
 
       def served?(path)
