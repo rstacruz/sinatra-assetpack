@@ -553,6 +553,7 @@ class App < Sinatra::Base
     cache_dynamic_assets true
   }
 end
+```
 
 ## Helpers
 
