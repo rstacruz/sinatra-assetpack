@@ -48,7 +48,6 @@ module Sinatra
         @app             = app
         @js_compression  = :jsmin
         @css_compression = :simple
-
         @reload_files_cache = true
 
         begin
@@ -178,14 +177,14 @@ module Sinatra
       end
 
       def js_compression(name=nil, options=nil)
-        @js_compression = name  unless name.nil?
-        @js_compression_options = options  if options.is_a?(Hash)
+        @js_compression = name unless name.nil?
+        @js_compression_options = options if options.is_a?(Hash)
         @js_compression
       end
 
       def css_compression(name=nil, options=nil)
-        @css_compression = name  unless name.nil?
-        @css_compression_options = options  if options.is_a?(Hash)
+        @css_compression = name unless name.nil?
+        @css_compression_options = options if options.is_a?(Hash)
         @css_compression
       end
 
@@ -222,7 +221,7 @@ module Sinatra
 
       # Caches the packages.
       def cache!(&blk)
-        return false  if app.reload_templates
+        return false if app.reload_templates
 
         session = Rack::Test::Session.new app
         packages.each { |_, pack|
@@ -288,22 +287,21 @@ module Sinatra
 
       # Returns the files as a hash.
       def files(match=nil)
-          return @files unless @reload_files_cache
+        return @files unless @reload_files_cache
 
-          # All
-          # A buncha tuples
-          tuples = @served.map { |prefix, local_path|
-            path = File.expand_path(File.join(@app.root, local_path))
-            spec = File.join(path, '**', '*')
+        # All
+        # A buncha tuples
+        tuples = @served.map { |prefix, local_path|
+          path = File.expand_path(File.join(@app.root, local_path))
+          spec = File.join(path, '**', '*')
 
-            Dir[spec].map { |f|
-              [ to_uri(f, prefix, path), f ]  unless File.directory?(f)
-            }
-          }.flatten.compact
+          Dir[spec].map { |f|
+            [ to_uri(f, prefix, path), f ]  unless File.directory?(f)
+          }
+        }.flatten.compact
 
-          @reload_files_cache = false
-          @files = Hash[*tuples]
-          @files
+        @reload_files_cache = false
+        @files = Hash[*tuples]
       end
 
       # Returns an array of URI paths of those matching given globs.
@@ -316,7 +314,6 @@ module Sinatra
       # wildcards that don't match anything.
       #
       def glob(match, options={})
-
         match = [*match]  # Force array-ness
 
         paths = match.map { |spec|
