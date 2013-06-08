@@ -45,6 +45,7 @@ module Sinatra
 
     autoload :ClassMethods,  "#{PREFIX}/assetpack/class_methods"
     autoload :Options,       "#{PREFIX}/assetpack/options"
+    autoload :Builder,       "#{PREFIX}/assetpack/builder"
     autoload :Helpers,       "#{PREFIX}/assetpack/helpers"
     autoload :HtmlHelpers,   "#{PREFIX}/assetpack/html_helpers"
     autoload :BusterHelpers, "#{PREFIX}/assetpack/buster_helpers"

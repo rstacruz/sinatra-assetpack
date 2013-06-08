@@ -38,6 +38,7 @@ module Sinatra
     #     # Returns a HashArray of (local => remote)
     #
     class Options
+      include Builder
       include Configurator
 
       def initialize(app, &blk)
@@ -193,32 +194,6 @@ module Sinatra
 
       attr_reader :served
 
-      def build!(&blk)
-        session = Rack::Test::Session.new app
-
-        get = lambda { |path|
-          response = session.get(path)
-          out      = response.body
-          mtime    = Time.parse(response.headers['Last-Modified'])  if response.headers['Last-Modified']
-
-          [ out, mtime ]
-        }
-
-        packages.each { |_, pack|
-          out, mtime = get[pack.path]
-
-          write pack.path, out, mtime, &blk
-          write pack.production_path, out, mtime, &blk
-        }
-
-        files.each { |path, local|
-          out, mtime = get[path]
-
-          write path, out, mtime, &blk
-          write BusterHelpers.add_cache_buster(path, local), out, mtime, &blk
-        }
-      end
-
       # Caches the packages.
       def cache!(&blk)
         return if app.reload_templates
@@ -266,21 +241,6 @@ module Sinatra
           (File.basename(f) == "#{file}#{extension}" || File.extname(f) == extension) ? -1 : 1
         end
         matches.first
-      end
-
-      # Writes `public/#{path}` based on contents of `output`.
-      def write(path, output, mtime=nil)
-        require 'fileutils'
-
-        path = File.join(@output_path, path)
-        yield path  if block_given?
-
-        FileUtils.mkdir_p File.dirname(path)
-        File.open(path, 'wb') { |f| f.write output }
-
-        if mtime
-          File.utime mtime, mtime, path
-        end
       end
 
       # Returns the files as a hash.
