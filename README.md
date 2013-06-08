@@ -3,7 +3,7 @@
 >  The most convenient way to manage your assets in Sinatra.
 
 [![Build Status](https://travis-ci.org/rstacruz/sinatra-assetpack.png?branch=master)](https://travis-ci.org/rstacruz/sinatra-assetpack)
-[![Gem Version](https://badge.fury.io/rb/sinatra-assetpack.png)](http://badge.fury.io/rb/sinatra-assetpack)
+[![Gem Version](https://badge.fury.io/rb/sinatra-assetpack.png)](http://rubygems.org/gems/sinatra-assetpack)
 [![Dependency Status](https://gemnasium.com/rstacruz/sinatra-assetpack.png)](https://gemnasium.com/rstacruz/sinatra-assetpack)
 [![Code Climate](https://codeclimate.com/github/rstacruz/sinatra-assetpack.png)](https://codeclimate.com/github/rstacruz/sinatra-assetpack)
 
