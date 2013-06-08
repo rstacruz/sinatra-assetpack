@@ -22,6 +22,10 @@ As simple as running `bundle exec rake` command.
 
 The default `rake` task is `rake test`.
 
+If you would like to test multiple ruby version using RVM, try `rvm all do rake test`.
+
+You may setup all ruby version quickly with `rvm all do bundle install`.
+
 ## Syntax
 
 Follow [Ruby Styleguide](https://github.com/styleguide/ruby) by Github and existing code.
