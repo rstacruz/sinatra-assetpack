@@ -1,3 +1,13 @@
+v0.2.4 - Upcoming
+----------------------
+### Added
+  * Serving from absolute path. (#107)
+  * Cache of all assets files. (#109)
+
+### Improvements
+  * Rewrote asset builder.
+  * Simplified & consolidated local_file_for & dyn_local_file_for.
+
 v0.2.3 - May 29, 2013
 ----------------------
 
