@@ -1,5 +1,5 @@
-v0.2.4 - Upcoming
-----------------------
+## v0.2.4 - June 8, 2013
+
 ### Added
   * Serving from absolute path. (#107)
   * Cache of all assets files. (#109)
@@ -8,8 +8,8 @@ v0.2.4 - Upcoming
   * Rewrote asset builder.
   * Simplified & consolidated local_file_for & dyn_local_file_for.
 
-v0.2.3 - May 29, 2013
-----------------------
+
+## v0.2.3 - May 29, 2013
 
 ### Added
   * Support for Rack::URLMap / url prefix (#104)
@@ -17,14 +17,14 @@ v0.2.3 - May 29, 2013
 ### Changed
   * Use optimized MD5 file digest method. (#99)
 
-v0.2.2 - April 28, 2013
-----------------------
+
+## v0.2.2 - April 28, 2013
 
 ### Fixed
   * Don't preprocess CSS data-uris. (#96)
 
-v0.2.1 - April 23, 2013
-----------------------
+
+## v0.2.1 - April 23, 2013
 
 ### Added
   * New cache_dynamic_assets option for development cache. (#94)
@@ -32,8 +32,8 @@ v0.2.1 - April 23, 2013
 ### Fixed
   * Fixed CSS preproc to keep original CSS url quotes & url fragment.
 
-v0.2.0 - April 20, 2013
-----------------------
+
+## v0.2.0 - April 20, 2013
 
 ### Changed
   * Using MD5 for cache busting URI. (#91, #71)
@@ -44,28 +44,28 @@ v0.2.0 - April 20, 2013
 ### Fixed
   * Added backports correctly for 1.8.7 support.
 
-v0.1.7 - March 11, 2013
-----------------------
+
+## v0.1.7 - March 11, 2013
 
 ### Added
 
   * Gem is now certificate signed.
 
-v0.1.6 - March 1, 2013
-----------------------
+
+## v0.1.6 - March 1, 2013
 
 ### Fixed
 
   * Do not use instance helpers for environment check. (#79)
 
-v0.1.5 - Feb 12, 2013
-----------------------
+
+## v0.1.5 - Feb 12, 2013
 
 ### Fixed
   *  Stylus 0.7.1 support.
 
-v0.1.4 - Feb 12, 2013
-----------------------
+
+## v0.1.4 - Feb 12, 2013
 
 ### Added
   * Multiple asset hosts support. (#27)
@@ -73,32 +73,33 @@ v0.1.4 - Feb 12, 2013
 ### Fixed
   * Lock stylus to 0.7.0 until 0.7.1 is supported.
 
-v0.1.3 - Feb 3, 2013
-----------------------
+
+## v0.1.3 - Feb 3, 2013
 
 ### Added
   * JRuby 1.9 and 1.8 now supported.
 
 ### Fixed:
   * Deal with assets with exact same name but extensions. (#75)
-  * Ruby 1.8 support (broken in previous v0.1 releases).
+  * Ruby 1.8 support (broken in previous
+## v0.1 releases).
 
-v0.1.2 - Jan 20, 2013
-----------------------
+
+## v0.1.2 - Jan 20, 2013
 
 ### Added:
   * Support for custom cache control headers for packed assets. (#43)
 
-v0.1.1 - Jan 15, 2013
-----------------------
+
+## v0.1.1 - Jan 15, 2013
 
 ### Fixed
   * Added less engine support and test (#69)
   * Support for fonts & other AssetPack.supported_formats file format. (#50)
   * Deal with multiple static files with same name but different extensions (ex. fonts).
 
-v0.1.0 - Jan 14, 2013
-----------------------
+
+## v0.1.0 - Jan 14, 2013
 
 ### Changed
   * Using `file` utility instead `identify` utility. (#26)
@@ -110,8 +111,8 @@ v0.1.0 - Jan 14, 2013
   * Add missing depedency for development unit test. (#63)
   * Deal with binary files copy (ex. images), fix errors like `"\x89" from ASCII-8BIT to UTF-8"`. (#38, #67)
 
-v0.0.11 - Feb 21, 2012
-----------------------
+
+## v0.0.11 - Feb 21, 2012
 
 ### Added:
   * Support for 'prebuild' to build on startup.
@@ -129,8 +130,8 @@ v0.0.11 - Feb 21, 2012
 ### Fixed:
   * Sinatra >= 1.3.0 compatibility. Use 'public_folder' in Sinatra >=1.3.0. (#25)
 
-v0.0.10 - Sep 18, 2011
-----------------------
+
+## v0.0.10 - Sep 18, 2011
 
 ### Added:
   * Support for 'prebuild' to build on startup.
@@ -143,8 +144,8 @@ v0.0.10 - Sep 18, 2011
     sources. (#12)
   * Refactor Compressor into separate engine classes.
 
-v0.0.9 - Sep 18, 2011
----------------------
+
+## v0.0.9 - Sep 18, 2011
 
 ### Fixed:
   * Fixed a bad route terminating issue. (#9)
@@ -158,8 +159,8 @@ v0.0.9 - Sep 18, 2011
   * Added .htc (IE behavior files) to the list of file formats to be served.
   * Added examples.
 
-v0.0.8 - Sep 06, 2011
----------------------
+
+## v0.0.8 - Sep 06, 2011
 
 ### Fixed:
   * Fixed the CSS preprocessing bug that gives invalid 'url()' properties to
@@ -182,8 +183,8 @@ v0.0.8 - Sep 06, 2011
   * Added .rvmrc and .sass-cache to gitignore.
   * Allow overridable multiple RVM environments in tests.
 
-v0.0.6 - Aug 30, 2011
----------------------
+
+## v0.0.6 - Aug 30, 2011
 
 ### Fixed:
   * Redundant entries are now suppressed. (eg, when specifying
@@ -196,8 +197,8 @@ v0.0.6 - Aug 30, 2011
   * Allow setting options for `js_compression` by passing a hash after it.
   * Make the path parameter in `js` and `css` in the `assets` block optional.
 
-v0.0.5 - Aug 30, 2011
----------------------
+
+## v0.0.5 - Aug 30, 2011
 
 ### Fixed:
   * Fix build failing when it finds directories.
@@ -205,8 +206,8 @@ v0.0.5 - Aug 30, 2011
 ### Added:
   * Added an example app in `example/`.
 
-v0.0.4 - Aug 30, 2011
----------------------
+
+## v0.0.4 - Aug 30, 2011
 
 ### Fixed:
   * Ruby 1.8 compatibility. Yay!
@@ -219,16 +220,16 @@ v0.0.4 - Aug 30, 2011
   :closure`.
   * Use simple CSS compression by default.
 
-v0.0.3 - Aug 30, 2011
----------------------
+
+## v0.0.3 - Aug 30, 2011
 
 ### Added:
   * Images in CSS defined in `url(...)` params are now cache-busted.
   * Add support for embedded images in CSS.
   * `rake assetpack:build` now also outputs images.
 
-v0.0.2 - Aug 29, 2011
----------------------
+
+## v0.0.2 - Aug 29, 2011
 
 ### Added:
   * Added the `img` helper.
@@ -237,7 +238,7 @@ v0.0.2 - Aug 29, 2011
 ### Fixed:
   * The gem now installs the correct dependencies.
 
-v0.0.1 - Aug 29, 2011
----------------------
+
+## v0.0.1 - Aug 29, 2011
 
 Initial release.
