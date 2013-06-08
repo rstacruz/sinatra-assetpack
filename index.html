@@ -5,16 +5,16 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sinatra-assetpack</title>
-    
+
     <link rel="stylesheet" type="text/css" href="http://documentup.com/stylesheets/screen.css">
-    
-    
+
+
       <style type="text/css">
         a {color: #777799}
       </style>
-    
 
-    
+
+
       <!-- Google Analytics -->
       <script type="text/javascript">
 
@@ -29,10 +29,10 @@
         })();
 
       </script>
-    
+
 
     <!-- Typekit -->
-    
+
       <script type="text/javascript">
         (function() {
           var config = {
@@ -42,163 +42,167 @@
           var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/( |^)wf-loading( |$)/g,"");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script");tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(a&&a!="complete"&&a!="loaded")return;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
         })();
       </script>
-    
+
   </head>
   <body><div id="container">
   <div id="nav">
-    
+
       <div id="header">
         <a href="#" id="logo">sinatra-assetpack</a>
       </div>
-    
+
     <ul id="sections">
-      
+
         <li>
           <a href="#installation">Installation</a>
-          
+
         </li>
-      
+
         <li>
           <a href="#setup">Setup</a>
-          
+
         </li>
-      
+
         <li>
           <a href="#usage">Usage</a>
-          
+
         </li>
-      
+
         <li>
           <a href="#results">Results</a>
-          
+
         </li>
-      
+
         <li>
           <a href="#features">Features</a>
-          
+
         </li>
-      
+
         <li>
           <a href="#compressors">Compressors</a>
-          
+
             <ul>
-              
+
                 <li>
                   <a href="#compressors/yui-compressor">YUI Compressor</a>
                 </li>
-              
+
                 <li>
                   <a href="#compressors/sass-compression">SASS compression</a>
                 </li>
-              
+
                 <li>
                   <a href="#compressors/sqwish-css-compression">Sqwish CSS compression</a>
                 </li>
-              
+
                 <li>
                   <a href="#compressors/google-closure-compression">Google Closure compression</a>
                 </li>
-              
+
                 <li>
                   <a href="#compressors/uglifyjs-compression">UglifyJS compression</a>
                 </li>
-              
+
             </ul>
-          
+
         </li>
-      
+
         <li>
           <a href="#images">Images</a>
-          
+
         </li>
-      
+
         <li>
           <a href="#precompile">Precompile</a>
-          
+
         </li>
-      
+
         <li>
           <a href="#settings">Settings</a>
-          
+
             <ul>
-              
+
                 <li>
                   <a href="#settings/assets-serve">assets.serve</a>
                 </li>
-              
+
                 <li>
                   <a href="#settings/assets-js-_compression-br-assets-css-_compression">assets.js\_compression&lt;br&gt;assets.css\_compression</a>
                 </li>
-              
+
                 <li>
                   <a href="#settings/assets-js-_compression-_options-br-assets-css-_compression-_options">assets.js\_compression\_options&lt;br&gt;assets.css\_compression\_options</a>
                 </li>
-              
+
                 <li>
                   <a href="#settings/assets-css-br-assets-js">assets.css&lt;br&gt;assets.js</a>
                 </li>
-              
+
                 <li>
                   <a href="#settings/assets-ignore">assets.ignore</a>
                 </li>
-              
+
                 <li>
                   <a href="#settings/assets-prebuild">assets.prebuild</a>
                 </li>
-              
+
                 <li>
                   <a href="#settings/assets-expires">assets.expires</a>
                 </li>
-              
+
+                <li>
+                  <a href="#settings/assets-cache_dynamic_assets">assets.cache_dynamic_assets</a>
+                </li>
+
             </ul>
-          
+
         </li>
-      
+
         <li>
           <a href="#helpers">Helpers</a>
-          
+
             <ul>
-              
+
                 <li>
                   <a href="#helpers/css">&lt;%= css %&gt;</a>
                 </li>
-              
+
                 <li>
                   <a href="#helpers/js">&lt;%= js %&gt;</a>
                 </li>
-              
+
                 <li>
                   <a href="#helpers/img">&lt;%= img %&gt;</a>
                 </li>
-              
+
             </ul>
-          
+
         </li>
-      
+
         <li>
           <a href="#compass">Compass</a>
-          
+
         </li>
-      
+
         <li>
           <a href="#contributing">Contributing</a>
-          
+
         </li>
-      
+
         <li>
           <a href="#acknowledgements">Acknowledgements</a>
-          
+
         </li>
-      
+
     </ul>
-    
-    
+
+
   </div>
   <div id="content">
-    
+
     <h1><a href="http://ricostacruz.com/sinatra-assetpack">Sinatra AssetPack</a></h1>
 <blockquote>
-<p> The most convenient way to manage your assets in Sinatra. 
+<p> The most convenient way to manage your assets in Sinatra.
 
 </p>
 </blockquote>
@@ -215,7 +219,8 @@
 <p>Register the extension and set your assets configuration.
 
 </p>
-<pre><code class="ruby"><span class="identifier"><span class="keymethods">require</span></span> <span class="string">'sinatra/assetpack'</span>
+<pre><code class="ruby"><span class="identifier"><span class="keymethods">require</span></span> <span class="string">'sinatra/base'</span>
+<span class="identifier"><span class="keymethods">require</span></span> <span class="string">'sinatra/assetpack'</span>
 
 <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="inheritance">&lt; <span class="parent">Sinatra::Base</span></span></span>
   <span class="identifier">set</span> <span class="symbol">:<span class="identifier">root</span></span>, <span class="constant">File</span>.<span class="identifier">dirname</span>(<span class="identifier">__FILE__</span>) <span class="comment"># You must set app root</span>
@@ -258,7 +263,7 @@
 &lt;<span class="variable">%=</span> js  :app <span class="variable">%></span></code></pre>
 <pre><code><span class="preprocessor"># layout.haml</span>
 != css :application, :media => <span class="string">'screen'</span>
-!= css :app</code></pre>
+!= js :app</code></pre>
 <h2 id='results'>Results</h2 id='results'>
 <h4>Development mode</h4>
 <p>If you&#39;re on <strong>development</strong> mode, it serves each of the files as so:
@@ -276,36 +281,36 @@
 <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">'text/javascript'</span> <span class="attribute">src</span>=<span class="value">'/js/app.589491.js'</span>></span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>></span></code></pre>
 <h2 id='features'>Features</h2 id='features'>
 <ul>
-<li><p><strong>CoffeeScript support</strong> Just add your coffee files in one of the paths 
-served (in the example, <code>app/js/hello.coffee</code>) and they will be available as JS 
+<li><p><strong>CoffeeScript support</strong> Just add your coffee files in one of the paths
+served (in the example, <code>app/js/hello.coffee</code>) and they will be available as JS
 files (<code>http://localhost:4567/js/hello.js</code>).</p>
 </li>
-<li><p><strong>Sass/Less/SCSS support</strong> Works the same way. Place your dynamic CSS files 
-in there (say, <code>app/css/screen.sass</code>) and they will be available as CSS files 
+<li><p><strong>Sass/Less/SCSS support</strong> Works the same way. Place your dynamic CSS files
+in there (say, <code>app/css/screen.sass</code>) and they will be available as CSS files
 (<code>http://localhost:4567/css/screen.css</code>).</p>
 </li>
-<li><p><strong>Cache busting</strong> the <code>css</code> and <code>js</code> helpers automatically ensures the URL 
-is based on when the file was last modified. The URL <code>/js/jquery.js</code> may be 
-translated to <code>/js/jquery.8237898.js</code> to ensure visitors always get the latest 
+<li><p><strong>Cache busting</strong> the <code>css</code> and <code>js</code> helpers automatically ensures the URL
+is based on when the file was last modified. The URL <code>/js/jquery.js</code> may be
+translated to <code>/js/jquery.8237898.js</code> to ensure visitors always get the latest
 version.</p>
 </li>
-<li><p><strong>Images support</strong> Image filenames in your CSS will automatically get a 
+<li><p><strong>Images support</strong> Image filenames in your CSS will automatically get a
 cache-busting suffix (eg, <code>/images/icon.742958.png</code>).</p>
 </li>
-<li><p><strong>Embedded images support</strong> You can embed images in your CSS files as 
+<li><p><strong>Embedded images support</strong> You can embed images in your CSS files as
 <code>data:</code> URIs by simply adding <code>?embed</code> to the end of your URL.</p>
 </li>
 <li><p><strong>No intermediate files needed</strong> You don&#39;t need to generate compiled files.
 You can, but it&#39;s optional. Keeps your source repo clean!</p>
 </li>
-<li><p><strong>Auto minification (with caching)</strong> JS and CSS files will be compressed as 
+<li><p><strong>Auto minification (with caching)</strong> JS and CSS files will be compressed as
 needed.</p>
 </li>
 <li><p><strong>Heroku support</strong> Oh yes. That&#39;s right.</p>
 </li>
 </ul>
 <h2 id='compressors'>Compressors</h2 id='compressors'>
-<p>By default, AssetPack uses <a href="http://rubygems.org/gems/jsmin">JSMin</a> for JS 
+<p>By default, AssetPack uses <a href="http://rubygems.org/gems/jsmin">JSMin</a> for JS
 compression, and simple regexes for CSS compression. You can specify other
 compressors in the <code>assets</code> block:
 
@@ -342,8 +347,8 @@ compressors in the <code>assets</code> block:
 <pre><code class="ruby"><span class="comment"># Gemfile</span>
 <span class="identifier">gem</span> <span class="string">'sass'</span></code></pre>
 <h3 id='compressors/sqwish-css-compression'>Sqwish CSS compression</h3 id='compressors/sqwish-css-compression'>
-<p><a href="http://github.com/ded/sqwish">Sqwish</a> is a NodeJS-based CSS compressor.  To use 
-Sqwish with AssetPack, install it using <code>npm install -g sqwish</code>. You need NodeJS 
+<p><a href="http://github.com/ded/sqwish">Sqwish</a> is a NodeJS-based CSS compressor.  To use
+Sqwish with AssetPack, install it using <code>npm install -g sqwish</code>. You need NodeJS
 and NPM installed.
 
 </p>
@@ -352,7 +357,7 @@ and NPM installed.
   <span class="identifier">css_compression</span> <span class="symbol">:<span class="identifier">sqwish</span></span>, <span class="symbol">:<span class="identifier">strict</span></span> => <span class="identifier"><span class="keyword">true</span></span>
 }</code></pre>
 <h3 id='compressors/google-closure-compression'>Google Closure compression</h3 id='compressors/google-closure-compression'>
-<p>This uses the <a href="http://closure-compiler.appspot.com/home">Google closure compiler 
+<p>This uses the <a href="http://closure-compiler.appspot.com/home">Google closure compiler
 service</a>
 to compress your JavaScript. Available levels are:
 
@@ -367,12 +372,12 @@ to compress your JavaScript. Available levels are:
   <span class="identifier">js_compression</span> <span class="symbol">:<span class="identifier">closure</span></span>, <span class="symbol">:<span class="identifier">level</span></span> => <span class="string">"SIMPLE_OPTIMIZATIONS"</span>
 }</code></pre>
 <h3 id='compressors/uglifyjs-compression'>UglifyJS compression</h3 id='compressors/uglifyjs-compression'>
-<p>This uses the <a href="https://github.com/mishoo/UglifyJS">UglifyJS</a> compressor to 
-compress your JavaScript. You will need to install the 
+<p>This uses the <a href="https://github.com/mishoo/UglifyJS">UglifyJS</a> compressor to
+compress your JavaScript. You will need to install the
 <a href="http://rubygems.org/gems/uglifier">uglifier</a> gem.
 
 </p>
-<p>For options, refer to the <a href="https://github.com/lautis/uglifier">Uglifier 
+<p>For options, refer to the <a href="https://github.com/lautis/uglifier">Uglifier
 documentation</a>.
 
 </p>
@@ -400,7 +405,7 @@ ImageMagick is required to generate full image tags with width and height.
 <pre><code class="css"><span class="comment">/* Original: */</span>    <span class="class">.email</span> <span class="rules">{ <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">url(/images/email.png)</span></span>;</span> <span class="rule">}</span></span>
 <span class="comment">/* Output:   */</span>    <span class="class">.email</span> <span class="rules">{ <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">url(/images/email.<span class="number">6783478</span>.png)</span></span>;</span> <span class="rule">}</span></span></code></pre>
 <h4>Image embedding</h4>
-<p>Want to embed images as <code>data:</code> URI&#39;s? Sure! Just add <code>?embed</code> at the end of the 
+<p>Want to embed images as <code>data:</code> URI&#39;s? Sure! Just add <code>?embed</code> at the end of the
 URL.
 
 </p>
@@ -438,14 +443,14 @@ URL.
   <span class="identifier"><span class="keyword">end</span></span>
 <span class="identifier"><span class="keyword">end</span></span></code></pre>
 <h4>Getting options</h4>
-<p>Invoking it without a block allows you to access the options. This works for 
+<p>Invoking it without a block allows you to access the options. This works for
 almost all the options, with the exception for <code>css</code>, <code>js</code> and <code>serve</code>.
 
 </p>
 <pre><code class="ruby"><span class="constant">App</span>.<span class="identifier">assets</span>
 <span class="constant">App</span>.<span class="identifier">assets</span>.<span class="identifier">js_compression</span>   <span class="comment">#=> :yui</span></code></pre>
 <h3 id='settings/assets-serve'>assets.serve</h3 id='settings/assets-serve'>
-<p>Serves files from <code>LOCALPATH</code> in the URI path <code>PATH</code>. Both parameters are 
+<p>Serves files from <code>LOCALPATH</code> in the URI path <code>PATH</code>. Both parameters are
 required.
 
 </p>
@@ -458,7 +463,7 @@ available as <code>http://localhost:4567/js/vendor/jquery.js</code>.
 </p>
 <pre><code class="ruby"><span class="identifier">serve</span> <span class="string">'/js'</span>, <span class="identifier">from</span><span class="symbol">:</span> <span class="string">'/app/javascripts'</span></code></pre>
 <h3 id='settings/assets-js-_compression-br-assets-css-_compression'>assets.js_compression<br>assets.css_compression</h3 id='settings/assets-js-_compression-br-assets-css-_compression'>
-<p>Sets the compression engine to use for JavaScript or CSS. This defaults to 
+<p>Sets the compression engine to use for JavaScript or CSS. This defaults to
 <code>:jsmin</code> and <code>:simple</code>, respectively.
 
 </p>
@@ -473,7 +478,7 @@ available as <code>http://localhost:4567/js/vendor/jquery.js</code>.
   <span class="identifier">css_compression</span> <span class="symbol">:<span class="identifier">ENGINE</span></span>, <span class="constant">OPTIONS_HASH</span>
 }</code></pre>
 <h4>Examples</h4>
-<p>Yo seriously check this out: the first line uses Sqwish with it&#39;s defaults, and 
+<p>Yo seriously check this out: the first line uses Sqwish with it&#39;s defaults, and
 the second line uses Sqwish with it&#39;s magic.
 
 </p>
@@ -482,7 +487,7 @@ the second line uses Sqwish with it&#39;s magic.
   <span class="identifier">css_compression</span> <span class="symbol">:<span class="identifier">sqwish</span></span>, <span class="symbol">:<span class="identifier">strict</span></span> => <span class="identifier"><span class="keyword">true</span></span>
 }</code></pre>
 <h3 id='settings/assets-js-_compression-_options-br-assets-css-_compression-_options'>assets.js_compression_options<br>assets.css_compression_options</h3 id='settings/assets-js-_compression-_options-br-assets-css-_compression-_options'>
-<p>Sets the options for the compression engine to use. This is usually not needed 
+<p>Sets the options for the compression engine to use. This is usually not needed
 as you can already set options using <code>js_compression</code> and <code>css_compression</code>.
 
 </p>
@@ -500,8 +505,8 @@ as you can already set options using <code>js_compression</code> and <code>css_c
 <p>Adds packages to be used.
 
 </p>
-<p>The <code>NAME</code> is a symbol defines the ID for that given package that you can use 
-for the helpers. That is, If a CSS package was defined as <code>css :main, [ ... ]</code>, 
+<p>The <code>NAME</code> is a symbol defines the ID for that given package that you can use
+for the helpers. That is, If a CSS package was defined as <code>css :main, [ ... ]</code>,
 then you will need to use <code>&lt;%= css :main %&gt;</code> to render it in views.
 
 </p>
@@ -510,7 +515,7 @@ It is optional. If not provided, it will default to <code>&quot;/assets/name.typ
 <code>/assets/main.css</code>).
 
 </p>
-<p>the <code>PATHs</code> is an array that defines files that will be served. Take note that 
+<p>the <code>PATHs</code> is an array that defines files that will be served. Take note that
 this is an array of URI paths, not local paths.
 
 </p>
@@ -526,8 +531,8 @@ Redundancies will be taken care of.
   <span class="identifier">js</span><span class="symbol">:<span class="identifier">NAME</span></span>, <span class="string">'URI'</span>, [ <span class="constant">PATH1</span>, <span class="constant">PATH2</span>, ... ]
 }</code></pre>
 <h4>Example</h4>
-<p>In this example, JavaScript files will be served compressed as 
-<code>/js/application.js</code> (default since no <code>URI</code> is given). The files will be taken 
+<p>In this example, JavaScript files will be served compressed as
+<code>/js/application.js</code> (default since no <code>URI</code> is given). The files will be taken
 from <code>./app/javascripts/vendor/jquery*.js</code>.
 
 </p>
@@ -549,13 +554,13 @@ from <code>./app/javascripts/vendor/jquery*.js</code>.
 <p>These files will not show up in packages, and they will not be accessible.
 
 </p>
-<p>By default, <code>.*</code> and <code>_*</code> are ignored. The former protects folders such as 
-<code>.svn</code> from being accessed, and the latter protects Sass partial files from 
+<p>By default, <code>.*</code> and <code>_*</code> are ignored. The former protects folders such as
+<code>.svn</code> from being accessed, and the latter protects Sass partial files from
 being accessed directly.
 
 </p>
-<p>Note that this matches against URL paths, not local file paths. This means 
-something like <code>*.scss</code> will not work, as all stylesheet files will be compiled 
+<p>Note that this matches against URL paths, not local file paths. This means
+something like <code>*.scss</code> will not work, as all stylesheet files will be compiled
 to <code>.css</code>.
 
 </p>
@@ -577,7 +582,7 @@ to <code>.css</code>.
   }
 <span class="identifier"><span class="keyword">end</span></span></code></pre>
 <h4>Advanced usage</h4>
-<p>By default, <code>.*</code> and <code>_*</code> are ignored. To disable this behavior, you can use 
+<p>By default, <code>.*</code> and <code>_*</code> are ignored. To disable this behavior, you can use
 <code>clear_ignores!</code> before your <code>ignore</code> lines.
 
 </p>
@@ -593,7 +598,7 @@ to <code>.css</code>.
 <p>Caches the built packages on application startup.
 
 </p>
-<p>If this is not used, the packages will be minified when they are first 
+<p>If this is not used, the packages will be minified when they are first
 requested. This only has an effect in the production environment (or when
 Sinatra&#39;s <code>reload_templates</code> is otherwise set to false).
 
@@ -601,7 +606,7 @@ Sinatra&#39;s <code>reload_templates</code> is otherwise set to false).
 <pre><code class="ruby"><span class="comment"># Usage:</span>
 <span class="identifier">prebuild</span> {<span class="identifier"><span class="keyword">true</span></span>|<span class="identifier"><span class="keyword">false</span></span>}</code></pre>
 <h4>Example</h4>
-<p>In this example, the package for <code>:application</code> will be built when the 
+<p>In this example, the package for <code>:application</code> will be built when the
 application is started in the production environment.
 
 </p>
@@ -644,12 +649,37 @@ application is started in the production environment.
     <span class="identifier">expires</span> <span class="number">86400</span>*<span class="number">365</span>, <span class="symbol">:<span class="identifier">public</span></span>
   }
 <span class="identifier"><span class="keyword">end</span></span></code></pre>
+<h3 id='settings/assets-cache_dynamic_assets'>assets.cache_dynamic_assets</h3 id='settings/assets-cache_dynamic_assets'>
+<p>Caches dynamic files unless they have been modified.
+
+</p>
+<p>Useful during development if asset compilation of all dynamic assets on each request is slow.
+If set to true, dynamic assets will be compiled on the initial asset request, but only be re-compiled when the asset&#39;s mtime changes.
+
+</p>
+<pre><code class="ruby"><span class="comment"># Usage:</span>
+<span class="identifier">cache_dynamic_assets</span> {<span class="identifier"><span class="keyword">true</span></span>|<span class="identifier"><span class="keyword">false</span></span>}</code></pre>
+<h4>Example</h4>
+<p>In this example, all dynamic files will be compiled on first request, but later requests will be served from a cache unless the file is modified
+
+</p>
+<pre><code class="ruby"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="inheritance">&lt; <span class="parent">Sinatra::Base</span></span></span>
+  <span class="identifier">assets</span> {
+    <span class="identifier">js_compression</span> <span class="symbol">:<span class="identifier">closure</span></span>
+
+    <span class="identifier">js</span> <span class="symbol">:<span class="identifier">application</span></span>, [
+      <span class="string">'/js/vendor/jquery.*.js'</span>,
+      <span class="string">'/js/vendor/jquery.js'</span>
+    ]
+    <span class="identifier">cache_dynamic_assets</span> <span class="identifier"><span class="keyword">true</span></span>
+  }
+<span class="identifier"><span class="keyword">end</span></span></code></pre>
 <h2 id='helpers'>Helpers</h2 id='helpers'>
 <p>These are helpers you can use in your views.
 
 </p>
 <h3 id='helpers/css'>&lt;%= css %&gt;</h3 id='helpers/css'>
-<p>Shows a CSS package named <code>PACKAGE</code>. If <code>OPTIONS_HASH</code> is given, they will we 
+<p>Shows a CSS package named <code>PACKAGE</code>. If <code>OPTIONS_HASH</code> is given, they will we
 passed onto the <code>&lt;link&gt;</code> tag to be generated as attributes.
 
 </p>
@@ -695,15 +725,15 @@ passed onto the <code>&lt;link&gt;</code> tag to be generated as attributes.
 <span class="comment">&lt;!-- Output: --></span>
 <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">'text/javascript'</span> <span class="attribute">src</span>=<span class="value">'/js/main.783439.js'</span> <span class="attribute">id</span>=<span class="value">'main_script'</span>></span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>></span></code></pre>
 <h3 id='helpers/img'>&lt;%= img %&gt;</h3 id='helpers/img'>
-<p>Shows an <code>&lt;img&gt;</code> tag from the given <code>SRC</code>. If the images is found in the asset 
-directories (and ImageMagick is available), <code>width</code> and <code>height</code> attributes will 
+<p>Shows an <code>&lt;img&gt;</code> tag from the given <code>SRC</code>. If the images is found in the asset
+directories (and ImageMagick is available), <code>width</code> and <code>height</code> attributes will
 be added.
 
 </p>
 <pre><code class="ruby"><span class="comment"># Usage:</span>
 <span class="identifier">img</span> <span class="string">'SRC'</span>
 <span class="identifier">img</span> <span class="string">'SRC'</span>, <span class="constant">OPTIONS_HASH</span></code></pre>
-<p>If <code>OPTIONS_HASH</code> is given, they will we passed onto the <code>&lt;img&gt;</code> tag to be 
+<p>If <code>OPTIONS_HASH</code> is given, they will we passed onto the <code>&lt;img&gt;</code> tag to be
 generated as attributes.
 
 </p>
