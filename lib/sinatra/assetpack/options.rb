@@ -80,8 +80,11 @@ module Sinatra
       # DSL methods
 
       def serve(path, options={})
-        raise Error  unless options[:from]
-        return  unless File.directory?(File.join(app.root, options[:from]))
+        raise Error unless options[:from]
+
+        full_path = options[:from]
+        full_path = File.join(app.root, full_path) unless File.directory?(full_path)
+        return unless File.directory?(full_path)
 
         @served[path] = options[:from]
         @reload_files_cache = true
@@ -236,36 +239,33 @@ module Sinatra
 
       # Returns the local file for a given URI path.
       # Returns nil if a file is not found.
-      def local_file_for(path)
-        path = path.squeeze('/')
+      def local_file_for(request)
+        request.squeeze!('/')
+        serve_path, from = served.detect { |path, _| request.start_with?(path) }
 
-        uri, local = served.detect { |uri, local| path[0...uri.size] == uri }
+        return if !from
 
-        if local
-          path = path[uri.size..-1]
-          path = File.join app.root, local, path
-
-          path  if File.exists?(path)
-        end
+        path = File.join(expand_from(from), request.sub(serve_path, ''))
+        path if File.exist?(path)
       end
 
       # Returns the local file for a given URI path. (for dynamic files)
       # Returns nil if a file is not found.
-      # TODO: consolidate with local_file_for
-      def dyn_local_file_for(requested_file, from)
-        file = requested_file
-        extension = File.extname(requested_file)
+      def dyn_local_file_for(request, from)
+        file = request
+        extension = File.extname(request)
         # Remove extension
         file.gsub!(/#{extension}$/, "")
         # Remove cache-buster (/js/app.28389 => /js/app)
         file.gsub!(/\.[a-f0-9]{32}$/, "")
-        matches = Dir[File.join(app.root, from, "#{file}.*")]
+
+        matches = Dir[File.join(expand_from(from), "#{file}.*")]
 
         # Fix for filenames with dots (can't do this with glob)
         matches.select! { |f| f =~ /#{file}\.[^.]+$/ }
 
         # Sort static file match, weighting exact file extension matches
-        matches.sort! do |f, _| 
+        matches.sort! do |f, _|
           (File.basename(f) == "#{file}#{extension}" || File.extname(f) == extension) ? -1 : 1
         end
         matches.first
@@ -365,6 +365,14 @@ module Sinatra
         fn = fn.gsub(/\.#{file_ext}$/, ".#{out_ext}")  if file_ext && out_ext
 
         fn
+      end
+
+      def expand_from(from)
+        if from.start_with?('/')
+          from
+        else
+          File.join(app.root, from)
+        end
       end
     end
   end
