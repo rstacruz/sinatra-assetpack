@@ -80,8 +80,11 @@ module Sinatra
       # DSL methods
 
       def serve(path, options={})
-        raise Error  unless options[:from]
-        return  unless File.directory?(File.join(app.root, options[:from]))
+        raise Error unless options[:from]
+
+        full_path = options[:from]
+        full_path = File.join(app.root, full_path) unless File.directory?(full_path)
+        return unless File.directory?(full_path)
 
         @served[path] = options[:from]
         @reload_files_cache = true
@@ -243,9 +246,13 @@ module Sinatra
 
         if local
           path = path[uri.size..-1]
-          path = File.join app.root, local, path
+          path = File.join local, path
 
-          path  if File.exists?(path)
+          return path if File.exists?(path)
+
+          path = File.join app.root, path
+
+          path if File.exists?(path)
         end
       end
 
@@ -259,7 +266,12 @@ module Sinatra
         file.gsub!(/#{extension}$/, "")
         # Remove cache-buster (/js/app.28389 => /js/app)
         file.gsub!(/\.[a-f0-9]{32}$/, "")
-        matches = Dir[File.join(app.root, from, "#{file}.*")]
+
+        local_path = from
+        local_path = File.join(app.root, from) unless File.exist?(from)
+        path = File.join(local_path, "#{file}.*")
+
+        matches = Dir[path]
 
         # Fix for filenames with dots (can't do this with glob)
         matches.select! { |f| f =~ /#{file}\.[^.]+$/ }
