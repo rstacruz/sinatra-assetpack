@@ -62,7 +62,7 @@ module Sinatra
 
             # Send headers
             content_type fmt.to_sym
-            last_modified File.mtime(fn).to_i
+            last_modified File.mtime(fn)
             assets_expires
 
             format = File.extname(fn)[1..-1]

@@ -13,7 +13,8 @@ module Sinatra
       # Returns the maximum mtime for a given list of files.
       # It will return nil if none of them are found.
       def mtime_for(files)
-        files.map { |f| File.mtime(f).to_i  if f.is_a?(String) && File.file?(f) }.compact.max
+        time = files.map { |f| File.mtime(f).to_i if f.is_a?(String) && File.file?(f) }.compact.max
+        Time.at(time) if time
       end
 
       # Adds a cache buster for the given path.
