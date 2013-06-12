@@ -1,3 +1,8 @@
+## v0.2.5 - June 11, 2013
+
+### Fixed
+  * Fixed an issue with Last-Modified headers & packaged asssets. (#111)
+
 ## v0.2.4 - June 8, 2013
 
 ### Added
