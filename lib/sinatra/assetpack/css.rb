@@ -4,7 +4,7 @@ module Sinatra
   module AssetPack
     module Css
       def self.preproc(str, assets)
-        str.gsub(/url\((["']?)(?!data:)(.*?)(["']?)\)/) { |url|
+        str.gsub(/url\((["']?)(?!["']?data:)(.*?)(["']?)\)/) { |url|
           css_url = URI.parse($2)
           file = css_url.path
           options = css_url.query
