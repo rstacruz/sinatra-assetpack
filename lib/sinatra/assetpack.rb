@@ -1,5 +1,4 @@
 require 'rack/test'
-require 'backports' if RUBY_VERSION < "1.9"
 
 module Sinatra
   module AssetPack

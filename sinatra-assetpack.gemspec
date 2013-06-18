@@ -14,7 +14,6 @@ Gem::Specification.new do |s|
   s.cert_chain  = ['certs/j15e.pem']
   s.signing_key = File.expand_path('~/.gem/private_key.pem') if $0 =~ /gem\z/
 
-  s.add_dependency 'backports'
   s.add_dependency 'jsmin'
   s.add_dependency 'rack-test'
   s.add_dependency 'sinatra'
