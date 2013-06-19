@@ -234,7 +234,7 @@ module Sinatra
         matches = Dir[File.join(expand_from(from), "#{file}.*")]
 
         # Fix for filenames with dots (can't do this with glob)
-        matches.select! { |f| f =~ /#{file}\.[^.]+$/ }
+        matches = matches.select { |f| f =~ /#{file}\.[^.]+$/ }
 
         # Sort static file match, weighting exact file extension matches
         matches.sort! do |f, _|
