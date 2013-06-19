@@ -1,3 +1,12 @@
+## v0.2.6 - June 18, 2013
+
+### Fixed
+  * Fixed an issue with quote wrapped data URIs. (#113)
+
+### Improvements
+  * Removed backports runtime dependency (#114)
+  * Removed test dependencies included as development dependency.
+
 ## v0.2.5 - June 11, 2013
 
 ### Fixed
