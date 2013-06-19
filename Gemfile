@@ -4,6 +4,12 @@ source 'https://rubygems.org'
 group :debug do
   gem 'debugger'
   gem 'awesome_print'
+  gem 'gem-release'
+end
+
+group :test do
+  gem 'rake'
+  gem 'mocha'
 end
 
 gemspec
