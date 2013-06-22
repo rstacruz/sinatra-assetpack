@@ -21,6 +21,8 @@ class GlobTest < UnitTest
   should "match double-star globs recursively" do
     app.stubs(:development?).returns(true)
     get '/a'
+    assert body.include?("lvl1.")
+    assert body.include?("lvl2.")
     assert body.include?("a/b/c1/hello.")
     assert body.include?("a/b/c2/hi.")
     assert body.include?("a/b/c2/hola.")
