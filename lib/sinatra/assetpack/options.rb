@@ -272,13 +272,14 @@ module Sinatra
       # wildcards that don't match anything.
       #
       def glob(match, options={})
+
         match = [*match]  # Force array-ness
 
         paths = match.map { |spec|
           if options[:preserve] && !spec.include?('*')
             spec
           else
-            files.keys.select { |f| File.fnmatch?(spec, f) }.sort
+            files.keys.select { |f| File.fnmatch?(spec, f, File::FNM_PATHNAME | File::FNM_DOTMATCH) }.sort
           end
         }.flatten
 
