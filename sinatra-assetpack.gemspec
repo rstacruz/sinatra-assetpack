@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
 
   # Supported preprocessors (each is optional)
   s.add_development_dependency 'coffee-script'
-  s.add_development_dependency 'coffee-script'
   s.add_development_dependency 'contest'
   s.add_development_dependency 'haml'
   s.add_development_dependency 'less'
