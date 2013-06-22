@@ -8,6 +8,7 @@ group :debug do
 end
 
 group :test do
+  gem 'contest'
   gem 'rake'
   gem 'mocha'
 end
