@@ -266,17 +266,13 @@ module Sinatra
       #
       #     glob('spec')
       #     glob(['spec1', 'spec2' ...])
-      #     glob('spec', preserve: true)
       #
-      # If `preserve` is set to true, it will preserve any specs that are not
-      # wildcards that don't match anything.
-      #
-      def glob(match, options={})
+      def glob(match)
 
         match = [*match]  # Force array-ness
 
         paths = match.map { |spec|
-          if options[:preserve] && !spec.include?('*')
+          if !spec.include?('*')
             spec
           else
             files.keys.select { |f| File.fnmatch?(spec, f, File::FNM_PATHNAME | File::FNM_DOTMATCH) }.sort
