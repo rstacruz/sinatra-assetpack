@@ -1,6 +1,6 @@
 module Sinatra
   module AssetPack
-    VERSION = "0.2.6"
+    VERSION = "0.2.7"
 
     # @deprecated Please use AssetPack::VERSION instead
     def self.version

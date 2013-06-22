@@ -1,3 +1,12 @@
+## v0.2.7 - June 22, 2013
+
+### Fixed
+  * Change glob matching behaviour to match Dir#glob. (#108)
+
+### Improvements
+  * Removed contest development dependency.
+  * Rewrote glob method with reduced complexity.
+
 ## v0.2.6 - June 18, 2013
 
 ### Fixed
