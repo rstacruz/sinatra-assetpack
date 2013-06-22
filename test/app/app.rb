@@ -3,6 +3,8 @@ $:.unshift File.expand_path('../../../lib', __FILE__)
 require 'sinatra/base'
 require 'sinatra/assetpack'
 require 'coffee-script'
+require 'sass'
+require 'haml'
 
 class Main < Sinatra::Base
   set :root, File.dirname(__FILE__)
