@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # Gems for gem development
 group :debug do
-  gem 'debugger'
+  gem 'debugger', :platform => 'mri'
   gem 'awesome_print'
   gem 'gem-release'
 end
