@@ -268,21 +268,20 @@ module Sinatra
       #     glob(['spec1', 'spec2' ...])
       #
       def glob(match)
+        paths = Array.new(match) # Force array-ness
 
-        match = [*match]  # Force array-ness
-
-        paths = match.map { |spec|
-          if !spec.include?('*')
-            spec
+        paths.map! do |spec|
+          if spec.include?('*')
+            files.select do |file, _|
+              # Dir#glob like source matching
+              File.fnmatch?(spec, file, File::FNM_PATHNAME | File::FNM_DOTMATCH)
+            end.sort
           else
-            files.keys.select { |f| File.fnmatch?(spec, f, File::FNM_PATHNAME | File::FNM_DOTMATCH) }.sort
+            [spec, files[spec]]
           end
-        }.flatten
+        end
 
-        paths  = paths.uniq
-        tuples = paths.map { |key| [key, files[key]] }
-
-        Hash[*tuples.flatten]
+        Hash[*paths.flatten]
       end
 
       # Fetches the contents of a dynamic asset. If `cache_dynamic_assets` is set,
