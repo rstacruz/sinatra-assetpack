@@ -1,4 +1,6 @@
 require File.expand_path('../test_helper', __FILE__)
+require 'stylus'
+require 'stylus/tilt'
 
 class StylusTest < UnitTest
   class App < Main

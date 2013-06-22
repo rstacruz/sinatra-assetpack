@@ -1,12 +1,5 @@
 require 'contest'
-require 'jsmin'
-require 'tilt'
-require 'haml'
-require 'sass'
-require 'stylus'
-require 'stylus/tilt'
 require 'rack/test'
-require 'yaml'
 require 'mocha/setup'
 
 ENV['RACK_ENV'] = 'test'
