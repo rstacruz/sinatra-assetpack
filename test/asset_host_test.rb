@@ -54,8 +54,7 @@ class AssetHostTest < UnitTest
     app.stubs(:development?).returns(false)
     get '/css/style.css'
     assert body =~ /background: url\(\/\/cdn-[0|1].example.org\/images\/background.[a-f0-9]{32}.jpg\)/
-
-    # does not alter non-existing files (design or flaw???)
+    # Does not alter not served assets
     assert body.include?('background: url(/images/404.png)')
   end
 
