@@ -218,7 +218,9 @@ module Sinatra
         return if !from
 
         path = File.join(expand_from(from), request.sub(serve_path, ''))
-        path if File.exist?(path)
+        return if !File.file?(path)
+
+        path
       end
 
       # Returns the local file for a given URI path. (for dynamic files)
