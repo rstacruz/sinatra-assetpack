@@ -15,10 +15,16 @@ class PreprocTest < UnitTest
     assert body =~ %r{background.[a-f0-9]{32}.jpg}
   end
 
-  test "no cache-busting number for non-existent images" do
+  test "no cache-busting hash for non-existent images" do
     app.stubs(:development?).returns(false)
     get '/css/style.css'
     assert body.include?('background: url(/images/404.png)')
+  end
+
+  test "no cache-busting hash for non-existent images" do
+    app.stubs(:development?).returns(false)
+    get '/css/style.css'
+    assert body.include?("@import url('//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700');")
   end
 
   test "preproc on minify" do
