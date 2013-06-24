@@ -3,32 +3,34 @@ require 'uri'
 module Sinatra
   module AssetPack
     module Css
-      def self.preproc(str, assets)
-        str.gsub(/url\((["']?)(?!["']?data:)(.*?)(["']?)\)/) { |url|
-          css_url = URI.parse($2)
-          file = css_url.path
-          options = css_url.query
-          local = assets.local_file_for file
+      def self.preproc(source, assets)
+        source.gsub(/url\((["']?)(.*?)(["']?)\)/) do |match|
+          uri = URI.parse($2)
 
-          url = if local
-            if options.to_s.include?('embed')
-              to_data_uri(local)
-            else
-              url = HtmlHelpers.get_file_uri(file, assets)
-              serve = URI(url)
-              serve.query = css_url.query
-              serve.fragment = css_url.fragment
-              serve.to_s
-            end
-          else
-            $2
-          end
+          # Not a valid complete url
+          next match if uri.path.nil?
 
-          "url(#{$1}#{url}#{$3})"
-        }
+          # Not found in served assets
+          local = assets.local_file_for(uri.path)
+          next match if local.nil?
+
+          asset_url = build_url(assets, local, uri)
+          "url(#{$1}#{asset_url}#{$3})"
+        end
       end
 
-      def self.to_data_uri(file)
+      def self.build_url(assets, local, uri)
+        if uri.query && uri.query.include?('embed')
+          build_data_uri(local)
+        else
+          serve = URI(HtmlHelpers.get_file_uri(uri.path, assets))
+          serve.query = uri.query
+          serve.fragment = uri.fragment
+          serve.to_s
+        end
+      end
+
+      def self.build_data_uri(file)
         require 'base64'
 
         data = File.read(file)
