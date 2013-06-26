@@ -1,3 +1,8 @@
+## v0.2.8 - June 25, 2013
+
+### Fixed
+  * CSS preprocessing should not rewriting external url or not served assets. (#116)
+
 ## v0.2.7 - June 22, 2013
 
 ### Fixed
