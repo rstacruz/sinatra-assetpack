@@ -212,12 +212,12 @@ module Sinatra
       # Returns the local file for a given URI path.
       # Returns nil if a file is not found.
       def local_file_for(request)
-        request.squeeze!('/')
-        serve_path, from = served.detect { |path, _| request.start_with?(path) }
+        req = request.squeeze('/')
+        serve_path, from = served.detect { |path, _| req.start_with?(path) }
 
         return if !from
 
-        path = File.join(expand_from(from), request.sub(serve_path, ''))
+        path = File.join(expand_from(from), req.sub(serve_path, ''))
         return if !File.file?(path)
 
         path
