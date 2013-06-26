@@ -25,7 +25,7 @@ module Sinatra
         assets.packages.each do |name, package|
           get package.route_regex do
             if defined?(settings.assets.app.clear_tilt_cache) && settings.assets.app.clear_tilt_cache
-              AssetPack.clear_tilt_cache!(@template_cache, settings.assets.app)
+              AssetPack.clear_tilt_cache!(@template_cache)
             end
 
             mtime, contents = @template_cache.fetch(package.path) {
@@ -68,7 +68,7 @@ module Sinatra
             format = File.extname(fn)[1..-1]
 
             if defined?(settings.assets.app.clear_tilt_cache) && settings.assets.app.clear_tilt_cache
-              AssetPack.clear_tilt_cache!(@template_cache, settings.assets.app)
+              AssetPack.clear_tilt_cache!(@template_cache)
             end
 
             if AssetPack.supported_formats.include?(format)
