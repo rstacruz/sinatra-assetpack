@@ -104,14 +104,20 @@ module Sinatra
       end
 
       def combined
-        session = Rack::Test::Session.new(@assets.app)
+        session = nil
         paths.map { |path|
-          result = session.get(path)
-          if result.body.respond_to?(:force_encoding)
-            response_encoding = result.content_type.split(/;\s*charset\s*=\s*/).last.upcase rescue 'ASCII-8BIT'
-            result.body.force_encoding(response_encoding).encode(Encoding.default_external || 'ASCII-8BIT')  if result.status == 200
+          if file_path = test_asset_path(paths_and_files[path])
+            result = File.read(file_path)
+            result.respond_to?(:encode) ? result.encode(Encoding.default_external) : result
           else
-            result.body  if result.status == 200
+            session ||= Rack::Test::Session.new(@assets.app)
+            result = session.get(path)
+            if result.body.respond_to?(:force_encoding)
+              response_encoding = result.content_type.split(/;\s*charset\s*=\s*/).last.upcase rescue 'ASCII-8BIT'
+              result.body.force_encoding(response_encoding).encode(Encoding.default_external || 'ASCII-8BIT')  if result.status == 200
+            else
+              result.body  if result.status == 200
+            end
           end
         }.join("\n")
       end
@@ -120,6 +126,10 @@ module Sinatra
       def css?() @type == :css; end
 
     private
+      def test_asset_path( path )
+        path.kind_of?(String) && File.file?(path) && AssetPack.supported_formats.include?(File.extname(path)[1..-1]) && path
+      end
+
       def link_tag(file, options={})
         file_path = HtmlHelpers.get_file_uri(file, @assets)
 
