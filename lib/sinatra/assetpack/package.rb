@@ -76,7 +76,7 @@ module Sinatra
       def to_production_html(path_prefix, options={})
         path = production_path
         path = add_path_prefix(path, path_prefix)
-        link_tag path, options
+        js? production_js_link_tag(path, options) : link_tag(path, options)
       end
 
       def add_path_prefix(path, path_prefix)
@@ -120,6 +120,20 @@ module Sinatra
       def css?() @type == :css; end
 
     private
+      def production_js_link_tag(file, options={})
+        file_path = HtmlHelpers.get_file_uri(file, @assets)
+        
+        code = "<script type='text/JavaScript'>"
+        code += "function loadFile(url) {"
+        code += "  var script = document.createElement('SCRIPT');"
+        code += "  script.src = url;"
+        code += "  document.getElementsByTagName('HEAD')[0].appendChild(script);"
+        code += "}"
+        code += "loadFile('#{file_path}');"
+        code += "</script>"
+        code
+      end
+
       def link_tag(file, options={})
         file_path = HtmlHelpers.get_file_uri(file, @assets)
 
