@@ -30,6 +30,16 @@ class HelpersTest < UnitTest
     assert body =~ %r{height='16'}
   end
 
+  test "img without dimensions existing" do
+    app.stubs(:development?).returns(true)
+    app.assets.stubs(:image_dimensions).returns(false)
+    get '/helper/email'
+
+    assert body =~ %r{src='/images/email.png'}
+    assert !(body =~ %r{width='16'})
+    assert !(body =~ %r{height='16'})
+  end
+
   test "css" do
     re = Array.new
     get '/helper/css/app'; re << body

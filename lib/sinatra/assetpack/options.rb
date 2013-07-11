@@ -50,6 +50,7 @@ module Sinatra
         @js_compression  = :jsmin
         @css_compression = :simple
         @reload_files_cache = true
+        @image_dimensions = true
 
         begin
           @output_path   = app.public
@@ -166,8 +167,9 @@ module Sinatra
       attrib :js_compression_options   # Hash
       attrib :css_compression_options  # Hash
 
-      attrib :prebuild          # Bool
+      attrib :prebuild             # Bool
       attrib :cache_dynamic_assets # Bool
+      attrib :image_dimensions     # Bool
 
       def expires(*args)
         if args.empty?

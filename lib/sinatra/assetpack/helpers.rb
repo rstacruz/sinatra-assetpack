@@ -18,7 +18,7 @@ module Sinatra
 
           attrs[:src] = HtmlHelpers.get_file_uri(src, settings.assets)
 
-          if i.dimensions?
+          if settings.assets.image_dimensions && i.dimensions?
             attrs[:width]  ||= i.width
             attrs[:height] ||= i.height
           end
