@@ -226,7 +226,7 @@ module Sinatra
       # Returns the local file for a given URI path. (for dynamic files)
       # Returns nil if a file is not found.
       def dyn_local_file_for(request, from)
-        file = request
+        file = request.dup
         extension = File.extname(request)
         # Remove extension
         file.gsub!(/#{extension}$/, "")
@@ -239,8 +239,11 @@ module Sinatra
         matches = matches.select { |f| f =~ /#{file}\.[^.]+$/ }
 
         # Sort static file match, weighting exact file extension matches
-        matches.sort! do |f, _|
-          (File.basename(f) == "#{file}#{extension}" || File.extname(f) == extension) ? -1 : 1
+        # first, then registered Tilt formats
+        matches.sort! do |candidate, _|
+          cfmt = File.extname(candidate)[1..-1]
+          efmt = extension[1..-1]
+          (cfmt == efmt or AssetPack.tilt_formats[cfmt] == efmt) ? -1 : 1
         end
         matches.first
       end

@@ -46,8 +46,10 @@ class AppTest < UnitTest
   end
 
   test 'returns file of requested type when mixed type assets of varying extension are present' do
-    get '/packages/a_package.b1946ac92492d2347c6235b4d2611184.js'
+    get '/packages/js_package.ec69e2cf66b1b2162f928a339e3c162e.js'
     assert body.include? 'function(){alert("Hello");'
+    get '/packages/css_package.6797d3f2e04e2638eb9c460de099fcff.css'
+    assert body.include? '.hi{color:red;}'
   end
 
   test 'static css' do
