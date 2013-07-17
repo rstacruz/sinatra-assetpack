@@ -34,6 +34,8 @@ class App < Sinatra::Base
 
     # The second parameter defines where the compressed version will be served.
     # (Note: that parameter is optional, AssetPack will figure it out.)
+    # The final parameter is an array of glob patterns defining the contents
+    # of the package (as matched on the public URIs, not the filesystem)
     js :app, '/js/app.js', [
       '/js/vendor/**/*.js',
       '/js/lib/**/*.js'
