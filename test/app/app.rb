@@ -42,7 +42,7 @@ class Main < Sinatra::Base
       '/js/helloe.js'
     ]
 
-    js :css_package, '/packages/css_package.css', [
+    css :css_package, '/packages/css_package.css', [
       '/packages/a_package/package.css',
     ]
 
