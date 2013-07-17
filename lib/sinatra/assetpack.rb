@@ -17,6 +17,7 @@ module Sinatra
       @formats ||= begin
         hash = Hash.new
         Tilt.mappings.each do |format, (engine, _)|
+          next if engine.nil?
           case engine.default_mime_type
           when 'text/css' then hash[format] = 'css'
           when 'application/javascript' then hash[format] = 'js'
