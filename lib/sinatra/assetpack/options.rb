@@ -66,9 +66,9 @@ module Sinatra
         reset!
 
         # Defaults!
-        serve '/css',    :from => 'app/css'
-        serve '/js',     :from => 'app/js'
-        serve '/images', :from => 'app/images'
+        serve '/css',    :from => 'app/css'     rescue Errno::ENOTDIR
+        serve '/js',     :from => 'app/js'      rescue Errno::ENOTDIR
+        serve '/images', :from => 'app/images'  rescue Errno::ENOTDIR
 
         ignore '.*'
         ignore '_*'
@@ -80,13 +80,17 @@ module Sinatra
       # DSL methods
 
       def serve(path, options={})
-        raise Error unless options[:from]
+        unless from = options[:from]
+          raise ArgumentError, "Parameter :from is required" 
+        end
 
-        full_path = options[:from]
-        full_path = File.join(app.root, full_path) unless File.directory?(full_path)
-        return unless File.directory?(full_path)
+        expanded = expand_from(from)
 
-        @served[path] = options[:from]
+        unless File.directory? expanded
+          raise Errno::ENOTDIR, expanded
+        end
+
+        @served[path] = from
         @reload_files_cache = true
       end
 

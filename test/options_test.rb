@@ -16,4 +16,19 @@ class OptionsTest < UnitTest
     assert App.assets.js_compression == :closure
     assert App.assets.packages['application.css'].path == "/assets/application.css"
   end
+
+  test "serve requires :from parameter" do
+    err = assert_raise ArgumentError do
+      App.assets.serve "/foo"
+    end
+    assert_equal "Parameter :from is required", err.message
+  end
+
+  test "serve requires :from to be directory" do
+    e = assert_raise Errno::ENOTDIR do
+      App.assets.serve "/foo", :from => "/does/not/exist"
+    end
+  end
+
+
 end
