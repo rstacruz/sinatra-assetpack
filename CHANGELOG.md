@@ -1,283 +1,180 @@
 ## v0.3.0 - July 30, 2013
 
-### Changes
-  * Remove automatic image tag width/height (#121)
-
-### Fixed
-  * Tilt issue #206 workaround (#125)
-
-### Improvements
-  * Improve DSL error reporting (#124)
-  * Add filename option to templates render. (#126)
+  * Change: Remove automatic image tag width/height (#121)
+  * Fix: Tilt issue #206 workaround (#125)
+  * Improvement: Improve DSL error reporting (#124)
+  * Improvement: Add filename option to templates render. (#126)
 
 ## v0.2.8 - June 25, 2013
 
-### Fixed
-  * CSS preprocessing should not rewriting external url or not served assets. (#116)
+  * Fix: CSS preprocessing should not rewriting external url or not served assets. (#116)
 
 ## v0.2.7 - June 22, 2013
 
-### Fixed
-  * Change glob matching behaviour to match Dir#glob. (#108)
-
-### Improvements
-  * Removed contest development dependency.
-  * Rewrote glob method with reduced complexity.
+  * Fix: Change glob matching behaviour to match Dir#glob. (#108)
+  * Improvement: Removed contest development dependency.
+  * Improvement: Rewrote glob method with reduced complexity.
 
 ## v0.2.6 - June 18, 2013
 
-### Fixed
-  * Fixed an issue with quote wrapped data URIs. (#113)
-
-### Improvements
-  * Removed backports runtime dependency (#114)
-  * Removed test dependencies included as development dependency.
+  * Fix : Issue with quote wrapped data URIs. (#113)
+  * Improvement: Removed backports runtime dependency (#114)
+  * Improvement: Removed test dependencies included as development dependency.
 
 ## v0.2.5 - June 11, 2013
 
-### Fixed
-  * Fixed an issue with Last-Modified headers & packaged asssets. (#111)
+  * Fix: Issue with Last-Modified headers & packaged asssets. (#111)
 
 ## v0.2.4 - June 8, 2013
 
-### Added
-  * Serving from absolute path. (#107)
-  * Cache of all assets files. (#109)
-
-### Improvements
-  * Rewrote asset builder.
-  * Simplified & consolidated local_file_for & dyn_local_file_for.
-
+  * Feature: Serving from absolute path. (#107)
+  * Feature: Cache of all assets files. (#109)
+  * Improvement: Rewrote asset builder.
+  * Improvement: Simplified & consolidated local_file_for & dyn_local_file_for.
 
 ## v0.2.3 - May 29, 2013
 
-### Added
-  * Support for Rack::URLMap / url prefix (#104)
-
-### Changed
-  * Use optimized MD5 file digest method. (#99)
-
+  * Change: Use optimized MD5 file digest method. (#99)
+  * New: Support for Rack::URLMap / url prefix (#104)
 
 ## v0.2.2 - April 28, 2013
 
-### Fixed
-  * Don't preprocess CSS data-uris. (#96)
-
+  * Fix: Don't preprocess CSS data-uris. (#96)
 
 ## v0.2.1 - April 23, 2013
 
-### Added
-  * New cache_dynamic_assets option for development cache. (#94)
-
-### Fixed
-  * Fixed CSS preproc to keep original CSS url quotes & url fragment.
-
+  * New option: cache_dynamic_assets option for development cache. (#94)
+  * Fix: CSS preproc to keep original CSS url quotes & url fragment.
 
 ## v0.2.0 - April 20, 2013
 
-### Changed
-  * Using MD5 for cache busting URI. (#91, #71)
-
-### Added
-  * Add :simple compression for javascript. (#87)
-
-### Fixed
-  * Added backports correctly for 1.8.7 support.
-
+  * Change: Using MD5 for cache busting URI. (#91, #71)
+  * Feature: Add :simple compression for javascript. (#87)
+  * Fix: Added backports correctly for 1.8.7 support.
 
 ## v0.1.7 - March 11, 2013
 
-### Added
-
-  * Gem is now certificate signed.
-
+  * Change: Gem is now certificate signed.
 
 ## v0.1.6 - March 1, 2013
 
-### Fixed
-
-  * Do not use instance helpers for environment check. (#79)
-
+  * Fix: Do not use instance helpers for environment check. (#79)
 
 ## v0.1.5 - Feb 12, 2013
 
-### Fixed
-  *  Stylus 0.7.1 support.
-
+  * Fix: Stylus 0.7.1 support.
 
 ## v0.1.4 - Feb 12, 2013
 
-### Added
-  * Multiple asset hosts support. (#27)
-
-### Fixed
-  * Lock stylus to 0.7.0 until 0.7.1 is supported.
-
+  * Feature: Multiple asset hosts support. (#27)
+  * Fix: Lock stylus to 0.7.0 until 0.7.1 is supported.
 
 ## v0.1.3 - Feb 3, 2013
 
-### Added
-  * JRuby 1.9 and 1.8 now supported.
-
-### Fixed:
-  * Deal with assets with exact same name but extensions. (#75)
-  * Ruby 1.8 support (broken in previous
-## v0.1 releases).
-
+  * Feature: JRuby 1.9 and 1.8 now supported.
+  * Fix: Deal with assets with exact same name but extensions. (#75)
+  * Fix: Ruby 1.8 support (broken in previous v0.1 releases).
 
 ## v0.1.2 - Jan 20, 2013
 
-### Added:
-  * Support for custom cache control headers for packed assets. (#43)
-
+  * Feature : Support for custom cache control headers for packed assets. (#43)
 
 ## v0.1.1 - Jan 15, 2013
 
-### Fixed
-  * Added less engine support and test (#69)
-  * Support for fonts & other AssetPack.supported_formats file format. (#50)
-  * Deal with multiple static files with same name but different extensions (ex. fonts).
-
+  * Fix: Added less engine support and test (#69)
+  * Fix: Support for fonts & other AssetPack.supported_formats file format. (#50)
+  * Fix: Deal with multiple static files with same name but different extensions (ex. fonts).
 
 ## v0.1.0 - Jan 14, 2013
 
-### Changed
-  * Using `file` utility instead `identify` utility. (#26)
-
-### Fixed
-  * Deal with different encodings in combined assets. (#47)
-  * Serve files with dots in name. (#32, #66)
-  * Deal with character encoding issues in ruby 1.8. (#51)
-  * Add missing depedency for development unit test. (#63)
-  * Deal with binary files copy (ex. images), fix errors like `"\x89" from ASCII-8BIT to UTF-8"`. (#38, #67)
-
+  * Change: Using `file` utility instead `identify` utility. (#26)
+  * Fix: Deal with different encodings in combined assets. (#47)
+  * Fix: Serve files with dots in name. (#32, #66)
+  * Fix: Deal with character encoding issues in ruby 1.8. (#51)
+  * Fix: Add missing depedency for development unit test. (#63)
+  * Fix: Deal with binary files copy (ex. images), fix errors like `"\x89" from ASCII-8BIT to UTF-8"`. (#38, #67)
 
 ## v0.0.11 - Feb 21, 2012
 
-### Added:
-  * Support for 'prebuild' to build on startup.
-  * Support for SVG files.
-  * Implement UglifyJS support. (#18)
-  * Implement ignored files. (#17)
-  * Added support classic-style Sinatra apps. (#22)
-
-### Changed:
-  * Built files from 'rake assetpack:build' now match the mtimes of their sources. (#12)
-  * Update the readme with a note on SASS compression.
-  * Use regular expression route matcher instead of splat pattern for Padrino compatibility. (#19)
-  * Made `link` and `script` tags (generated by helpers) be more HTML5-like.
-
-### Fixed:
-  * Sinatra >= 1.3.0 compatibility. Use 'public_folder' in Sinatra >=1.3.0. (#25)
-
+  * Feature: Support for 'prebuild' to build on startup.
+  * Feature: Support for SVG files.
+  * Feature: Implement UglifyJS support. (#18)
+  * Feature: Implement ignored files. (#17)
+  * Feature: Added support classic-style Sinatra apps. (#22)
+  * Change: Built files from 'rake assetpack:build' now match the mtimes of their sources. (#12)
+  * Change: Update the readme with a note on SASS compression.
+  * Change: Use regular expression route matcher instead of splat pattern for Padrino compatibility. (#19)
+  * Change: Made `link` and `script` tags (generated by helpers) be more HTML5-like.
+  * Fix: Sinatra >= 1.3.0 compatibility. Use 'public_folder' in Sinatra >=1.3.0. (#25)
 
 ## v0.0.10 - Sep 18, 2011
 
-### Added:
-  * Support for 'prebuild' to build on startup.
-  * Add UglifyJS support via `js_compression :uglify`. (#18)
-  * Ignore '.*' and '_*' files. (#17)
-  * Allow specifying of files to be ignored. (#17)
-
-### Changed:
-  * Built files from 'rake assetpack:build' now match the mtimes of their
-    sources. (#12)
-  * Refactor Compressor into separate engine classes.
-
+  * Feature: Support for 'prebuild' to build on startup.
+  * Feature: Add UglifyJS support via `js_compression :uglify`. (#18)
+  * Feature: Ignore '.*' and '_*' files. (#17)
+  * Feature: Allow specifying of files to be ignored. (#17)
+  * Change: Built files from 'rake assetpack:build' now match the mtimes of their sources. (#12)
+  * Change: Refactor Compressor into separate engine classes.Fi:
 
 ## v0.0.9 - Sep 18, 2011
 
-### Fixed:
-  * Fixed a bad route terminating issue. (#9)
-  * Fix the Rake task when the main App class is in a module. (#11)
-
-### Changed:
-  * Use Sinatra's `template_cache`. This makes AssetPack honor Sinatra's
-    `reload_templates` setting. (#15)
-
-### Added:
-  * Added .htc (IE behavior files) to the list of file formats to be served.
-  * Added examples.
-
+  * Fix: bad route terminating issue. (#9)
+  * Fix: Rake task when the main App class is in a module. (#11)
+  * Feature: Added .htc (IE behavior files) to the list of file formats to be served.
+  * Change: Use Sinatra's `template_cache`. This makes AssetPack honor Sinatra's`reload_templates` setting. (#15)
+  * Change: Added examples.
 
 ## v0.0.8 - Sep 06, 2011
 
-### Fixed:
-  * Fixed the CSS preprocessing bug that gives invalid 'url()' properties to
-    non-existing images. (#1)
-
-### Added:
-  * Allow adding CSS/JS files that don't exist. (#8)
-  * Support any Tilt-compatible CSS or JS engine. (#5)
-
-### Changed:
-  * Default to '/assets/x.js' then using assets.css without a path. Inspiration
+  * Fix: CSS preprocessing bug that gives invalid 'url()' properties to non-existing images. (#1)
+  * Feature: Allow adding CSS/JS files that don't exist. (#8)
+  * Feature: Support any Tilt-compatible CSS or JS engine. (#5)
+  * Change: Default to '/assets/x.js' then using assets.css without a path. Inspiration
     from Jammit.
-  * Ask browsers to cache assets for 1 month.
-
-### Misc:
-  * Add a note on the ImageMagick requirement.
-  * Stop the 'img' helper from invoking ImageMagick more times than it needs to.
-  * Make "rake test!" abort when it encounters an error.
-  * Stylus tests to stub stylus compilation.
-  * Added .rvmrc and .sass-cache to gitignore.
-  * Allow overridable multiple RVM environments in tests.
-
+  * Change: Ask browsers to cache assets for 1 month.
+  * Misc: Add a note on the ImageMagick requirement.
+  * Misc: Stop the 'img' helper from invoking ImageMagick more times than it needs to.
+  * Misc: Make "rake test!" abort when it encounters an error.
+  * Misc: Stylus tests to stub stylus compilation.
+  * Misc: Added .rvmrc and .sass-cache to gitignore.
+  * Misc: Allow overridable multiple RVM environments in tests.
 
 ## v0.0.6 - Aug 30, 2011
 
-### Fixed:
-  * Redundant entries are now suppressed. (eg, when specifying
+  * Fix: Redundant entries are now suppressed. (eg, when specifying
       `['vendor/jquery.js', 'vendor/*.js']`)
-
-### Added:
-  * Allow a parameter to the block in the `assets` configuration block.
-  * Update README with lots of info.
-  * Allow multiple packages in the js and css helpers. (eg, `css :base, :login`)
-  * Allow setting options for `js_compression` by passing a hash after it.
-  * Make the path parameter in `js` and `css` in the `assets` block optional.
-
+  * Feature: Allow a parameter to the block in the `assets` configuration block.
+  * Feature: Update README with lots of info.
+  * Feature: Allow multiple packages in the js and css helpers. (eg, `css :base, :login`)
+  * Feature: Allow setting options for `js_compression` by passing a hash after it.
+  * Feature: Make the path parameter in `js` and `css` in the `assets` block optional.
 
 ## v0.0.5 - Aug 30, 2011
 
-### Fixed:
-  * Fix build failing when it finds directories.
-
-### Added:
-  * Added an example app in `example/`.
-
+  * Fix: build failing when it finds directories.
+  * Misc: Added an example app in `example/`.
 
 ## v0.0.4 - Aug 30, 2011
 
-### Fixed:
-  * Ruby 1.8 compatibility. Yay!
-  * Fixed images always being square.
-  * Assets are now ordered properly.
-
-### Changed:
-  * the config format for `js_compression` and family. In your `assets` block,
-  you now have to use `js_compression :closure` instead of `js_compression =
-  :closure`.
-  * Use simple CSS compression by default.
+  * Fix: Ruby 1.8 compatibility. Yay!
+  * Fix: Fixed images always being square.
+  * Fix: Assets are now ordered properly.
+  * Change: the config format for `js_compression` and family. In your `assets` block,
+    you now have to use `js_compression :closure` instead of `js_compression = :closure`.
+  * Change: Use simple CSS compression by default.
 
 
 ## v0.0.3 - Aug 30, 2011
 
-### Added:
-  * Images in CSS defined in `url(...)` params are now cache-busted.
-  * Add support for embedded images in CSS.
-  * `rake assetpack:build` now also outputs images.
-
+  * Feature: Images in CSS defined in `url(...)` params are now cache-busted.
+  * Feature: Add support for embedded images in CSS.
+  * Feature: `rake assetpack:build` now also outputs images.
 
 ## v0.0.2 - Aug 29, 2011
 
-### Added:
-  * Added the `img` helper.
-  * Added support for filetypes used in @font-face.
-
-### Fixed:
-  * The gem now installs the correct dependencies.
-
+  * Feature: Added the `img` helper.
+  * Feature: Added support for filetypes used in @font-face.
+  * Fix: The gem now installs the correct dependencies.
 
 ## v0.0.1 - Aug 29, 2011
 
