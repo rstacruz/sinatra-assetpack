@@ -11,7 +11,7 @@ module Sinatra
 
       def img(src, options={})
         attrs = { :src => HtmlHelpers.get_file_uri(src, settings.assets) }
-          .merge!(options)
+        attrs = attrs.merge(options)
 
         "<img#{HtmlHelpers.kv attrs} />"
       end
