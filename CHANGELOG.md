@@ -1,3 +1,15 @@
+## v0.3.0 - July 30, 2013
+
+### Changes
+  * Remove automatic image tag width/height (#121)
+
+### Fixed
+  * Tilt issue #206 workaround (#125)
+
+### Improvements
+  * Improve DSL error reporting (#124)
+  * Add filename option to templates render. (#126)
+
 ## v0.2.8 - June 25, 2013
 
 ### Fixed
