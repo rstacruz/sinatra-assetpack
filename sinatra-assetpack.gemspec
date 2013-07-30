@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.executables = Dir['bin/*'].map { |f| File.basename(f) }
   s.cert_chain  = ['certs/j15e.pem']
   s.signing_key = File.expand_path('~/.gem/private_key.pem') if $0 =~ /gem\z/
+  s.required_ruby_version = '>= 1.9.2'
 
   s.add_dependency 'jsmin'
   s.add_dependency 'rack-test'
