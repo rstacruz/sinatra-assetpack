@@ -17,8 +17,6 @@ class HelpersTest < UnitTest
     get '/helper/email'
 
     assert body =~ %r{src='/images/email.png'}
-    assert body =~ %r{width='16'}
-    assert body =~ %r{height='16'}
   end
 
   test "img existing (production)" do
@@ -26,8 +24,6 @@ class HelpersTest < UnitTest
     get '/helper/email'
 
     assert body =~ %r{src='/images/email.[a-f0-9]{32}.png'}
-    assert body =~ %r{width='16'}
-    assert body =~ %r{height='16'}
   end
 
   test "css" do

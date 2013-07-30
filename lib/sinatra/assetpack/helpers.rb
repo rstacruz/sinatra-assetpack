@@ -10,19 +10,8 @@ module Sinatra
       end
 
       def img(src, options={})
-        attrs = { :src => src }.merge(options)
-
-        local = settings.assets.local_file_for src
-        if local
-          i = Image[local]
-
-          attrs[:src] = HtmlHelpers.get_file_uri(src, settings.assets)
-
-          if i.dimensions?
-            attrs[:width]  ||= i.width
-            attrs[:height] ||= i.height
-          end
-        end
+        attrs = { :src => HtmlHelpers.get_file_uri(src, settings.assets) }
+          .merge!(options)
 
         "<img#{HtmlHelpers.kv attrs} />"
       end
