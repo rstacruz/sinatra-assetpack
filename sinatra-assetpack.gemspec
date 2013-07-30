@@ -15,6 +15,10 @@ Gem::Specification.new do |s|
   s.signing_key = File.expand_path('~/.gem/private_key.pem') if $0 =~ /gem\z/
   s.required_ruby_version = '>= 1.9.2'
 
+  if File.exists?('UPGRADING')
+    s.post_install_message = File.read("UPGRADING")
+  end
+
   s.add_dependency 'jsmin'
   s.add_dependency 'rack-test'
   s.add_dependency 'sinatra'
