@@ -1,6 +1,7 @@
 ## v0.3.0 - July 30, 2013
 
   * Change: Remove automatic image tag width/height (#121)
+  * Change: Drop support for ruby 1.8.
   * Fix: Tilt issue #206 workaround (#125)
   * Improvement: Improve DSL error reporting (#124)
   * Improvement: Add filename option to templates render. (#126)
