@@ -22,7 +22,7 @@ class Main < Sinatra::Base
     serve '/fonts',    :from => 'app/fonts'
     serve '/packages',    :from => 'app/packages'
 
-    js :a_package, '/packages/a_package.js', [
+    js :js_package, '/packages/js_package.js', [
       '/packages/a_package/package.js',
     ]
 
@@ -40,6 +40,10 @@ class Main < Sinatra::Base
     js :encoding, '/js/encoding.js', [
       '/js/yoe.js',
       '/js/helloe.js'
+    ]
+
+    css :css_package, '/packages/css_package.css', [
+      '/packages/a_package/package.css',
     ]
 
     css :application, '/css/application.css', [
