@@ -4,18 +4,18 @@ class HeadersTest < UnitTest
   setup do
     app.set :reload_templates, true
 
-    @file = File.join(app.root, 'app', 'packages', 'a_package', 'package.js')
+    @file = File.join(app.root, 'app', 'packages', 'a_package', 'package.css')
     FileUtils.touch(@file)
     @httpdate = File.mtime(@file).httpdate
   end
 
   test "individual route" do
-    get '/packages/a_package/package.js'
+    get '/packages/a_package/package.css'
     assert_equal @httpdate, last_response.headers['Last-Modified']
   end
 
   test "package route" do
-    get '/packages/a_package.b1946ac92492d2347c6235b4d2611184.js'
+    get '/packages/css_package.6797d3f2e04e2638eb9c460de099fcff.css'
     assert_equal @httpdate, last_response.headers['Last-Modified']
   end
 end
