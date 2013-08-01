@@ -1,3 +1,7 @@
+## v0.3.1 - August 1, 2013
+
+  * Fix : Use Tilt mappings when sorting candidates for dynamic requests. (#122)
+
 ## v0.3.0 - July 30, 2013
 
   * Change: Remove automatic image tag width/height (#121)
