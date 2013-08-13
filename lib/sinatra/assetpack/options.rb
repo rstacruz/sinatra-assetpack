@@ -216,7 +216,7 @@ module Sinatra
       # Returns the local file for a given URI path.
       # Returns nil if a file is not found.
       def local_file_for(request)
-        request.squeeze!('/')
+        request = request.squeeze('/')
         serve_path, from = served.detect { |path, _| request.start_with?(path) }
 
         return if !from
