@@ -32,4 +32,13 @@ class LocalFileTest < UnitTest
     fn = App.assets.local_file_for '/images/404.jpg'
     assert fn.nil?
   end
+
+  test "local file for (with remote url)" do
+    url  = 'http://example.com/images/200.jpg'
+    copy = url.dup
+    fn   = App.assets.local_file_for copy
+    assert fn.nil?
+    assert_equal url, copy
+  end
+
 end
