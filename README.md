@@ -560,6 +560,11 @@ class App < Sinatra::Base
 end
 ```
 
+### assets.cache_package_paths
+Cache the list of files matching each package definition.
+
+Defaults to `false` in development, `true` in other environments. 
+
 ## Helpers
 
 These are helpers you can use in your views.

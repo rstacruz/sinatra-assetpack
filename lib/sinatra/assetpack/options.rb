@@ -173,6 +173,15 @@ module Sinatra
       attrib :prebuild          # Bool
       attrib :cache_dynamic_assets # Bool
 
+      def cache_package_paths(*args)
+        if args.empty?
+          @cache_package_paths = (app.settings.environment != :development) if @cache_package_paths.nil?
+          @cache_package_paths
+        else
+          @cache_package_paths = args.first
+        end
+      end
+      
       def expires(*args)
         if args.empty?
           @expires
@@ -277,6 +286,9 @@ module Sinatra
       #     glob(['spec1', 'spec2' ...])
       #
       def glob(match)
+
+        @reload_files_cache = true unless cache_package_paths
+
         paths = Array.new(match) # Force array-ness
 
         paths.map! do |spec|
