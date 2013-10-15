@@ -37,7 +37,7 @@ module Sinatra
       out
     end
 
-    # Clear Tilt::Cache (used for primarily for tests)
+    # Clear Tilt::Cache (used primarily for tests)
     def self.clear_tilt_cache!(cache, app)
       cache.clear
       #app.clear_tilt_cache = false  # Maybe it can be an option on app we can enable/disable?
