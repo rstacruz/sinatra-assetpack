@@ -3,14 +3,14 @@
 ##################################################
 
 Please note that sinatra-assetpack `img` helper method
-no more set the image width and height because this default
-behavior is not desirable with most recent CSS techniques
+no longer sets the image width and height. This default
+behavior is not desirable with more recent CSS techniques
 regarding high resolutions images for "retina" displays
-ans "responsive" design CSS using for exemple width:100%.
+and "responsive" design CSS using, for example, width:100%.
 
 <img src="retina.jpg" width="1200" height="600">
 
-Is now simply this (unless you explicity set them) :
+Is now simply this (unless you explicitly set them) :
 
 <img src="retina.jpg">
 
