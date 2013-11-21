@@ -19,6 +19,18 @@ class SubpathTest < UnitTest
     assert body =~ %r{link rel='stylesheet' href='/subpath/css/application.[a-f0-9]{32}.css' media='screen'}
   end
 
+  test "helpers img (mounted on a subpath, development)" do
+    Main.settings.stubs(:environment).returns(:development)
+    get '/subpath/helpers/email'
+    assert body =~ %r{src='/subpath/images/email.png'}
+  end
+
+  test "helpers img (mounted on a subpath, production)" do
+    Main.settings.stubs(:environment).returns(:production)
+    get '/subpath/helpers/email'
+    assert body =~ %r{src='/subpath/images/email.[a-f0-9]{32}.png'}
+  end
+
   test '/subpath/js/hello.js (plain js)' do
     get '/subpath/js/hello.js'
     assert body == '$(function() { alert("Hello"); });'

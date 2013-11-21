@@ -76,5 +76,11 @@ class Main < Sinatra::Base
       != css :application, :media => 'screen'
     }.strip
   end
+
+  get '/helpers/email' do
+    haml %{
+      != img '/images/email.png'
+    }.strip
+  end
 end
 
