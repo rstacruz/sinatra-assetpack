@@ -393,8 +393,8 @@ Redundancies will be taken care of.
 assets {
   css :NAME, [ PATH1, PATH2, ... ]
   css :NAME, 'URI', [ PATH1, PATH2, ... ]
-  js:NAME, [ PATH1, PATH2, ... ]
-  js:NAME, 'URI', [ PATH1, PATH2, ... ]
+  js :NAME, [ PATH1, PATH2, ... ]
+  js :NAME, 'URI', [ PATH1, PATH2, ... ]
 }
 ```
 
