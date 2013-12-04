@@ -10,13 +10,15 @@ module Sinatra
       end
 
       def img(src, options={})
-        file_path = HtmlHelpers.get_file_uri(src, settings.assets)
-        file_path = File.join(request.script_name, file_path)
-
-        attrs = { :src => file_path }
+        attrs = { :src => image_path(src) }
         attrs = attrs.merge(options)
 
         "<img#{HtmlHelpers.kv attrs} />"
+      end
+
+      def image_path(src)
+        file_path = HtmlHelpers.get_file_uri(src, settings.assets)
+        File.join(request.script_name, file_path)
       end
 
       def show_asset_pack(type, *args)
