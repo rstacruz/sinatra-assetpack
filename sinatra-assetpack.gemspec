@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jsmin'
   s.add_dependency 'rack-test'
   s.add_dependency 'sinatra'
-  s.add_dependency 'tilt', '>= 1.3.0'
+  s.add_dependency 'tilt', '>= 1.3.0', '< 2.0'
 
   # Supported preprocessors (each is optional)
   s.add_development_dependency 'coffee-script'
