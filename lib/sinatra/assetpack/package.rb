@@ -124,9 +124,9 @@ module Sinatra
         file_path = HtmlHelpers.get_file_uri(file, @assets)
 
         if js?
-          "<script src='#{e file_path}'#{kv options}></script>"
+          "<script src='#{e(file_path)}'#{kv(options)}></script>"
         elsif css?
-          "<link rel='stylesheet' href='#{e file_path}'#{kv options} />"
+          "<link rel='stylesheet' href='#{e(file_path)}'#{kv(options)} />"
         end
       end
     end
