@@ -1,3 +1,11 @@
+## v0.3.2 - January 10, 2014
+
+  * Change : Support .ico files (#147)
+  * Change : lock tilt gem to 1.0, not tilt 2.0 compatible yet.
+  * Fix : Account for suburi in img helper (#144)
+  * Fix : Improve image_path helper (#146)
+  * Fix : No broken HTML for crazy file names (#150)
+
 ## v0.3.1 - August 1, 2013
 
   * Fix : Use Tilt mappings when sorting candidates for dynamic requests. (#122)
