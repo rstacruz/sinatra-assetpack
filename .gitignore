@@ -2,3 +2,4 @@
 /.sass-cache
 /doc/
 *.gem
+.DS_Store
