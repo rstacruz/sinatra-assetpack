@@ -560,6 +560,38 @@ class App < Sinatra::Base
 end
 ```
 
+### assets.asset_hosts
+Adds asset hosts to be used in production.
+
+Useful for hosting your assets on CDNs.
+
+``` ruby
+# Usage:
+assets {
+  asset_hosts ['URL1', 'URL2']
+}
+```
+
+#### Example
+In this example, all assets are served from multiple CDN subdomains:
+
+``` ruby
+class App < Sinatra::Base
+  assets {
+    serve '/css',     :from => 'app/css'
+    serve '/js',      :from => 'app/js'
+
+    asset_hosts [
+      '//cdn-0.example.org',
+      '//cdn-1.example.org'
+    ]
+
+    css :a, ["/css/style.css"]
+    js :b, ["/js/hello.js"]
+  }
+end
+```
+
 ## Helpers
 
 These are helpers you can use in your views.
