@@ -5,7 +5,12 @@ module Sinatra
     module Css
       def self.preproc(source, assets)
         source.gsub(/url\((["']?)(.*?)(["']?)\)/) do |match|
-          uri = URI.parse($2)
+          quote_start=$1
+          content_in_quotes=$2
+          quote_end=$3
+          next match if content_in_quotes =~ /^data:/ # skip if its data_uri
+
+          uri = URI.parse(content_in_quotes)
 
           # Not a valid complete url
           next match if uri.path.nil?
@@ -15,7 +20,7 @@ module Sinatra
           next match if local.nil?
 
           asset_url = build_url(assets, local, uri)
-          "url(#{$1}#{asset_url}#{$3})"
+          "url(#{quote_start}#{asset_url}#{quote_end})"
         end
       end
 
