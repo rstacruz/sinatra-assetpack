@@ -284,13 +284,13 @@ class App < Sinatra::Base
   # Style 1
   assets do
     css :hello, [ '/css/*.css' ]
-    js_compression :yui
+    css_compression :yui
   end
 
   # Style 2
   assets do |a|
     a.css :hello, ['/css/*.css' ]
-    a.js_compression :yui
+    a.css_compression :yui
   end
 end
 ```
@@ -301,7 +301,7 @@ almost all the options, with the exception for `css`, `js` and `serve`.
 
 ``` ruby
 App.assets
-App.assets.js_compression   #=> :yui
+App.assets.css_compression   #=> :yui
 ```
 
 ### assets.serve
