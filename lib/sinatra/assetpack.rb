@@ -1,4 +1,5 @@
 require 'rack/test'
+require 'sinatra'
 
 module Sinatra
   module AssetPack
