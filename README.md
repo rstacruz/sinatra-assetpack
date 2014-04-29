@@ -265,6 +265,16 @@ APP_CLASS = 'App'
 require 'sinatra/assetpack/rake'
 ```
 
+This will compile all packages and files defined in the `app.rb`.
+Set the setting `:production_packages_only` to `true`, to only compile
+the package files, when the sinatra `environment` is `production`.
+Note, that Sinatras `:environment` setting defaults to the value of
+the `RACK_ENV` environment variable value.
+
+``` ruby
+enable :production_packages_only
+```
+
 #### Invoking
 Now invoke the `assetpack:build` Rake task. This will create files in `/public`.
 
