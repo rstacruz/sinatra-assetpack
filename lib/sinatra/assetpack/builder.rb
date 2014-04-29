@@ -3,7 +3,12 @@ module Sinatra
     module Builder
       def build!(&blk)
         packages.each { |_, pack| build_package!(pack, &blk) }
-        files.each { |path, local| build_file!(path, local, &blk) }
+
+        unless ENV['RACK_ENV'] == 'production' &&
+           defined?(@app.production_packages_only) &&
+           @app.production_packages_only
+          files.each { |path, local| build_file!(path, local, &blk) }
+        end
       end
 
       private
