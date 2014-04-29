@@ -5,7 +5,13 @@ module Sinatra
     module Css
       def self.preproc(source, assets)
         source.gsub(/url\((["']?)(.*?)(["']?)\)/) do |match|
-          uri = URI.parse($2)
+
+          # Not parsable by URI.parse
+          begin
+            uri = URI.parse($2)
+          rescue URI::InvalidURIError
+            next match
+          end
 
           # Not a valid complete url
           next match if uri.path.nil?
