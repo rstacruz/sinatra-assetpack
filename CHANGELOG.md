@@ -1,3 +1,9 @@
+## v0.3.3 - April 29, 2014
+
+  * Fix : Skip CSS preprocessing for malformed URIs (#167)
+  * Fix : Updates dependent require calls on invocation (#168)
+  * Doc : Add doc for asset hosts (#156)
+
 ## v0.3.2 - January 10, 2014
 
   * Change : Support .ico files (#147)
