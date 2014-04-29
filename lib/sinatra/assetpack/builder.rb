@@ -4,9 +4,9 @@ module Sinatra
       def build!(&blk)
         packages.each { |_, pack| build_package!(pack, &blk) }
 
-        unless ENV['RACK_ENV'] == 'production' &&
-           defined?(@app.production_packages_only) &&
-           @app.production_packages_only
+        unless @app.settings.environment == :production &&
+               defined?(@app.settings.production_packages_only) &&
+               @app.settings.production_packages_only
           files.each { |path, local| build_file!(path, local, &blk) }
         end
       end
