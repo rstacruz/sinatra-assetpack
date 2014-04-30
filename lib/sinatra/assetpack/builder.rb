@@ -2,13 +2,16 @@ module Sinatra
   module AssetPack
     module Builder
       def build!(&blk)
-        packages.each { |_, pack| build_package!(pack, &blk) }
+        build_packages!
+        build_files!
+      end
 
-        unless @app.settings.environment == :production &&
-               defined?(@app.settings.production_packages_only) &&
-               @app.settings.production_packages_only
-          files.each { |path, local| build_file!(path, local, &blk) }
-        end
+      def build_packages!(&blk)
+        packages.each { |_, pack| build_package!(pack, &blk) }
+      end
+
+      def build_files!(&blk)
+        files.each { |path, local| build_file!(path, local, &blk) }
       end
 
       private
