@@ -20,10 +20,30 @@ def app
 end
 
 namespace :assetpack do
-  desc "Build assets"
+  desc "Precompile all assets"
+  task :precompile => ['precompile:packages', 'precompile:files']
+
+  namespace :precompile do
+    desc "Precompile packages only"
+    task :packages do
+      puts "Precompiling packages ..."
+      app.assets.build_packages! do |file|
+        puts "+ #{file.gsub(Dir.pwd, '')}"
+      end
+    end
+
+    desc "Precompile files only"
+    task :files do
+      puts "Precompiling files ..."
+      app.assets.build_files! do |file|
+        puts "+ #{file.gsub(Dir.pwd, '')}"
+      end
+    end
+  end
+
+  # For backwards compatibility
   task :build do
-    app.assets.build! { |file|
-      puts "+ #{file.gsub(Dir.pwd, '')}"
-    }
+    puts "WARNING: assetpack:build is deprecated. Use assetpack:precompile"
+    Rake::Task["assetpack:precompile"].invoke
   end
 end

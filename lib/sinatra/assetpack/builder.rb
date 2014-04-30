@@ -2,7 +2,15 @@ module Sinatra
   module AssetPack
     module Builder
       def build!(&blk)
+        build_packages!
+        build_files!
+      end
+
+      def build_packages!(&blk)
         packages.each { |_, pack| build_package!(pack, &blk) }
+      end
+
+      def build_files!(&blk)
         files.each { |path, local| build_file!(path, local, &blk) }
       end
 

@@ -28,6 +28,8 @@ module Sinatra
     # Build:
     #
     #     a.build! { |path| puts "Building #{path}" }
+    #     a.build_packages! { |path| puts "Building package #{path}" }
+    #     a.build_files! { |path| puts "Building files #{path}" }
     #
     # Lookup:
     #

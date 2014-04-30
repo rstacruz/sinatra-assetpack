@@ -266,10 +266,14 @@ require 'sinatra/assetpack/rake'
 ```
 
 #### Invoking
-Now invoke the `assetpack:build` Rake task. This will create files in `/public`.
 
-    $ rake assetpack:build
+Now you have the following tasks to precompile assets.
 
+``` ruby
+rake assetpack:precompile           # Precompile all assets
+rake assetpack:precompile:files     # Precompile files only
+rake assetpack:precompile:packages  # Precompile packages only
+```
 
 ## Settings
 
