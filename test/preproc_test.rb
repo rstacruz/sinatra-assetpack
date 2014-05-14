@@ -52,7 +52,6 @@ class PreprocTest < UnitTest
     app.stubs(:clear_cache).returns(true)
     app.stubs(:development?).returns(false)
     get '/css/bad_uri.css'
-    puts body
     assert body =~ %r{data:image/svg\+xml;base64, PHN2ZyB4bW}
   end
 end
