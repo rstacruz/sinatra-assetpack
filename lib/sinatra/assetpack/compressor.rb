@@ -51,5 +51,6 @@ module Sinatra
     require "#{AssetPack::PREFIX}/assetpack/engines/sqwish"
     require "#{AssetPack::PREFIX}/assetpack/engines/closure"
     require "#{AssetPack::PREFIX}/assetpack/engines/uglify"
+    require "#{AssetPack::PREFIX}/assetpack/engines/none"
   end
 end
