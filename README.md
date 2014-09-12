@@ -92,6 +92,8 @@ If you're on **production** mode, it serves a compressed version in the URLs you
 <script type='text/javascript' src='/js/app.589491.js'></script>
 ```
 
+You can also force production mode, see [helpers](#helpers).
+
 ## Features
 
  * __CoffeeScript support__ Just add your coffee files in one of the paths
@@ -599,6 +601,9 @@ end
 ## Helpers
 
 These are helpers you can use in your views.
+
+`OPTIONS_HASH`
+* `force_production` causes output to be produced in production mode, concatenated and minified
 
 ### <%= css %>
 
