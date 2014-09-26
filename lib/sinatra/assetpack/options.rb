@@ -63,6 +63,8 @@ module Sinatra
         @css_compression_options = Hash.new
         @dynamic_asset_cache     = Hash.new
 
+        @compress_environments   = [:production]
+
         @ignored = Array.new
 
         reset!
@@ -169,7 +171,9 @@ module Sinatra
       attrib :output_path       # '/public'
       attrib :asset_hosts       # [ 'http://cdn0.example.org', 'http://cdn1.example.org' ]
 
-      attrib :js_compression_options   # Hash
+      attrib :compress_environments # [ :production ]
+
+      attrib :js_compression_options  # Hash
       attrib :css_compression_options  # Hash
 
       attrib :prebuild          # Bool
@@ -193,6 +197,11 @@ module Sinatra
         @css_compression = name unless name.nil?
         @css_compression_options = options if options.is_a?(Hash)
         @css_compression
+      end
+
+      def compress_environments(*args)
+        @compress_environments = args unless args.empty?
+        @compress_environments
       end
 
       # =====================================================================

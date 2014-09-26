@@ -76,10 +76,18 @@ class AppTest < UnitTest
   end
 
   test "helpers in production (compressed html thingie)" do
+    app.settings.assets.stubs(:compress_environments).returns([:production])
     app.settings.stubs(:environment).returns(:production)
     get '/index.html'
     assert body =~ /<script src='\/js\/app.[a-f0-9]{32}.js'><\/script>/
   end
+
+   test "helpers in staging with custom compression envs (compressed html thingie)" do
+     app.settings.assets.stubs(:compress_environments).returns([:production, :staging])
+     app.settings.stubs(:environment).returns(:staging)
+     get '/index.html'
+     assert body =~ /<script src='\/js\/app.[a-f0-9]{32}.js'><\/script>/
+   end
 
   test "file with multiple dots in name" do
     get '/js/lib-3.2.1.min.js'
@@ -108,13 +116,22 @@ class AppTest < UnitTest
   end
 
   test "helpers css (development)" do
+    app.settings.stubs(:compress_environments).returns([:production])
     app.settings.stubs(:environment).returns(:development)
     get '/helpers/css'
     assert body =~ %r{link rel='stylesheet' href='/css/screen.[a-f0-9]{32}.css' media='screen'}
   end
 
   test "helpers css (production)" do
+    app.settings.assets.stubs(:compress_environments).returns([:production])
     app.settings.stubs(:environment).returns(:production)
+    get '/helpers/css'
+    assert body =~ %r{link rel='stylesheet' href='/css/application.[a-f0-9]{32}.css' media='screen'}
+  end
+
+  test "helpers css (staging, with custom compress_environments)" do
+    app.settings.assets.stubs(:compress_environments).returns([:production, :staging])
+    app.settings.stubs(:environment).returns(:staging)
     get '/helpers/css'
     assert body =~ %r{link rel='stylesheet' href='/css/application.[a-f0-9]{32}.css' media='screen'}
   end

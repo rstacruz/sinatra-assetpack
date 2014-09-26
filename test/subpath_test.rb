@@ -14,6 +14,7 @@ class SubpathTest < UnitTest
   end
 
   test "helpers css (mounted on a subpath, production)" do
+    Main.settings.assets.stubs(:compress_environments).returns([:production, :staging])
     Main.settings.stubs(:environment).returns(:production)
     get '/subpath/helpers/css'
     assert body =~ %r{link rel='stylesheet' href='/subpath/css/application.[a-f0-9]{32}.css' media='screen'}
