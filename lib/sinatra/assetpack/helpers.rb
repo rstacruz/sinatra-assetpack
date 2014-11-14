@@ -18,7 +18,12 @@ module Sinatra
 
       def image_path(src)
         file_path = HtmlHelpers.get_file_uri(src, settings.assets)
-        File.join(request.script_name, file_path)
+
+        if file_path =~ /\A(http|https)\:\/\//
+          file_path
+        else
+          File.join(request.script_name, file_path)
+        end
       end
 
       def show_asset_pack(type, *args)

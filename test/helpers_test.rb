@@ -8,6 +8,7 @@ class HelpersTest < UnitTest
   Main.get('/helper/css/sq') { css :sq }
   Main.get('/helper/foo_path') { image_path '/images/foo.jpg' }
   Main.get('/helper/email_path') { image_path '/images/email.png' }
+  Main.get('/helper/absolute_url') { image_path 'https://example.s3.amazonaws.com/images/uploads/foo.jpg' }
 
   test "img non-existing" do
     get '/helper/foo'
@@ -46,6 +47,13 @@ class HelpersTest < UnitTest
     get '/helper/email_path'
 
     assert body =~ %r{\A/images/email.[a-f0-9]{32}.png\z}
+  end
+
+  test "image_path absolute url (production/cdn)" do
+    app.stubs(:development?).returns(false)
+    get '/helper/absolute_url'
+
+    assert body == "https://example.s3.amazonaws.com/images/uploads/foo.jpg"
   end
 
   test "css" do
