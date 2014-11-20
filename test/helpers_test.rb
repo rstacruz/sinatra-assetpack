@@ -54,6 +54,6 @@ class HelpersTest < UnitTest
     get '/helper/css/sq';  re << body
 
     get '/helper/css/all'
-    assert body.gsub(/[\r\n]*/m, '') == re.join('')
+    assert body.gsub(/[\r\n]*/m, '') == re.join('').gsub(/[\r\n]*/m, '')
   end
 end

@@ -61,11 +61,29 @@ module Sinatra
       end
 
       def to_development_html(path_prefix, options={})
-        paths_and_files.map { |path, file|
-          path = add_cache_buster(path, file)
-          path = add_path_prefix(path, path_prefix)
-          link_tag(path, options)
-        }.join("\n")
+        if js?
+          return paths_and_files.map { |path, file|
+            path = add_cache_buster(path, file)
+            path = add_path_prefix(path, path_prefix)
+            link_tag(path, options)
+          }.join("\n")
+        else # see http://stackoverflow.com/questions/9906794/internet-explorers-css-rules-limits 
+          list = paths_and_files.map { |path, file|
+            path = add_cache_buster(path, file)
+            add_path_prefix(path, path_prefix)
+          }
+
+          styles = []
+          list.each_slice(31).to_a.each do|link_group|
+            style = ['<style>']
+            link_group.each do|css_path|
+              style.push("@import \'#{css_path}\';\n")
+            end
+            style.push('</style>')
+            styles.push(style.join(''))
+          end
+          styles.join('')
+        end
       end
 
       # The URI path of the minified file (with cache buster, but not a path prefix)

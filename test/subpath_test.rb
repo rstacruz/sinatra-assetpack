@@ -10,7 +10,7 @@ class SubpathTest < UnitTest
   test "helpers css (mounted on a subpath, development)" do
     Main.settings.stubs(:environment).returns(:development)
     get '/subpath/helpers/css'
-    assert body =~ %r{link rel='stylesheet' href='/subpath/css/screen.[a-f0-9]{32}.css' media='screen'}
+    assert body =~ %r{<style>@import '/subpath/css/screen.e99ac62b0b383ea8ffd371a5aa87744d.css';\n</style>}
   end
 
   test "helpers css (mounted on a subpath, production)" do
