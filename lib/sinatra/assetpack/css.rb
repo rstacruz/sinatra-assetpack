@@ -39,7 +39,7 @@ module Sinatra
       def self.build_data_uri(file)
         require 'base64'
 
-        data = File.read(file)
+        data = File.open(file, "r:utf-8", &:read)
         ext  = File.extname(file)
         mime = Sinatra::Base.mime_type(ext)
         b64  = Base64.encode64(data).gsub("\n", '')
