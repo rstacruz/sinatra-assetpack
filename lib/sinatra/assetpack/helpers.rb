@@ -17,12 +17,10 @@ module Sinatra
       end
 
       def image_path(src)
-        file_path = HtmlHelpers.get_file_uri(src, settings.assets)
-
-        if file_path =~ /\A(http|https)\:\/\//
-          file_path
+        if src =~ /\A(http|https)\:\/\//
+          src
         else
-          File.join(request.script_name, file_path)
+          HtmlHelpers.get_file_uri(src, settings.assets, request.script_name)
         end
       end
 
@@ -51,7 +49,7 @@ module Sinatra
       end
 
       def asset_filter_css(str)
-        Css.preproc str, settings.assets
+        Css.preproc str, settings.assets, request.script_name
       end
 
       def asset_path_for(file, from)
