@@ -87,11 +87,11 @@ module Sinatra
         end
       end
 
-      def minify
+      def minify(script_name)
         engine  = @assets.send(:"#{@type}_compression")
         options = @assets.send(:"#{@type}_compression_options")
 
-        Compressor.compress combined, @type, engine, options
+        Compressor.compress combined(script_name), @type, engine, options
       end
 
       # The cache hash.
@@ -103,10 +103,10 @@ module Sinatra
         end
       end
 
-      def combined
+      def combined(script_name)
         session = Rack::Test::Session.new(@assets.app)
         paths.map { |path|
-          result = session.get(path)
+          result = session.get(path, {}, {'SCRIPT_NAME' => script_name})
           if result.body.respond_to?(:force_encoding)
             response_encoding = result.content_type.split(/\;\s*charset\s*=\s*/).last.upcase rescue 'ASCII-8BIT'
             result.body.force_encoding(response_encoding).encode(Encoding.default_external || 'ASCII-8BIT')  if result.status == 200
