@@ -20,7 +20,7 @@ module Sinatra
         if src =~ /\A(http|https)\:\/\//
           src
         else
-          HtmlHelpers.get_file_uri(src, settings.assets, request.script_name)
+          HtmlHelpers.get_file_uri(src, settings.assets, request)
         end
       end
 
@@ -42,14 +42,14 @@ module Sinatra
         return ""  unless pack
 
         if settings.environment.to_sym == :production
-          pack.to_production_html request.script_name, options
+          pack.to_production_html(request, options)
         else
-          pack.to_development_html request.script_name, options
+          pack.to_development_html(request, options)
         end
       end
 
       def asset_filter_css(str)
-        Css.preproc str, settings.assets, request.script_name
+        Css.preproc(str, settings.assets, request)
       end
 
       def asset_path_for(file, from)

@@ -60,11 +60,10 @@ module Sinatra
         /^#{re}$/
       end
 
-      def to_development_html(path_prefix, options={})
+      def to_development_html(request, options={})
         paths_and_files.map { |path, file|
           path = add_cache_buster(path, file)
-          path = add_path_prefix(path, path_prefix)
-          link_tag(path, options)
+          link_tag(path, request, options)
         }.join("\n")
       end
 
@@ -73,10 +72,9 @@ module Sinatra
         add_cache_buster @path, *files
       end
 
-      def to_production_html(path_prefix, options={})
+      def to_production_html(request, options={})
         path = production_path
-        path = add_path_prefix(path, path_prefix)
-        link_tag path, options
+        link_tag(path, request, options)
       end
 
       def add_path_prefix(path, path_prefix)
@@ -87,11 +85,11 @@ module Sinatra
         end
       end
 
-      def minify(script_name)
+      def minify(request)
         engine  = @assets.send(:"#{@type}_compression")
         options = @assets.send(:"#{@type}_compression_options")
 
-        Compressor.compress combined(script_name), @type, engine, options
+        Compressor.compress combined(request), @type, engine, options
       end
 
       # The cache hash.
@@ -103,10 +101,14 @@ module Sinatra
         end
       end
 
-      def combined(script_name)
+      def combined(request)
         session = Rack::Test::Session.new(@assets.app)
         paths.map { |path|
-          result = session.get(path, {}, {'SCRIPT_NAME' => script_name})
+          result = session.get(
+            path,
+            {},
+            {'HTTP_HOST' => request.host, 'SCRIPT_NAME' => request.script_name}
+          )
           if result.body.respond_to?(:force_encoding)
             response_encoding = result.content_type.split(/\;\s*charset\s*=\s*/).last.upcase rescue 'ASCII-8BIT'
             result.body.force_encoding(response_encoding).encode(Encoding.default_external || 'ASCII-8BIT')  if result.status == 200
@@ -120,8 +122,8 @@ module Sinatra
       def css?() @type == :css; end
 
     private
-      def link_tag(file, options={})
-        file_path = HtmlHelpers.get_file_uri(file, @assets)
+      def link_tag(file, request, options={})
+        file_path = HtmlHelpers.get_file_uri(file, @assets, request)
 
         if js?
           "<script src='#{e(file_path)}'#{kv(options)}></script>"
