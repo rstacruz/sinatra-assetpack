@@ -7,6 +7,8 @@
 [![Dependency Status](https://gemnasium.com/rstacruz/sinatra-assetpack.png)](https://gemnasium.com/rstacruz/sinatra-assetpack)
 [![Code Climate](https://codeclimate.com/github/rstacruz/sinatra-assetpack.png)](https://codeclimate.com/github/rstacruz/sinatra-assetpack)
 
+### <i color="red">Important :</i> [Looking for New Maintainer](https://github.com/rstacruz/sinatra-assetpack/issues/197)
+
 ##  Installation
 
 ``` ruby
