@@ -15,9 +15,15 @@ Gem::Specification.new do |s|
   s.signing_key = File.expand_path("~/.ssh/gem-private_key.pem") if $0 =~ /gem\z/
   s.required_ruby_version = '>= 1.9.2'
 
-  if File.exists?('UPGRADING')
-    s.post_install_message = File.read("UPGRADING")
-  end
+  s.post_install_message = <<-POST_INSTALL_MESSAGE
+##########################################################
+# WARNING : sinatra-assetpack is not maintained anymore! #
+##########################################################
+
+YOU MIGHT BE EXPOSED TO SECURITY ISSUES & BUGS.
+
+See https://github.com/rstacruz/sinatra-assetpack/issues/197
+  POST_INSTALL_MESSAGE
 
   s.add_dependency 'jsmin'
   s.add_dependency 'rack-test'

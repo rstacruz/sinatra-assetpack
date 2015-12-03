@@ -1,4 +1,4 @@
-## v0.3.4 - December 3, 2015
+## v0.3.5 - December 3, 2015
 
   * WARNING : This repo is not maintained anymore!
   * Final release to notify gem users.
@@ -9,6 +9,10 @@
   * Change : Optionally only build packages in production (169)
   * Fix : Prevent syntax error in regex (#178)
   * Fix : Fix image_path helper for absolute urls (#183)
+
+## v0.3.4 - December 3, 2015
+
+* Yanked (post install message wasn't working)
 
 ## v0.3.3 - April 29, 2014
 
