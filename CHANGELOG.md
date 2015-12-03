@@ -1,3 +1,15 @@
+## v0.3.4 - December 3, 2015
+
+  * WARNING : This repo is not maintained anymore!
+  * Final release to notify gem users.
+
+  * Change : Woff2 Support (#199)
+  * Change : Set the environment as a string (#190)
+  * Change : Add noop compressing engine via :none (#176)
+  * Change : Optionally only build packages in production (169)
+  * Fix : Prevent syntax error in regex (#178)
+  * Fix : Fix image_path helper for absolute urls (#183)
+
 ## v0.3.3 - April 29, 2014
 
   * Fix : Skip CSS preprocessing for malformed URIs (#167)
