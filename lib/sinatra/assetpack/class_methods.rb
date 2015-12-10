@@ -76,7 +76,7 @@ module Sinatra
               if fmt == 'css'
                 # Matching static file format
                 pass unless fmt == File.extname(fn)[1..-1]
-                @template_cache.fetch(fn) { asset_filter_css File.read(fn) }
+                @template_cache.fetch(fn) { asset_filter_css File.open(fn, "r:utf-8", &:read) }
               else
                 # It's a raw file, just send it
                 send_file fn
@@ -87,7 +87,7 @@ module Sinatra
 
               @template_cache.fetch(fn) {
                 settings.assets.fetch_dynamic_asset(fn) {
-                  out = render format.to_sym, File.read(fn), :filename => fn
+                  out = render format.to_sym, File.open(fn, "r:utf-8", &:read), :filename => fn
                   out = asset_filter_css(out)  if fmt == 'css'
                   out
                 }
