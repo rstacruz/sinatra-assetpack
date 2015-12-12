@@ -29,7 +29,7 @@ module Sinatra
             end
 
             mtime, contents = @template_cache.fetch(package.path) {
-              [ package.mtime, package.minify ]
+              [ package.mtime, package.minify(request) ]
             }
 
             content_type package.type

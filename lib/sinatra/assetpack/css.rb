@@ -3,7 +3,7 @@ require 'uri'
 module Sinatra
   module AssetPack
     module Css
-      def self.preproc(source, assets)
+      def self.preproc(source, assets, request)
         source.gsub(/url\((["']?)(.*?)(["']?)\)/) do |match|
 
           # Not parsable by URI.parse
@@ -20,16 +20,16 @@ module Sinatra
           local = assets.local_file_for(uri.path)
           next match if local.nil?
 
-          asset_url = build_url(assets, local, uri)
+          asset_url = build_url(assets, local, uri, request)
           "url(#{$1}#{asset_url}#{$3})"
         end
       end
 
-      def self.build_url(assets, local, uri)
+      def self.build_url(assets, local, uri, request)
         if uri.query && uri.query.include?('embed')
           build_data_uri(local)
         else
-          serve = URI(HtmlHelpers.get_file_uri(uri.path, assets))
+          serve = URI(HtmlHelpers.get_file_uri(uri.path, assets, request))
           serve.query = uri.query
           serve.fragment = uri.fragment
           serve.to_s
