@@ -15,6 +15,8 @@ module Sinatra
 
     # Returns a map of what MIME format each Tilt type returns.
     def self.tilt_formats
+      # Early return to prevent this method from causing errors on Sinatra > 1.4.0
+      return {} unless Tilt.respond_to?(:mappings)
       @formats ||= begin
         hash = Hash.new
         Tilt.mappings.each do |format, (engine, _)|
