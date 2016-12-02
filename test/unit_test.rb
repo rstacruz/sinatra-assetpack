@@ -110,7 +110,7 @@ class AppTest < UnitTest
   test "helpers css (development)" do
     app.settings.stubs(:environment).returns(:development)
     get '/helpers/css'
-    assert body =~ %r{link rel='stylesheet' href='/css/screen.[a-f0-9]{32}.css' media='screen'}
+    assert body =~ %r{<style>@import '/css/screen.[a-f0-9]{32}.css';\n</style>}
   end
 
   test "helpers css (production)" do
